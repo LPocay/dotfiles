@@ -15,8 +15,8 @@ set $mod Mod1
 # is used in the bar {} block below.
 font pango:JetBrainsMono Nerd Font 10
 
-exec_always --no-startup-id killall polybar
-exec_always --no-startup-id polybar top
+# exec_always --no-startup-id killall polybar
+exec --no-startup-id polybar top
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -213,7 +213,7 @@ for_window [all] border pixel 2
 # gaps top 39
 # gaps inner 12
 
-exec --no-startup-id ~/2monitors.sh
+# exec --no-startup-id ~/2monitors.sh
 
 # exec --no-startup-id feh --bg-scale /home/lpocay/Pictures/Wallpapers/active/"$(ls /home/lpocay/Pictures/Wallpapers/active)"
 exec --no-startup-id lxpolkit &
