@@ -1,0 +1,87 @@
+* {
+  bg: #363646;
+  fg: #dcd7ba;
+  dark-bg: #2a2a37;
+  font: "JetBrainsMono Nerd Font 14";
+}
+
+window {
+  background-color: @bg;
+  border: 0;
+  children:  [mainbox];
+}
+
+mainbox {
+    spacing: 0;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+  padding: 5px;
+  color: @fg;
+}
+
+entry,prompt,case-indicator {
+    text-font: inherit;
+    text-color:inherit;
+}
+
+listview {
+    dynamic: false;
+    lines: 10;
+    background-color: @bg;
+    border-color: @fg;
+    border: 1px solid 0 0;
+    padding: 20px 0 0;
+    spacing: 5px;
+}
+
+element {
+    padding: 3px;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+element-text {
+    text-color:       @fg;
+}
+
+element.normal.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+element.normal.urgent {
+    background-color: @bg;
+    text-color:       @fg;
+}
+element.normal.active {
+    background-color: @dark-bg;
+}
+element.selected.normal {
+    background-color: @dark-bg;
+}
+element.selected.urgent {
+    background-color: @dark-bg;
+}
+element.selected.active {
+    background-color: @dark-bg;
+}
+element.alternate.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+element.alternate.urgent {
+    background-color: @bg;
+    text-color:       @fg;
+}
+element.alternate.active {
+    background-color: @dark-bg;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-width: 8px ;
+    padding:      0;
+    handle-color: @dark-bg;
+}
+
