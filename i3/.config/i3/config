@@ -51,7 +51,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -213,7 +213,5 @@ for_window [all] border pixel 2
 # gaps top 39
 # gaps inner 12
 
-# exec --no-startup-id ~/2monitors.sh
-
-# exec --no-startup-id feh --bg-scale /home/lpocay/Pictures/Wallpapers/active/"$(ls /home/lpocay/Pictures/Wallpapers/active)"
+exec --no-startup-id ~/configure-monitors.sh && feh --bg-scale /home/lpocay/Pictures/Wallpapers/wallhaven-2yzg1g_2560x1440.png
 exec --no-startup-id lxpolkit &
