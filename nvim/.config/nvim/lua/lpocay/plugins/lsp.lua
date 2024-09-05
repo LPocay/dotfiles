@@ -22,6 +22,7 @@ return {
         lsp_zero.buffer_autoformat()
       end
     end
+
     lsp_zero.extend_lspconfig({
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
       lsp_attach = lsp_attach,
@@ -40,41 +41,31 @@ return {
     require('mason-lspconfig').setup({
       ensure_installed = lsp_ensure_installed,
       handlers = {
-        lsp_zero.default_setup,
-        lua_ls = function()
-          local lua_opts = lsp_zero.nvim_lua_ls()
-          require('lspconfig').lua_ls.setup(lua_opts)
+        function(server_name)
+          require('lspconfig')[server_name].setup({})
         end,
+        lua_ls = function()
+          local lua_ls = require('lpocay.configs.lsp.lua_ls')
+          require('lspconfig').lua_ls.setup(lua_ls)
+        end,
+        tsserver = function()
+          local ts_ls = require('lpocay.configs.lsp.ts_ls')
+          require('lspconfig').ts_ls.setup(ts_ls)
+        end,
+        clangd = function()
+          local clangd = require('lpocay.configs.lsp.clangd')
+          require('lspconfig').clangd.setup(clangd)
+        end,
+        svelte = function()
+          local svelte = require('lpocay.configs.lsp.svelte')
+          require('lspconfig').svelte.setup(svelte)
+        end,
+        cmake = function()
+          local cmake = require('lpocay.configs.lsp.cmake')
+          require('lspconfig').neocmake.setup(cmake)
+        end
       }
     })
-
-    require('lspconfig').lua_ls.setup({
-      settings = {
-        Lua = {
-          telemetry = {
-            enable = false
-          },
-          hint = {
-            enable = true
-          },
-          completion = {
-            callSnippet = "Replace"
-          },
-        }
-      }
-    })
-
-    local tsserver = require('lpocay.configs.lsp.tsserver')
-    require('lspconfig').ts_ls.setup(tsserver)
-
-    local clangd = require('lpocay.configs.lsp.clangd')
-    require('lspconfig').clangd.setup(clangd)
-
-    local svelte = require('lpocay.configs.lsp.svelte')
-    require('lspconfig').svelte.setup(svelte)
-
-    local cmake = require('lpocay.configs.lsp.cmake')
-    require('lspconfig').neocmake.setup(cmake)
 
     local cmp = require('cmp')
     local cmp_format = lsp_zero.cmp_format({})
