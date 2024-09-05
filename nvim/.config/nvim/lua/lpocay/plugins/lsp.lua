@@ -2,7 +2,7 @@ local lsp_ensure_installed = require('lpocay.configs.lsp.ensure_installed')
 
 return {
   'VonHeikemen/lsp-zero.nvim',
-  branch = 'v3.x',
+  branch = 'v4.x',
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
@@ -16,12 +16,18 @@ return {
   },
   config = function()
     local lsp_zero = require('lsp-zero')
-    lsp_zero.on_attach(function(client, bufnr)
+    local lsp_attach = function(client, bufnr)
       lsp_zero.default_keymaps({ buffer = bufnr })
       if client.supports_method('textDocument/formatting') then
         lsp_zero.buffer_autoformat()
       end
-    end)
+    end
+    lsp_zero.extend_lspconfig({
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      lsp_attach = lsp_attach,
+      float_border = 'rounded',
+      sign_text = true,
+    })
 
     lsp_zero.set_sign_icons({
       error = '',
@@ -41,8 +47,6 @@ return {
         end,
       }
     })
-    local cmp = require('cmp')
-    local cmp_format = lsp_zero.cmp_format({})
 
     require('lspconfig').lua_ls.setup({
       settings = {
@@ -61,7 +65,7 @@ return {
     })
 
     local tsserver = require('lpocay.configs.lsp.tsserver')
-    require('lspconfig').tsserver.setup(tsserver)
+    require('lspconfig').ts_ls.setup(tsserver)
 
     local clangd = require('lpocay.configs.lsp.clangd')
     require('lspconfig').clangd.setup(clangd)
@@ -72,6 +76,8 @@ return {
     local cmake = require('lpocay.configs.lsp.cmake')
     require('lspconfig').neocmake.setup(cmake)
 
+    local cmp = require('cmp')
+    local cmp_format = lsp_zero.cmp_format({})
     cmp.setup({
       formatting = cmp_format,
       mapping = cmp.mapping.preset.insert({
@@ -80,6 +86,14 @@ return {
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<C-Space>'] = cmp.mapping.complete(),
       }),
+      sources = {
+        { name = 'nvim_lsp' },
+      },
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body)
+        end,
+      },
     })
   end
 }
