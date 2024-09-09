@@ -48,7 +48,7 @@ return {
           local lua_ls = require('lpocay.configs.lsp.lua_ls')
           require('lspconfig').lua_ls.setup(lua_ls)
         end,
-        tsserver = function()
+        ts_ls = function()
           local ts_ls = require('lpocay.configs.lsp.ts_ls')
           require('lspconfig').ts_ls.setup(ts_ls)
         end,
