@@ -1,5 +1,5 @@
 return {
-  "tsserver",
+  "ts_ls",
   "clangd",
   "neocmake",
   "unocss",
