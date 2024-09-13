@@ -201,6 +201,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym $mod+x exec "swaymsg -t get_outputs |jq '[.[] | select(.active == true)] | .[(map(.focused) | index(true) + 1) % length].name' |xargs swaymsg move workspace to"
+bindsym $mod+Shift+s exec grim -g "$(slurp)"
 #
 # Status Bar:
 #
