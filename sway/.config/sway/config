@@ -22,6 +22,8 @@ set $menu dmenu_path | wmenu | xargs swaymsg exec --
 
 font pango:JetBrainsMono Nerd Font 11
 
+input 1386:888:Wacom_Intuos_BT_M_Pen map_to_output DP-3
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
