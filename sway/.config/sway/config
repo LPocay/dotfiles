@@ -18,7 +18,8 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | wmenu | xargs swaymsg exec --
+# set $menu dmenu_path | wmenu | xargs swaymsg exec --
+set $menu wofi --show drun -I
 
 font pango:JetBrainsMono Nerd Font 11
 
@@ -202,6 +203,7 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+x exec "swaymsg -t get_outputs |jq '[.[] | select(.active == true)] | .[(map(.focused) | index(true) + 1) % length].name' |xargs swaymsg move workspace to"
 bindsym $mod+Shift+s exec grim -g "$(slurp)"
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 #
 # Status Bar:
