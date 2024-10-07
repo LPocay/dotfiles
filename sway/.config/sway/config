@@ -28,7 +28,7 @@ input 1386:888:Wacom_Intuos_BT_M_Pen map_to_output DP-3
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/messmer.png fill
+output * bg ~/Pictures/Wallpapers/background.jpg fill
 #
 # Example configuration:
 #
@@ -222,5 +222,7 @@ client.placeholder      #0d0c0c  #181616      #C5C9C5   #938aa9     #0d0c0c
 
 default_border none
 default_floating_border none
+gaps inner 8
+gaps outer 8
 
 include /etc/sway/config.d/*

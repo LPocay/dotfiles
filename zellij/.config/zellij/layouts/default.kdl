@@ -1,9 +1,47 @@
 layout {
   pane size=1 borderless=true {
-    plugin location="zellij:compact-bar"
+    plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+      format_left   "{mode} #[fg=#89B4FA]{session}"
+      format_center "{tabs}"
+      format_right  "{command_git_branch} {datetime}"
+      format_space  ""
+
+      border_enabled  "false"
+      border_char     "─"
+      border_format   "#[fg=#6C7086]{char}"
+      border_position "top"
+
+      hide_frame_for_single_pane "true"
+
+      mode_normal        "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_locked        "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_resize        "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_pane          "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_tab           "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_scroll        "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_enter_search  "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_search        "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_rename_tab    "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_rename_pane   "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_session       "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_move          "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_prompt        "#[bg=#89B4FA,fg=#ffffff] {name} "
+      mode_tmux          "#[bg=#ffc387,fg=#ffffff] {name} "
+
+      tab_normal   "#[fg=#6C7086] {name} "
+      tab_active   "#[fg=#9399B2,bold] {name} "
+
+      command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+      command_git_branch_format      "#[fg=blue] {stdout} "
+      command_git_branch_interval    "10"
+      command_git_branch_rendermode  "static"
+
+      datetime        "#[fg=#6C7086] {format} "
+      datetime_format "%A, %d %b %Y %H:%M"
+      datetime_timezone "America/Argentina/Buenos_Aires"
+    }
   }
   pane split_direction="vertical" {
-    pane
     pane
   }
 }
