@@ -1,6 +1,5 @@
 return {
   "folke/trouble.nvim",
-  branch = "main", -- IMPORTANT!
   keys = {
     {
       "<leader>xx",

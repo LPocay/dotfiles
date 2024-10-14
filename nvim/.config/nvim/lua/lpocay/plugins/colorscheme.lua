@@ -9,7 +9,7 @@ return {
       overrides = function(colors)
         local theme = colors.theme
         return {
-          EndOfBuffer = { fg = theme.ui.fg },
+          -- EndOfBuffer = { fg = theme.ui.fg },
           NonText = { fg = theme.ui.fg },
           LspInlayHint = { fg = theme.syn.comment },
         }
