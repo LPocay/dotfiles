@@ -12,6 +12,7 @@ config.window_padding = {
   top = '0cell',
   bottom = '0cell',
 }
+config.window_background_opacity = 0.95
 
 -- Keybindings config
 local act = wezterm.action
