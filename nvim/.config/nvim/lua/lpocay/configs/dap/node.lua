@@ -2,12 +2,20 @@ return {
   pwa_node = {
     type = "server",
     host = "localhost",
-    port = 8123,
+    port = "${port}",
     executable = {
       command = vim.fn.stdpath('data') .. [[/mason/bin/js-debug-adapter]],
+      args = { "${port}" },
     }
   },
   typescript = {
+    {
+      type = "pwa-node",
+      request = "launch",
+      name = "Launch file",
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+    },
     {
       type = "pwa-node",
       request = "attach",
@@ -30,4 +38,3 @@ return {
     },
   },
 }
-

@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 local map = vim.keymap.set
 
-map("n", "<leader>pv", vim.cmd.NvimTreeToggle)
+map("n", "<leader>pv", "<CMD>Oil --float<CR>")
 map("n", "<leader>l", vim.cmd.Lazy)
 
 --Lazygit

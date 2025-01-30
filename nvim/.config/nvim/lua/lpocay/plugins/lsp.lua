@@ -38,31 +38,37 @@ return {
     })
 
     require('mason').setup({})
+    local nvim_lsp = require('lspconfig')
     require('mason-lspconfig').setup({
+      automatic_installation = false,
       ensure_installed = lsp_ensure_installed,
       handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup({})
+          nvim_lsp[server_name].setup({})
         end,
         lua_ls = function()
           local lua_ls = require('lpocay.configs.lsp.lua_ls')
-          require('lspconfig').lua_ls.setup(lua_ls)
+          nvim_lsp.lua_ls.setup(lua_ls)
         end,
         ts_ls = function()
           local ts_ls = require('lpocay.configs.lsp.ts_ls')
-          require('lspconfig').ts_ls.setup(ts_ls)
+          nvim_lsp.ts_ls.setup(ts_ls)
         end,
         clangd = function()
           local clangd = require('lpocay.configs.lsp.clangd')
-          require('lspconfig').clangd.setup(clangd)
+          nvim_lsp.clangd.setup(clangd)
         end,
         svelte = function()
           local svelte = require('lpocay.configs.lsp.svelte')
-          require('lspconfig').svelte.setup(svelte)
+          nvim_lsp.svelte.setup(svelte)
         end,
         cmake = function()
           local cmake = require('lpocay.configs.lsp.cmake')
-          require('lspconfig').neocmake.setup(cmake)
+          nvim_lsp.neocmake.setup(cmake)
+        end,
+        denols = function()
+          local deno = require('lpocay.configs.lsp.deno')
+          nvim_lsp.denols.setup(deno)
         end
       }
     })
