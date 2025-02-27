@@ -10,4 +10,4 @@ eval "$(zoxide init bash)"
 
 bind -x '"\C-f": "~/attach_zellij.sh"'
 
-fastfetch -l ~/art.txt
+fastfetch

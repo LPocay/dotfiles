@@ -3,19 +3,19 @@ font-size = 16
 font-family = JetBrainsMono Nerd Font
 window-decoration = false
 
-keybind = ctrl+space>t=new_tab
-keybind = ctrl+space>v=new_split:right
-keybind = ctrl+space>h=new_split:down
-keybind = ctrl+space>z=toggle_split_zoom
+#keybind = ctrl+space>t=new_tab
+#keybind = ctrl+space>v=new_split:right
+#keybind = ctrl+space>h=new_split:down
+#keybind = ctrl+space>z=toggle_split_zoom
 
-keybind = ctrl+shift+h=goto_split:left
-keybind = ctrl+shift+l=goto_split:right
-keybind = ctrl+shift+k=goto_split:top
-keybind = ctrl+shift+j=goto_split:bottom
-keybind = ctrl+shift+]=next_tab
-keybind = ctrl+shift+[=previous_tab
+#keybind = alt+h=goto_split:left
+#keybind = alt+l=goto_split:right
+#keybind = alt+k=goto_split:top
+#keybind = alt+j=goto_split:bottom
+#keybind = alt+]=next_tab
+#keybind = alt+[=previous_tab
 
-keybind = ctrl+left=resize_split:left,10
-keybind = ctrl+right=resize_split:right,10
-keybind = ctrl+up=resize_split:up,10
-keybind = ctrl+down=resize_split:down,10
+#keybind = ctrl+left=resize_split:left,10
+#keybind = ctrl+right=resize_split:right,10
+#keybind = ctrl+up=resize_split:up,10
+#keybind = ctrl+down=resize_split:down,10

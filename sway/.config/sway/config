@@ -28,7 +28,7 @@ input 1386:888:Wacom_Intuos_BT_M_Pen map_to_output DP-3
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/background.jpg fill
+output * bg ~/Pictures/Wallpapers/sekiro.png fill
 #
 # Example configuration:
 #
