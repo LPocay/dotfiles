@@ -39,6 +39,13 @@ return {
       request = "launch",
       mode = "test",
       program = "./${relativeFileDirname}"
+    },
+    {
+      type = "delve",
+      name = "Debug API",
+      request = "launch",
+      mode = "debug",
+      program = "${workspaceFolder}/cmd/api/"
     }
   }
 }
