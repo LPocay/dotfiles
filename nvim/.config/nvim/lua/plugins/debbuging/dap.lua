@@ -3,9 +3,9 @@ return {
   dependencies = { "rcarriga/nvim-dap-ui" },
   config = function()
     local dap = require("dap")
-    local cpp_config = require("lpocay.configs.dap.cpp")
-    local node_config = require("lpocay.configs.dap.node")
-    local go_config = require("lpocay.configs.dap.go")
+    local cpp_config = require("config.dap.cpp")
+    local node_config = require("config.dap.node")
+    local go_config = require("config.dap.go")
     -- Cpp configurations
     dap.adapters.cppdbg = cpp_config.cppdbg_config
     dap.configurations.cpp = cpp_config.cpp_config
