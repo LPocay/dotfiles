@@ -16,12 +16,19 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
+require("config.set")
+require("config.remap")
 
 require("lazy").setup({
   spec = {
     -- import your plugins
-    { import = "lpocay.plugins" },
+    { import = "plugins.debbuging" },
+    { import = "plugins.editor" },
+    { import = "plugins.formatting" },
+    { import = "plugins.linting" },
+    { import = "plugins.lsp" },
+    { import = "plugins.ui" },
+    { import = "plugins.utility" },
   },
   install = { colorscheme = { "habamax" } },
 })
