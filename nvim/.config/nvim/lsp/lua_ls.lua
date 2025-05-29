@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
   settings = {
     Lua = {
@@ -9,6 +10,9 @@ return {
       },
       completion = {
         callSnippet = "Replace"
+      },
+      diagnostics = {
+        disable = { "missing-fields" },
       },
     }
   }

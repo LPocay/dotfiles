@@ -8,5 +8,6 @@ return {
   "svelte",
   "lua_ls",
   "gopls",
-  "pyright"
+  "pyright",
+  "denols"
 }

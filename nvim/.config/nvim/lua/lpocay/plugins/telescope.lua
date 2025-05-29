@@ -9,8 +9,5 @@ return {
     vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
     vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
     vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-
-    vim.lsp.handlers['textDocument/implementation'] = builtin.lsp_implementations
-    vim.lsp.handlers['textDocument/definition'] = builtin.lsp_definitions
   end
 }
