@@ -1,7 +1,9 @@
 theme = Kanagawa Dragon
-font-size = 16
+font-size = 17.5
 font-family = JetBrainsMono Nerd Font
 window-decoration = false
+#background-blur = true
+background-opacity = 0.2
 
 #keybind = ctrl+space>t=new_tab
 #keybind = ctrl+space>v=new_split:right
