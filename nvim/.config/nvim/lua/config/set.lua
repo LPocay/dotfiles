@@ -5,7 +5,7 @@ vim.opt.mouse = ""
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.cmdheight = 0
-vim.opt.fillchars:append { eob = "." }
+vim.opt.fillchars:append { eob = ".", }
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -30,4 +30,4 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
