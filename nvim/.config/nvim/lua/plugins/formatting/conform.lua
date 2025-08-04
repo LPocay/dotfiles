@@ -20,6 +20,13 @@ return {
         -- Define your formatters
         formatters_by_ft = {
             lua = { "stylua" },
+            python = { "black" },
+            typescript = { "biome-check", "prettier", stop_after_first = true },
+            javascript = { "biome-check", "prettier", stop_after_first = true },
+            svelte = { "biome-check", "prettier", stop_after_first = true },
+            json = { "biome-check" },
+            jsonc = { "biome-check" },
+            cmake = { "cmake_format" },
         },
         -- Set default options
         default_format_opts = {
@@ -28,6 +35,10 @@ return {
         -- Set up format-on-save
         -- format_on_save = { timeout_ms = 500 },
         -- Customize formatters
-        formatters = {},
+        formatters = {
+            ["biome-check"] = {
+                append_args = { "--linter-enabled=false" },
+            },
+        },
     },
 }

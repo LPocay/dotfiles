@@ -10,5 +10,6 @@ return {
     picker = {
       enabled = true,
     },
-  }
+    indent = {},
+  },
 }
