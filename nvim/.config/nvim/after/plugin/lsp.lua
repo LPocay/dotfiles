@@ -4,11 +4,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
 
-    local builtin = require("telescope.builtin")
+    local builtin = require("snacks.picker")
     map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
     map("gr", builtin.lsp_references, "[G]oto [R]eferences")
     map("gi", builtin.lsp_implementations, "[G]oto [I]mplementation")
-    map("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
+    map("<leader>ds", builtin.lsp_symbols, "[D]ocument [S]ymbols")
     map("<leader>ws", builtin.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
     map("<leader>br", vim.lsp.buf.rename, "[R]e[n]ame")
     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")

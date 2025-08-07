@@ -39,12 +39,12 @@ return {
       "               ╩═╝╩  ╚═╝╚═╝╩ ╩ ╩                  ",
     }
     dashboard.section.buttons.val = {
-      dashboard.button("<leader>pf", " 󰈞  Find file"),
-      dashboard.button("<leader>pg", "   Find git file"),
-      dashboard.button("<leader>ps", "   Find word"),
+      dashboard.button("<leader><leader>", " 󰈞  Find file"),
+      dashboard.button("<leader>fg", "   Find git file"),
+      dashboard.button("<leader>/", "   Find word"),
       dashboard.button("<leader>pv", "   Project View"),
       dashboard.button("<leader>gg", "   Lazy Git"),
-      dashboard.button("<leader>r", " 󰋚  Recent files", ":Telescope oldfiles<CR>", { desc = "󰋚  Recent files" }),
+      dashboard.button("<leader>fr", " 󰋚  Recent files"),
       dashboard.button("q", " 󰠛  Quit NVIM", ":qa<CR>"),
     }
     dashboard.section.footer.val = { footer() }
