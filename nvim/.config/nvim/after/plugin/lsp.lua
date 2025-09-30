@@ -52,4 +52,5 @@ vim.lsp.enable({
   "ts_ls",
   "cssls",
   "zls",
+  "elmls",
 })
