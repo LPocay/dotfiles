@@ -7,6 +7,8 @@ return {
                 show_hidden = true,
             },
             float = {
+                padding = 4,
+                border = "rounded",
                 win_options = {
                     winblend = 0,
                 },

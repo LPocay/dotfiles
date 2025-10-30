@@ -48,13 +48,6 @@ local function get_linters()
         linters.javascript = { "eslint" }
         linters.svelte = { "eslint" }
     end
-    linters.cmake = {
-      cmd = "cmake-lint",
-      stdin = true,
-      parser = function (out)
-       print(out)
-      end
-    }
     return linters
 end
 
