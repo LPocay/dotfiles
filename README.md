@@ -28,6 +28,7 @@ To install the main Hyprland setup dependencies with `yay`, run:
 - [fzf](https://github.com/junegunn/fzf): fuzzy finder used in shell integration and session selection.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): fast text search tool used by shell and editor workflows.
 - [fd](https://github.com/sharkdp/fd): modern file finder used by terminal and editor tooling.
+- [tree-sitter-cli](https://tree-sitter.github.io/tree-sitter/creating-parsers/1-getting-started.html): parser tooling used by editor integrations and grammar development.
 - [bat](https://github.com/sharkdp/bat): `cat` replacement with syntax highlighting.
 - [jq](https://jqlang.org/): command-line JSON processor.
 - [glow](https://github.com/charmbracelet/glow): terminal markdown reader.
