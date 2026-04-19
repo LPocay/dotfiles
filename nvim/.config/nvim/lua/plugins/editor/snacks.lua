@@ -31,6 +31,7 @@ return {
     },
     picker = {},
     indent = {},
+    scope = {},
   },
   keys = {
     -- Top Pickers & Explorer
