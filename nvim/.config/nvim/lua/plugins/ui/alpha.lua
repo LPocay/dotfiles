@@ -42,7 +42,7 @@ return {
       dashboard.button("<leader><leader>", " 󰈞  Find file"),
       dashboard.button("<leader>fg", "   Find git file"),
       dashboard.button("<leader>/", "   Find word"),
-      dashboard.button("<leader>pv", "   Project View"),
+      dashboard.button("<leader>e", "   Explorer"),
       dashboard.button("<leader>gg", "   Lazy Git"),
       dashboard.button("<leader>fr", " 󰋚  Recent files"),
       dashboard.button("q", " 󰠛  Quit NVIM", ":qa<CR>"),

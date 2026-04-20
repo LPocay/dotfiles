@@ -14,7 +14,6 @@ return {
                 },
             },
         })
-        vim.keymap.set("n", "-", "<CMD>Oil --float<CR>")
     end,
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },

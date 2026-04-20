@@ -31,6 +31,8 @@ To install the main Hyprland setup dependencies with `yay`, run:
 - [tree-sitter-cli](https://tree-sitter.github.io/tree-sitter/creating-parsers/1-getting-started.html): parser tooling used by editor integrations and grammar development.
 - [bat](https://github.com/sharkdp/bat): `cat` replacement with syntax highlighting.
 - [jq](https://jqlang.org/): command-line JSON processor.
+- [wl-clipboard](https://github.com/bugaevc/wl-clipboard): Wayland clipboard tools used for clipboard integration and history capture.
+- [cliphist](https://github.com/sentriz/cliphist): clipboard history backend used by the Hyprland clipboard picker.
 - [glow](https://github.com/charmbracelet/glow): terminal markdown reader.
 - [eza](https://github.com/eza-community/eza): modern `ls` replacement used by shell aliases.
 - [lazygit](https://github.com/jesseduffield/lazygit): terminal UI for Git.

@@ -34,6 +34,8 @@ shell_packages=(
     impala
     bluetui
     xclip
+    wl-clipboard
+    cliphist
     ttf-jetbrains-mono-nerd
 )
 

@@ -16,63 +16,17 @@ config.window_background_opacity = 0.95
 
 -- Keybindings config
 local act = wezterm.action
-config.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 5000 }
 config.keys = {
   {
-    key = '"',
-    mods = 'LEADER|SHIFT',
-    action = act.SplitVertical { domain = 'CurrentPaneDomain' },
-  },
-  {
-    key = '%',
-    mods = 'LEADER|SHIFT',
-    action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
-  },
-  {
     key = 't',
-    mods = 'LEADER',
+    mods = 'CTRL|SHIFT',
     action = act.SpawnTab 'CurrentPaneDomain',
   },
-  {
-    key = 'w',
-    mods = 'LEADER',
-    action = wezterm.action.CloseCurrentTab { confirm = true },
-  },
-  {
-    key = 'w',
-    mods = 'LEADER',
-    action = wezterm.action.CloseCurrentPane { confirm = true },
-  },
-  { key = '{', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
-  { key = '}', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(1) },
-  {
-    key = 'h',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Left',
-  },
-  {
-    key = 'l',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Right',
-  },
-  {
-    key = 'k',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Up',
-  },
-  {
-    key = 'j',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Down',
-  },
-  {
-    key = 'z',
-    mods = 'LEADER',
-    action = wezterm.action.TogglePaneZoomState,
-  },
+  { key = '[', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
+  { key = ']', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(1) },
   {
     key = ';',
-    mods = 'LEADER',
+    mods = 'CTRL|SHIFT',
     action = act.PromptInputLine {
       description = 'Enter new name for tab',
       action = wezterm.action_callback(function(window, pane, line)
@@ -82,8 +36,13 @@ config.keys = {
         if line then
           window:active_tab():set_title(line)
         end
-      end),
+        end),
     },
+  },
+  {
+    key = 'w',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.CloseCurrentTab { confirm = true },
   },
 }
 
