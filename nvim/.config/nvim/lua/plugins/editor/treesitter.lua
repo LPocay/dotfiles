@@ -6,7 +6,7 @@ return {
   event = { "BufReadPre" },
   config = function()
     require("nvim-treesitter").setup({})
-    require("nvim-treesitter").install{
+    require("nvim-treesitter").install {
       "javascript",
       "typescript",
       "cpp",
@@ -28,5 +28,16 @@ return {
       "markdown",
       "markdown_inline",
     }
+    -- Start treesitter with error handling for unsupported filetypes
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function(args)
+        local ok = pcall(function()
+          vim.treesitter.start(args.buf)
+        end)
+        if not ok then
+          -- Silently ignore if parser not found (like oil.nvim)
+        end
+      end,
+    })
   end,
 }
