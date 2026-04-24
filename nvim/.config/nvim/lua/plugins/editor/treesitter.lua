@@ -27,6 +27,8 @@ return {
       "bash",
       "markdown",
       "markdown_inline",
+      "dockerfile",
+      "sql",
     }
     -- Start treesitter with error handling for unsupported filetypes
     vim.api.nvim_create_autocmd("FileType", {

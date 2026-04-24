@@ -35,9 +35,7 @@ return {
           DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
           DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
 
-          BlinkCmpMenu = { bg = theme.ui.bg_p1 },
-          BlinkCmpLabelDetail = { bg = colors.palette.dragonBlack3 },
-          BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
+          BlinkCmpMenu = { fg = '', bg = '' },
           BlinkCmpMenuBorder = { fg = "", bg = "" },
 
 					-- LineNr = { fg = "#C0A36E", bg = "NONE" },
