@@ -56,7 +56,7 @@ return {
     opts = {},
     config = function()
         vim.api.nvim_create_autocmd(
-            { "BufWritePost", "BufReadPost", "InsertLeave" },
+            { "BufWritePost", "BufReadPost" },
             {
                 callback = function()
                     require("lint").try_lint()

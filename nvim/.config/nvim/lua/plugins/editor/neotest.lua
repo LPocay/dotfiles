@@ -8,6 +8,11 @@ return {
     { "fredrikaverpil/neotest-golang", version = "*" },
     "marilari88/neotest-vitest",
   },
+  keys = {
+    { "<leader>tr", function() require("neotest").run.run() end, desc = "Run nearest test" },
+    { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current test file" },
+    { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle test summary" },
+  },
   config = function()
     local neotest_golang_opts = {}
     local neotest = require("neotest")

@@ -1,6 +1,15 @@
 return {
   'mfussenegger/nvim-dap',
-  dependencies = { "rcarriga/nvim-dap-ui" },
+  dependencies = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text" },
+  keys = {
+    { "<F5>", function() require("dap").continue() end, desc = "Start/Continue Debugging" },
+    { "<F10>", function() require("dap").step_over() end, desc = "Step Over" },
+    { "<F11>", function() require("dap").step_into() end, desc = "Step Into" },
+    { "<F12>", function() require("dap").step_out() end, desc = "Step Out" },
+    { "<leader>bt", function() require("dap").terminate() end, desc = "Terminate Debugging" },
+    { "<leader>b", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+    { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle DAP UI" },
+  },
   config = function()
     local dap = require("dap")
     local cpp_config = require("config.dap.cpp")
