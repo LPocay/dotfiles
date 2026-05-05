@@ -9,6 +9,8 @@ return {
     require("nvim-treesitter").install {
       "javascript",
       "typescript",
+      "tsx",
+      "jsx",
       "cpp",
       "c",
       "lua",

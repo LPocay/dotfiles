@@ -1,0 +1,104 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f5": "debugger::Start",
+      "f10": "debugger::StepOver",
+      "f11": "debugger::StepInto",
+      "f12": "debugger::StepOut"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space e": "project_panel::ToggleFocus",
+      "space p v": "project_panel::ToggleFocus",
+      "space g g": "git_panel::ToggleFocus",
+      "space f": "editor::Format",
+
+      "space i h": "editor::ToggleInlayHints",
+
+      "space b n": "pane::ActivateNextItem",
+      "space b p": "pane::ActivatePreviousItem",
+      "space b d": "pane::CloseActiveItem",
+      "space ,": "tab_switcher::Toggle",
+      "space f b": "tab_switcher::Toggle",
+
+      "g d": "editor::GoToDefinition",
+      "g r": "editor::FindAllReferences",
+      "g i": "editor::GoToImplementation",
+      "g shift-d": "editor::GoToDeclaration",
+      "g y": "editor::GoToTypeDefinition",
+      "shift-k": "editor::Hover",
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space c h": "editor::ShowSignatureHelp",
+      "space c s": "outline::Toggle",
+      "space c shift-s": "project_symbols::Toggle",
+
+      "space space": "file_finder::Toggle",
+      "space /": "workspace::NewSearch",
+      "space :": "command_palette::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f g": "file_finder::Toggle",
+      "space f p": "projects::OpenRecent",
+      "space f r": "projects::OpenRecent",
+      "space s g": "workspace::NewSearch",
+      "space s w": "workspace::NewSearch",
+      "space s d": "diagnostics::Deploy",
+      "space s shift-d": "diagnostics::DeployCurrentFile",
+      "space s k": "zed::OpenKeymap",
+      "space s shift-c": "command_palette::Toggle",
+      "space u shift-c": "theme_selector::Toggle",
+      "space s": "buffer_search::DeployReplace",
+
+      "space x x": "diagnostics::Deploy",
+      "space x shift-x": "diagnostics::DeployCurrentFile",
+      "space x s": "outline::Toggle",
+      "space x l": "editor::FindAllReferences",
+      "space x shift-l": "diagnostics::DeployCurrentFile",
+      "space x shift-q": "diagnostics::Deploy",
+
+      "space g b": "git::Branch",
+      "space g s": "git_panel::ToggleFocus",
+      "space g shift-s": "git::ViewStash",
+      "space g d": "git::Diff",
+      "space g f": "git::Blame",
+      "space g l": "git::Blame",
+      "space g shift-l": "editor::ToggleGitBlameInline",
+
+      "space b": "editor::ToggleBreakpoint",
+      "space b t": "debugger::Stop",
+      "space d u": "debug_panel::ToggleFocus",
+
+      "space t r": "task::Spawn",
+      "space t f": "task::Spawn",
+      "space t s": "zed::OpenTasks",
+
+      "space o o": "agent::ToggleFocus",
+      "space o a": "agent::Chat",
+      "space o s": "agent::ToggleOptionsMenu",
+      "space o r": "agent::QuoteSelection",
+      "space o l": "agent::QuoteSelection",
+
+      "space p": "editor::Paste",
+      "space y": "editor::Copy",
+      "space shift-y": "editor::Copy",
+      "space d": "editor::Delete",
+      "ctrl-g": "editor::ShowCompletions"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == visual || vim_mode == visual_line || vim_mode == visual_block)",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      "space p": "editor::Paste",
+      "space y": "editor::Copy",
+      "space d": "editor::Delete",
+      "space s w": "workspace::NewSearch",
+      "space o a": "agent::Chat",
+      "space o r": "agent::QuoteSelection"
+    }
+  }
+]
