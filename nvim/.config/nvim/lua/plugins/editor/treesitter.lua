@@ -11,6 +11,7 @@ return {
       "typescript",
       "tsx",
       "jsx",
+      "prisma",
       "cpp",
       "c",
       "lua",
