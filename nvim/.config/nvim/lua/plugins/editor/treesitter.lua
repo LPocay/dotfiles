@@ -33,6 +33,7 @@ return {
       "dockerfile",
       "sql",
       "python",
+      "xml",
     }
     -- Start treesitter with error handling for unsupported filetypes
     vim.api.nvim_create_autocmd("FileType", {
