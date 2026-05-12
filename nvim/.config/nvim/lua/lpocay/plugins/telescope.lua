@@ -5,9 +5,7 @@ local telescope_plugins = {
   gh 'nvim-telescope/telescope.nvim',
   gh 'nvim-telescope/telescope-ui-select.nvim',
 }
-if vim.fn.executable 'make' == 1 then
-  table.insert(telescope_plugins, gh 'nvim-telescope/telescope-fzf-native.nvim')
-end
+if vim.fn.executable 'make' == 1 then table.insert(telescope_plugins, gh 'nvim-telescope/telescope-fzf-native.nvim') end
 
 vim.pack.add(telescope_plugins)
 
@@ -49,20 +47,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.keymap.set('n', '<leader>/', function()
-  builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set(
+  'n',
+  '<leader>/',
+  function()
+    builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+      winblend = 10,
+      previewer = false,
+    })
+  end,
+  { desc = '[/] Fuzzily search in current buffer' }
+)
 
-vim.keymap.set('n', '<leader>s/', function()
-  builtin.live_grep {
-    grep_open_files = true,
-    prompt_title = 'Live Grep in Open Files',
-  }
-end, { desc = '[S]earch [/] in Open Files' })
+vim.keymap.set(
+  'n',
+  '<leader>s/',
+  function()
+    builtin.live_grep {
+      grep_open_files = true,
+      prompt_title = 'Live Grep in Open Files',
+    }
+  end,
+  { desc = '[S]earch [/] in Open Files' }
+)
 
-vim.keymap.set('n', '<leader>sn', function()
-  builtin.find_files { cwd = vim.fn.stdpath 'config' }
-end, { desc = '[S]earch [N]eovim files' })
+vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = '[S]earch [N]eovim files' })
