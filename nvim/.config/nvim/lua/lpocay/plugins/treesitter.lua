@@ -5,6 +5,7 @@ local parsers = {
   'c',
   'cpp',
   'diff',
+  'astro',
   'html',
   'lua',
   'luadoc',
