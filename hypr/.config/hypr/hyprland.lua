@@ -187,8 +187,8 @@ hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }
 hl.bind(mainMod .. " + V",      hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/clipboard_history.sh"]]))
 hl.bind(mainMod .. " + D",      hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P",      hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + F",      dispatch("fullscreen 0"))
-hl.bind(mainMod .. " + W",      dispatch("togglegroup"))
+hl.bind(mainMod .. " + F",      hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mainMod .. " + W",      hl.dsp.group.toggle())
 
 -- Move focus with mainMod + home row or arrow keys
 hl.bind(mainMod .. " + h",     hl.dsp.focus({ direction = "left" }))
@@ -201,14 +201,14 @@ hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- Move windows with mainMod + Shift + home row or arrow keys
-hl.bind(mainMod .. " + SHIFT + h",     dispatch("movewindow l"))
-hl.bind(mainMod .. " + SHIFT + l",     dispatch("movewindow r"))
-hl.bind(mainMod .. " + SHIFT + k",     dispatch("movewindow u"))
-hl.bind(mainMod .. " + SHIFT + j",     dispatch("movewindow d"))
-hl.bind(mainMod .. " + SHIFT + left",  dispatch("movewindow l"))
-hl.bind(mainMod .. " + SHIFT + right", dispatch("movewindow r"))
-hl.bind(mainMod .. " + SHIFT + up",    dispatch("movewindow u"))
-hl.bind(mainMod .. " + SHIFT + down",  dispatch("movewindow d"))
+hl.bind(mainMod .. " + SHIFT + h",     hl.dsp.window.swap({ direction = 'left' }))
+hl.bind(mainMod .. " + SHIFT + l",     hl.dsp.window.swap({ direction = 'right' }))
+hl.bind(mainMod .. " + SHIFT + k",     hl.dsp.window.swap({ direction = 'up' }))
+hl.bind(mainMod .. " + SHIFT + j",     hl.dsp.window.swap({ direction = 'down' }))
+hl.bind(mainMod .. " + SHIFT + left",     hl.dsp.window.swap({ direction = 'left' }))
+hl.bind(mainMod .. " + SHIFT + right",     hl.dsp.window.swap({ direction = 'right' }))
+hl.bind(mainMod .. " + SHIFT + up",     hl.dsp.window.swap({ direction = 'up' }))
+hl.bind(mainMod .. " + SHIFT + down",     hl.dsp.window.swap({ direction = 'down' }))
 
 -- Move window into group with mainMod + Ctrl + home row or arrow keys
 hl.bind(mainMod .. " + CTRL + h",     dispatch("moveintogroup l"))
