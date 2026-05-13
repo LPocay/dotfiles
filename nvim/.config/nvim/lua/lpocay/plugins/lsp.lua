@@ -15,6 +15,7 @@ local servers = {
   tailwindcss = {},
   cssls = {},
   astro = {},
+  prettier = {},
   lua_ls = {
     on_init = function(client)
       client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)

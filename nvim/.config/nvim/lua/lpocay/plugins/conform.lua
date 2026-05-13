@@ -13,7 +13,11 @@ require('conform').setup {
   default_format_opts = {
     lsp_format = 'fallback',
   },
-  formatters_by_ft = {},
+  formatters_by_ft = {
+    typescript = { 'biome-check', 'prettier', stop_after_first = true },
+    javascript = { 'biome-check', 'prettier', stop_after_first = true },
+    svelte = { 'biome-check', 'prettier', stop_after_first = true },
+  },
 }
 
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
