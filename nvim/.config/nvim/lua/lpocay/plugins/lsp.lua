@@ -14,7 +14,14 @@ local servers = {
   html = {},
   tailwindcss = {},
   cssls = {},
-  astro = {},
+  astro = {
+    before_init = function(_, config)
+      local tsdk = vim.tbl_get(config, 'init_options', 'typescript', 'tsdk') or ''
+      if tsdk == '' then
+        config.init_options.typescript.tsdk = vim.fn.stdpath('data') .. '/mason/packages/astro-language-server/node_modules/typescript/lib'
+      end
+    end,
+  },
   prettier = {},
   lua_ls = {
     on_init = function(client)
