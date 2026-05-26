@@ -119,168 +119,109 @@ File: `tmux/.tmux.conf`
 
 Files:
 
-- `nvim/.config/nvim/lua/config/remap.lua`
-- `nvim/.config/nvim/after/plugin/lsp.lua`
-- `nvim/.config/nvim/lua/plugins/editor/snacks.lua`
-- `nvim/.config/nvim/lua/plugins/editor/trouble.lua`
-- `nvim/.config/nvim/lua/plugins/editor/harpoon.lua`
-- `nvim/.config/nvim/lua/plugins/editor/neotest.lua`
-- `nvim/.config/nvim/lua/plugins/formatting/conform.lua`
-- `nvim/.config/nvim/lua/plugins/debbuging/dap-ui.lua`
-- `nvim/.config/nvim/lua/plugins/ai/opencode.lua`
-- `nvim/.config/nvim/lua/plugins/lsp/blink.lua`
-- `nvim/.config/nvim/lua/plugins/editor/flash.lua`
+- `nvim/.config/nvim/init.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/oil.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/conform.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/telescope.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/gisigns.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/mini.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/cmp.lua`
 
 ### Leader and core
 
 - `Leader`: `Space`
-- `LocalLeader`: `\`
+- `LocalLeader`: `Space`
+- `<Esc>`: clear search highlight
 - `<leader>e`: Oil explorer in floating window
 - `<leader>pv`: Oil explorer alias / project view
-- `<leader>l`: Lazy plugin manager
-- `<leader>gg`: LazyGit
 - `<leader>f`: format buffer
+- `<leader>q`: open diagnostic location list
+- Terminal `Esc Esc`: exit terminal mode
+
+### Window navigation
+
+- `<C-h>`: focus left window
+- `<C-j>`: focus lower window
+- `<C-k>`: focus upper window
+- `<C-l>`: focus right window
 
 ### Editing and clipboard
 
 - Visual `J`: move selected lines down
 - Visual `K`: move selected lines up
-- `<leader>p` in visual mode: paste without overwriting unnamed register
-- `<leader>p` in normal mode: paste from system clipboard
+- Visual `<leader>p`: paste without overwriting unnamed register
+- `<leader>p`: paste from system clipboard
 - `<leader>y`: yank to system clipboard
 - `<leader>Y`: yank line to system clipboard
 - `<leader>d`: delete without overwriting unnamed register
 - `<leader>s`: substitute word under cursor
-- `<leader>ih`: toggle inlay hints
 
 ### Buffers
 
-- `<leader>bn`: next buffer
-- `<leader>bp`: previous buffer
-- `<leader>bd`: close buffer
-- `<leader>,`: Snacks buffer picker
-- `<leader>fb`: Snacks buffer picker
+- `<leader><leader>`: Telescope buffer picker
 
 ### LSP and code
 
-- `gd`: go to definition
-- `gr`: go to references
-- `gi`: go to implementation
-- `gD`: go to declaration
-- `gy`: go to type definition
-- `K`: hover documentation
-- `<leader>ca`: code action
-- `<leader>cr`: rename symbol
-- `<leader>ch`: signature help
-- `<leader>cs`: document symbols
-- `<leader>cS`: workspace symbols
+- `grr`: go to references
+- `gri`: go to implementation
+- `grd`: go to definition
+- `grt`: go to type definition
+- `gO`: document symbols
+- `gW`: workspace symbols
 
-### Search and pickers (Snacks)
+### Search and pickers (Telescope)
 
-- `<leader><space>`: smart find files
-- `<leader>/`: grep
-- `<leader>:`: command history
-- `<leader>n`: notification history
-- `<leader>ff`: find files
-- `<leader>fg`: find git files
-- `<leader>fc`: find config file
-- `<leader>fp`: projects
-- `<leader>fr`: recent files
-- `<leader>gb`: git branches
-- `<leader>gl`: git log
-- `<leader>gL`: git log line
-- `<leader>gs`: git status
-- `<leader>gS`: git stash
-- `<leader>gd`: git diff hunks
-- `<leader>gf`: git log file
-- `<leader>sb`: buffer lines
-- `<leader>sB`: grep open buffers
-- `<leader>sg`: grep project
-- `<leader>sw`: grep word or visual selection
-- `<leader>s"`: registers
-- `<leader>s/`: search history
-- `<leader>sa`: autocmds
-- `<leader>sc`: command history
-- `<leader>sC`: commands
-- `<leader>sd`: diagnostics
-- `<leader>sD`: buffer diagnostics
-- `<leader>sh`: help pages
-- `<leader>sH`: highlights
-- `<leader>si`: icons
-- `<leader>sj`: jumps
-- `<leader>sk`: keymaps
-- `<leader>sl`: location list
-- `<leader>sm`: marks
-- `<leader>sM`: man pages
-- `<leader>sp`: search plugin spec
-- `<leader>sq`: quickfix list
-- `<leader>sR`: resume picker
-- `<leader>st`: todo comments
-- `<leader>sT`: todo/fix/fixme comments
-- `<leader>su`: undo history
-- `<leader>uC`: colorschemes
+- `<leader>/`: fuzzy search current buffer
+- `<leader>sh`: search help
+- `<leader>sk`: search keymaps
+- `<leader>sf`: search files
+- `<leader>ss`: Telescope builtin selector
+- `<leader>sw`: grep current word / visual selection
+- `<leader>sg`: live grep
+- `<leader>sd`: search diagnostics
+- `<leader>sr`: resume picker
+- `<leader>s.`: recent files
+- `<leader>sc`: search commands
+- `<leader>s/`: live grep open files
+- `<leader>sn`: search Neovim config files
 
-### Trouble
+### Git and hunks (Gitsigns)
 
-- `<leader>xx`: diagnostics
-- `<leader>xX`: buffer diagnostics
-- `<leader>xs`: symbols
-- `<leader>xl`: LSP definitions/references/etc.
-- `<leader>xL`: location list
-- `<leader>xQ`: quickfix list
+- `]c`: next git change
+- `[c`: previous git change
+- `<leader>hs`: stage hunk
+- `<leader>hr`: reset hunk
+- `<leader>hS`: stage buffer
+- `<leader>hR`: reset buffer
+- `<leader>hp`: preview hunk
+- `<leader>hi`: preview hunk inline
+- `<leader>hb`: blame line
+- `<leader>hd`: diff against index
+- `<leader>hD`: diff against last commit
+- `<leader>hQ`: repo-wide hunks quickfix
+- `<leader>hq`: current-file hunks quickfix
+- `<leader>tb`: toggle current-line blame
+- `<leader>tw`: toggle intra-line word diff
+- `ih` (operator/visual): select hunk
 
-### Harpoon
+### Mini.nvim
 
-- `<leader>ha`: add file to Harpoon
-- `<leader>hh`: toggle Harpoon menu
-- `<leader>hn`: next Harpoon file
-- `<leader>hp`: previous Harpoon file
+- `aa`: around next text object (mini.ai)
+- `ii`: inside next text object (mini.ai)
+- `sa`: add surrounding (mini.surround)
+- `sd`: delete surrounding (mini.surround)
+- `sr`: replace surrounding (mini.surround)
+- `sf` / `sF`: find surrounding (mini.surround)
+- `sh`: highlight surrounding (mini.surround)
 
-### Tests
+### Completion (blink.cmp)
 
-- `<leader>tr`: run nearest test
-- `<leader>tf`: run current file tests
-- `<leader>ts`: toggle test summary
-
-### Debugging
-
-- `<F5>`: start/continue debugging
-- `<F10>`: step over
-- `<F11>`: step into
-- `<F12>`: step out
-- `<leader>b`: toggle breakpoint
-- `<leader>bt`: terminate debugging
-- `<leader>du`: toggle DAP UI
-
-### DAP UI local controls
-
-- `<CR>`: expand
-- `o`: open
-- `d`: remove
-- `e`: edit
-- `t`: toggle
-- `q` or `<Esc>`: close floating window
-
-### AI / Opencode
-
-- `<leader>oa`: ask opencode about current context
-- `<leader>os`: select opencode action
-- `<leader>oo`: toggle opencode
-- `<leader>or`: send range/operator to opencode
-- `<leader>ol`: send current line to opencode
-- In Snacks input: `<A-a>` sends selection to opencode
-
-### Completion
-
+- `<C-space>`: show / hide completion
+- `<C-e>`: hide completion
+- `<CR>`: accept selected item
+- `<Tab>` / `<S-Tab>`: select next / previous item
+- `<C-n>` / `<C-p>`: select next / previous item
 - `<C-g>`: show completion documentation
-
-### Flash
-
-- `s`: Flash jump
-- `S`: Flash Treesitter jump
-- Operator-pending `r`: remote Flash
-- `R`: Treesitter search
-- Command-line `<C-s>`: toggle Flash search
 
 ## kitty
 
