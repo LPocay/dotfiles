@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "82efc953a6121822fda1974241a4d1af74c6c026",
+      "rev": "0593548ee0b0978abf303d30f449234e07f951d1",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -58,7 +58,7 @@
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
+      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil.nvim": {
