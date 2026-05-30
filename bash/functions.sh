@@ -23,6 +23,26 @@ tsessions() {
   "$(tmux a -t $session_name)" 
 }
 
+update_all() {
+  printf 'Updating system packages...\n'
+  yay -Syu || return $?
+
+  printf 'Updating Rust...\n'
+  rustup upgrade || return $?
+
+  printf 'Updating Deno...\n'
+  deno upgrade || return $?
+
+  printf 'Updating OpenCode...\n'
+  opencode upgrade || return $?
+
+  printf 'Updating pi...\n'
+  pi update || return $?
+
+  printf 'Updating Codex...\n'
+  codex update || return $?
+}
+
 tshortcuts() {
   local file="$HOME/dotfiles/SHORTCUT_CHEATSHEET.md"
 
