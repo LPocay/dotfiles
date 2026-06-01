@@ -232,6 +232,9 @@ end
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
+-- Wallpaper picker
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
+
 -- Screenshot selection
 hl.bind(mainMod .. " + CTRL + 4", hl.dsp.exec_cmd([[grim -g "$(slurp)"]]), { locked = true, repeating = true })
 

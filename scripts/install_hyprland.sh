@@ -45,6 +45,7 @@ hyprland_packages=(
     hyprlock
     hyprpaper
     hyprpolkitagent
+    quickshell
     xdg-desktop-portal-hyprland
     waybar
     wofi
