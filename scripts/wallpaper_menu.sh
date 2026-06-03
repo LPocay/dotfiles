@@ -3,7 +3,6 @@ set -euo pipefail
 
 WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Pictures/Wallpapers}"
 CURRENT_WALLPAPER="${CURRENT_WALLPAPER:-$HOME/.config/hypr/current_wallpaper}"
-MONITOR="${MONITOR:-DP-3}"
 FIT_MODE="${FIT_MODE:-cover}"
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/wallpaper-picker"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -27,6 +26,11 @@ command -v magick >/dev/null 2>&1 || {
 
 command -v hyprctl >/dev/null 2>&1 || {
   notify-send "Wallpaper Menu" "hyprctl is not installed"
+  exit 1
+}
+
+command -v jq >/dev/null 2>&1 || {
+  notify-send "Wallpaper Menu" "jq is not installed"
   exit 1
 }
 
@@ -77,7 +81,21 @@ if [[ -s "$selection_file" ]]; then
 
   ln -nsf "$selected" "$CURRENT_WALLPAPER"
 
-  hyprctl hyprpaper wallpaper "$MONITOR,$selected"
+  if [[ -n "${MONITOR:-}" ]]; then
+    monitors=("$MONITOR")
+  else
+    mapfile -t monitors < <(hyprctl monitors -j | jq -r '.[].name')
+  fi
+
+  if [[ ${#monitors[@]} -eq 0 ]]; then
+    notify-send "Wallpaper" "No Hyprland monitors detected"
+    exit 1
+  fi
+
+  for monitor in "${monitors[@]}"; do
+    [[ -z "$monitor" ]] && continue
+    hyprctl hyprpaper wallpaper "$monitor,$selected"
+  done
 
   notify-send "Wallpaper" "Wallpaper changed"
 fi
