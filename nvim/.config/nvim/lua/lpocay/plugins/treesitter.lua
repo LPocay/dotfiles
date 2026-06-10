@@ -32,6 +32,8 @@ local parsers = {
   'python',
   'xml',
   'qmljs',
+  'zig',
+  'odin',
 }
 require('nvim-treesitter').install(parsers)
 
