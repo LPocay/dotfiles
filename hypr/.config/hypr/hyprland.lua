@@ -235,6 +235,9 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:mag
 -- Wallpaper picker
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
 
+-- Spotify controls popup
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/spotify_controls.sh"]]))
+
 -- Screenshot selection
 hl.bind(mainMod .. " + CTRL + 4", hl.dsp.exec_cmd([[grim -g "$(slurp)"]]), { locked = true, repeating = true })
 

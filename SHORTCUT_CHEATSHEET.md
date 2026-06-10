@@ -79,6 +79,7 @@ File: `hypr/.config/hypr/hyprland.conf`
 - `XF86AudioPause`: play/pause
 - `XF86AudioPlay`: play/pause
 - `XF86AudioPrev`: previous track
+- `Super+M`: Spotify controls popup (play/pause, next, previous, now playing info)
 
 ## tmux
 
