@@ -137,6 +137,7 @@ Files:
 - `<leader>pv`: Oil explorer alias / project view
 - `<leader>f`: format buffer
 - `<leader>q`: open diagnostic location list
+- `<leader>u`: update Vim packages with `vim.pack.update()`
 - Terminal `Esc Esc`: exit terminal mode
 
 ### Window navigation
