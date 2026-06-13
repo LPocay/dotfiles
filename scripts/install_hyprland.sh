@@ -41,12 +41,16 @@ shell_packages=(
 
 hyprland_packages=(
     hyprland
+    uwsm
+    libnewt
     hypridle
     hyprlock
     hyprpaper
     hyprpolkitagent
     quickshell
+    xdg-desktop-portal
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
     waybar
     wofi
     dunst

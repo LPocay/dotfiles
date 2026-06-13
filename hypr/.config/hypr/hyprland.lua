@@ -24,30 +24,23 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal = "ghostty"
-local fileManager = "thunar"
-local menu = "wofi --show drun"
+local terminal = "uwsm app -- ghostty"
+local fileManager = "uwsm app -- thunar"
+local menu = "uwsm app -- wofi --show drun"
 
 -------------------
 ---- AUTOSTART ----
 -------------------
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("waybar")
+	hl.exec_cmd("uwsm app -- waybar")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
-	hl.exec_cmd("hypridle")
-	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("wl-paste --type text --watch cliphist store")
-	hl.exec_cmd("wl-paste --type image --watch cliphist store")
+	hl.exec_cmd("uwsm app -- hypridle")
+	hl.exec_cmd("uwsm app -- hyprpaper")
+	hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
 end)
 
--------------------------------
----- ENVIRONMENT VARIABLES ----
--------------------------------
-
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("TZ", "America/Argentina/Buenos_Aires")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -181,7 +174,7 @@ end
 -- Applications / session
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + SHIFT + M", dispatch("exit"))
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/clipboard_history.sh"]]))

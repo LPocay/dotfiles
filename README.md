@@ -8,6 +8,14 @@ To install the main Hyprland setup dependencies with `yay`, run:
 ./scripts/install_hyprland.sh
 ```
 
+## Hyprland UWSM Migration
+
+The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a systemd-managed graphical session. This is important for recent `xdg-desktop-portal` versions, which expect `graphical-session.target` to be active before portal activation.
+
+See the detailed execution plan:
+
+- [Hyprland UWSM migration plan](docs/hyprland-uwsm-migration-plan.md)
+
 ## Core
 
 - [Go](https://golang.org/): language toolchain used for Go development and `gopls`.
@@ -49,6 +57,7 @@ To install the main Hyprland setup dependencies with `yay`, run:
 ## Main Setup: Wayland And Hyprland
 
 - [Hyprland](https://hypr.land/): main Wayland compositor and current daily-driver setup.
+- [UWSM](https://github.com/Vladimir-csp/uwsm): Wayland session manager used to run Hyprland as a systemd-managed graphical session.
 - [hypridle](https://github.com/hyprwm/hypridle): idle management daemon for screen dimming, locking, and DPMS.
 - [hyprlock](https://github.com/hyprwm/hyprlock): lock screen used by the Hyprland idle flow.
 - [hyprpaper](https://github.com/hyprwm/hyprpaper): wallpaper daemon for Hyprland.
@@ -60,8 +69,11 @@ To install the main Hyprland setup dependencies with `yay`, run:
 - [brightnessctl](https://github.com/Hummer12007/brightnessctl): backlight control used by Hyprland keybindings and idle hooks.
 - [playerctl](https://github.com/altdesktop/playerctl): media player control used by keybindings.
 - [pavucontrol](https://freedesktop.org/software/pulseaudio/pavucontrol/): GUI audio mixer opened from Waybar.
-- [PipeWire](https://pipewire.org/): audio server stack used for modern Wayland audio handling.
+- [PipeWire](https://pipewire.org/): audio server stack used for modern Wayland audio handling and Wayland screen sharing.
 - [WirePlumber](https://pipewire.pages.freedesktop.org/wireplumber/): session manager that provides tools like `wpctl`.
+- [xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal): desktop portal service used by sandboxed apps and screen sharing.
+- [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland): Hyprland portal backend for screen sharing and related integrations.
+- [xdg-desktop-portal-gtk](https://github.com/flatpak/xdg-desktop-portal-gtk): GTK portal backend used for file picker fallback with XDPH.
 
 ## Shared Services And Media
 

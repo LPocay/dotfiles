@@ -4,13 +4,15 @@ This cheat sheet reflects the current shortcut state after the standard-keyboard
 
 ## Hyprland
 
-File: `hypr/.config/hypr/hyprland.conf`
+File: `hypr/.config/hypr/hyprland.lua`
+
+UWSM migration note: when using the `Hyprland (uwsm-managed)` session, app-launch keybinds should use `uwsm app -- ...`, and the session exit keybind should call `uwsm stop` instead of the raw Hyprland `exit` dispatcher.
 
 ### Core
 
 - `Super+Return`: open terminal (`ghostty`)
 - `Super+q`: close active window
-- `Super+Shift+m`: exit Hyprland session
+- `Super+Shift+m`: stop the UWSM-managed Hyprland session (`uwsm stop` after migration)
 - `Super+e`: open file manager (`thunar`)
 - `Super+Shift+Space`: toggle floating
 - `Super+v`: open clipboard history picker
