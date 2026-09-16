@@ -12,10 +12,6 @@ To install the main Hyprland setup dependencies with `yay`, run:
 
 The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a systemd-managed graphical session. This is important for recent `xdg-desktop-portal` versions, which expect `graphical-session.target` to be active before portal activation.
 
-See the detailed execution plan:
-
-- [Hyprland UWSM migration plan](docs/hyprland-uwsm-migration-plan.md)
-
 ## Core
 
 - [Go](https://golang.org/): language toolchain used for Go development and `gopls`.
@@ -33,6 +29,7 @@ See the detailed execution plan:
 - [kitty](https://sw.kovidgoyal.net/kitty/): alternative terminal emulator config kept in the repo.
 - [wezterm](https://wezfurlong.org/wezterm/): alternative terminal emulator config kept in the repo.
 - [zellij](https://zellij.dev/): terminal workspace manager used by the shell helper script.
+- [herdr](https://herdr.dev/): terminal multiplexer used to open per-project sessions from `tproj`.
 - [fzf](https://github.com/junegunn/fzf): fuzzy finder used in shell integration and session selection.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): fast text search tool used by shell and editor workflows.
 - [fd](https://github.com/sharkdp/fd): modern file finder used by terminal and editor tooling.
