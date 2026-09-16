@@ -1,1 +1,10 @@
 hypr/.config/hypr/current_wallpaper
+
+# Quickshell runtime symlink (points into /run/user/.../vfs)
+**/.qmlls.ini
+
+# Editor junk
+*.swp
+*.swo
+*~
+.DS_Store
