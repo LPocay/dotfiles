@@ -8,6 +8,18 @@ To install the main Hyprland setup dependencies with `yay`, run:
 ./scripts/install_hyprland.sh
 ```
 
+## Commits
+
+Commit messages follow the `<area>: <subject>` convention, with an imperative subject:
+
+```text
+zed: reorganize keymap and add js/ts formatters
+bash: migrate tproj from tmux to herdr
+chore: bump nvim lockfile
+```
+
+Areas used across the repo: `bash`, `zed`, `nvim`, `hypr`, `uwsm`, `quickshell`, `waybar`, `scripts`, `docs`, `chore`.
+
 ## Hyprland UWSM Migration
 
 The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a systemd-managed graphical session. This is important for recent `xdg-desktop-portal` versions, which expect `graphical-session.target` to be active before portal activation.
