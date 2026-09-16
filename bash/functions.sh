@@ -10,11 +10,11 @@ tproj() {
   fi
 
   command -v fzf >/dev/null 2>&1 || { echo "✗ fzf not found" >&2; return 1; }
-  command -v tmux >/dev/null 2>&1 || { echo "✗ tmux not found" >&2; return 1; }
+  command -v herdr >/dev/null 2>&1 || { echo "✗ herdr not found" >&2; return 1; }
 
   local picked="$base/$(cd $base && fd . -d 1 -t d | fzf)"
   local session_name="$(basename $picked)" 
-  "$(cd $picked && tmux new-session -A -s $session_name)" 
+  cd "$picked" && herdr --session "$session_name"
   return 0
 }
 
@@ -38,6 +38,9 @@ update_all() {
 
   printf 'Updating pi...\n'
   pi update || return $?
+
+  printf 'Updating Herdr...\n'
+  herdr update || return $?
 
   printf 'Updating Codex...\n'
   codex update || return $?
