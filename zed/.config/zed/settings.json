@@ -1,4 +1,9 @@
 {
+  "scrollbar": {
+    "search_results": true
+  },
+  "inline_code_actions": true,
+  "hover_popover_enabled": true,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "ui_font_family": "JetBrainsMono Nerd Font",
   "project_panel": {
@@ -21,6 +26,39 @@
   "vim_mode": true,
   "ui_font_size": 20.0,
   "buffer_font_size": 20.0,
+  "tab_size": 2,
+  "vertical_scroll_margin": 10,
+  "show_whitespaces": "all",
+  "vim": {
+    "use_system_clipboard": "never",
+    "use_smartcase_find": false
+  },
+  "languages": {
+    "JavaScript": {
+      "formatter": [
+        { "external": { "command": "biome", "arguments": ["format", "--stdin-file-path", "{buffer_path}"] } },
+        { "external": { "command": "prettier", "arguments": ["--stdin-filepath", "{buffer_path}"] } }
+      ]
+    },
+    "TypeScript": {
+      "formatter": [
+        { "external": { "command": "biome", "arguments": ["format", "--stdin-file-path", "{buffer_path}"] } },
+        { "external": { "command": "prettier", "arguments": ["--stdin-filepath", "{buffer_path}"] } }
+      ]
+    },
+    "TSX": {
+      "formatter": [
+        { "external": { "command": "biome", "arguments": ["format", "--stdin-file-path", "{buffer_path}"] } },
+        { "external": { "command": "prettier", "arguments": ["--stdin-filepath", "{buffer_path}"] } }
+      ]
+    },
+    "Svelte": {
+      "formatter": [
+        { "external": { "command": "biome", "arguments": ["format", "--stdin-file-path", "{buffer_path}"] } },
+        { "external": { "command": "prettier", "arguments": ["--stdin-filepath", "{buffer_path}"] } }
+      ]
+    }
+  },
   "theme": {
     "mode": "dark",
     "light": "Kanagawa Dragon",
