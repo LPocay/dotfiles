@@ -50,6 +50,7 @@ hyprland_packages=(
     hyprpaper
     hyprpolkitagent
     quickshell
+    qt6-declarative
     xdg-desktop-portal
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk

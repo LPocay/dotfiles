@@ -3,6 +3,7 @@ require('fidget').setup {}
 
 local servers = {
   clangd = {},
+  qmlls = { cmd = { '/usr/lib/qt6/bin/qmlls' } },
   gopls = {},
   pyright = {},
   rust_analyzer = {},
@@ -77,7 +78,8 @@ vim.pack.add {
 
 require('mason').setup {}
 
-local ensure_installed = vim.tbl_keys(servers or {})
+-- Use the qmlls binary from Arch's qt6-declarative package instead of Mason's build.
+local ensure_installed = vim.tbl_filter(function(name) return name ~= 'qmlls' end, vim.tbl_keys(servers))
 vim.list_extend(ensure_installed, {
   -- You can add other tools here that you want Mason to install
 })
