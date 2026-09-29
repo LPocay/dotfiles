@@ -13,14 +13,15 @@
         "custom/media"
     ],
     "modules-center": [
-        "sway/window",
-        "hyprland/window"
+        // "sway/window",
+        // "hyprland/window",
+        "clock",
     ],
     "modules-right": [
         "mpd",
         "idle_inhibitor",
         "pulseaudio",
-        //"network",
+        "network",
         "power-profiles-daemon",
         "cpu",
         "memory",
@@ -30,7 +31,7 @@
         "sway/language",
         "battery",
         "battery#bat2",
-        "clock",
+        // "clock",
         "tray",
         "custom/power"
     ],
@@ -40,13 +41,8 @@
          "warp-on-scroll": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
-             "2": "󰈹",
-             "3": "󰙯",
-             "4": "",
-             "5": "󱓧",
              "urgent": "",
-             //"focused": "",
+             "focused": "",
              "default": ""
          }
      },
@@ -56,13 +52,8 @@
          "warp-on-scroll": false,
          "format": "{icon}",
          "format-icons": {
-             "1": "",
-             "2": "󰈹",
-             "3": "󰙯",
-             "4": "",
-             "5": "󱓧",
              "urgent": "",
-             //"focused": "",
+             "active": "",
              "default": ""
          }
      },
