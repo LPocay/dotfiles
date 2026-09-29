@@ -23,6 +23,21 @@ UWSM migration note: when using the `Hyprland (uwsm-managed)` session, app-launc
 - `Super+w`: toggle group
 - `Super+Ctrl+4`: screenshot region with `grim` + `slurp`
 
+### Compose key
+
+Right Alt is the Compose key. Press and release each key in sequence:
+
+- `Right Alt`, `~` (`Shift` + the key below `Esc`), `n`: `ñ`
+- `Right Alt`, `'`, vowel: `á`, `é`, `í`, `ó`, `ú`
+- `Right Alt`, `Shift+'`, `u`: `ü`
+- `Right Alt`, `?`, `?`: `¿`
+- `Right Alt`, `!`, `!`: `¡`
+- Use `Shift` for the final letter to produce uppercase characters such as `Ñ` and `Á`
+
+GTK applications use the built-in `simple` input method, configured in
+`uwsm/.config/uwsm/env`, so Compose works under Wayland. Restart an application
+after changing this environment setting.
+
 ### Focus windows
 
 - `Super+h`: focus left
@@ -86,6 +101,10 @@ UWSM migration note: when using the `Hyprland (uwsm-managed)` session, app-launc
 ## tmux
 
 File: `tmux/.tmux.conf`
+
+From Bash, run `tmproj` to select a project and open its tmux session, or
+`tsessions` to attach to an existing session. Run `hproj` for the equivalent
+per-project Herdr session. Set `PROJECTS_DIR` to change the project root.
 
 ### Prefix
 

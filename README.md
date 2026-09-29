@@ -1,4 +1,40 @@
-# Dependencies
+# Setup
+
+Clone this repository to `$HOME/dotfiles`. This is the path used by the Hyprland
+keybindings and the Zellij shortcut. Link the configurations you use; check for
+existing files or directories at the destination before creating a link.
+
+For the current Hyprland setup:
+
+```bash
+repo="$HOME/dotfiles"
+ln -s "$repo/hypr/.config/hypr" "$HOME/.config/hypr"
+ln -s "$repo/uwsm/.config/uwsm" "$HOME/.config/uwsm"
+ln -s "$repo/nvim/.config/nvim" "$HOME/.config/nvim"
+ln -s "$repo/ghostty/.config/ghostty" "$HOME/.config/ghostty"
+ln -s "$repo/quickshell/.config/quickshell" "$HOME/.config/quickshell"
+ln -s "$repo/waybar/.config/waybar" "$HOME/.config/waybar"
+ln -s "$repo/dunst/.config/dunst" "$HOME/.config/dunst"
+ln -s "$repo/wofi/.config/wofi" "$HOME/.config/wofi"
+ln -s "$repo/zellij/.config/zellij" "$HOME/.config/zellij"
+ln -s "$repo/tmux/.tmux.conf" "$HOME/.tmux.conf"
+ln -s "$repo/bash/.bash_aliases" "$HOME/.bash_aliases"
+ln -s "$repo/bash/functions.sh" "$HOME/functions.sh"
+```
+
+Add these lines to your existing interactive `~/.bashrc` if they are not there:
+
+```bash
+source "$HOME/.bash_aliases"
+source "$HOME/functions.sh"
+```
+
+`~/.bashrc` itself is personal and is not managed by this repo. The alternative
+terminal configurations (`alacritty`, `kitty`, `wezterm`) can be linked as needed.
+`zed` stores individual files under `~/.config/zed` and should be linked file by
+file if that directory already contains local state.
+
+## Dependencies
 
 This setup uses `yay` as the Pacman frontend.
 
@@ -8,13 +44,51 @@ To install the main Hyprland setup dependencies with `yay`, run:
 ./scripts/install_hyprland.sh
 ```
 
+Install [Herdr](https://herdr.dev/docs/install/) separately using its official
+instructions. It is required for `hproj` but not for the Hyprland package setup.
+The package script installs `fd` and `fzf` for project selection and ImageMagick
+(`magick`) for `scripts/wallpaper_menu.sh`. That wallpaper script also needs
+`quickshell`, `hyprctl`, `jq`, and `notify-send`. The workspace layout script
+needs a running Hyprland session, `hyprctl`, `jq`, `uwsm`, and `notify-send`.
+`tmproj` and `tsessions` need tmux; `hproj` needs Herdr.
+
+## Projects and sessions
+
+After sourcing `bash/functions.sh`, run `tmproj` to select an immediate
+subdirectory of `$HOME/Projects` and create or attach to a tmux session with
+that directory's name. Run `hproj` to open a named Herdr session for the same
+project. `tsessions` selects an existing tmux session. The project commands
+change the current shell's directory, so they must be sourced as functions.
+Set `PROJECTS_DIR` to use a different project root. Project directory names
+must be unique directly under that root because they become session names.
+
+## Neovim plugin lock
+
+`nvim/.config/nvim/nvim-pack-lock.json` belongs in Git. On the machine where
+you update plugins, use `<leader>u` in Neovim, review the lockfile diff, verify
+that Neovim starts and the plugins work, then commit the lockfile. On another
+machine, pull the change and restart Neovim; `vim.pack` installs the revisions
+recorded in the lock. Use `:packupdate ++lockfile` to sync installed plugins
+back to those revisions, and `:checkhealth vim.pack` to diagnose problems.
+Do not edit the lockfile by hand. Mason-managed language servers and tools are
+installed separately; the `vim.pack` lock does not pin their versions.
+
+## Active and legacy configurations
+
+The current desktop setup is Hyprland with UWSM, plus Quickshell, Waybar, and
+the scripts under `scripts/`. The `hyprland-old.conf` file is a previous
+Hyprland configuration. `sway` and `swaylock` are kept as a Wayland fallback.
+`i3`, `picom`, `polybar`, `rofi`, and `monitors/configure-monitors.sh` belong to
+the older X11 setup; that monitor script uses `xrandr` and is not part of the
+Hyprland setup. Link or run legacy components only when using those sessions.
+
 ## Commits
 
 Commit messages follow the `<area>: <subject>` convention, with an imperative subject:
 
 ```text
 zed: reorganize keymap and add js/ts formatters
-bash: migrate tproj from tmux to herdr
+bash: split project helpers for tmux and herdr
 chore: bump nvim lockfile
 ```
 
@@ -41,7 +115,7 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [kitty](https://sw.kovidgoyal.net/kitty/): alternative terminal emulator config kept in the repo.
 - [wezterm](https://wezfurlong.org/wezterm/): alternative terminal emulator config kept in the repo.
 - [zellij](https://zellij.dev/): terminal workspace manager used by the shell helper script.
-- [herdr](https://herdr.dev/): terminal multiplexer used to open per-project sessions from `tproj`.
+- [herdr](https://herdr.dev/): terminal multiplexer used to open per-project sessions from `hproj`.
 - [fzf](https://github.com/junegunn/fzf): fuzzy finder used in shell integration and session selection.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): fast text search tool used by shell and editor workflows.
 - [fd](https://github.com/sharkdp/fd): modern file finder used by terminal and editor tooling.

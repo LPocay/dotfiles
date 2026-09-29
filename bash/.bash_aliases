@@ -5,9 +5,15 @@ alias ll='eza -l -g --icons'
 # alias fzf="fzf --preview 'bat --style=numbers --theme=TwoDark --color=always --line-range :500 {}'"
 alias lla='ll -la'
 
-eval "$(fzf --bash)"
-eval "$(zoxide init bash)"
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --bash)"
+fi
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init bash)"
+fi
 
-bind -x '"\C-f": "~/attach_zellij.sh"'
+bind -x '"\C-f": "bash \"$HOME/dotfiles/scripts/attach_zellij.sh\""'
 
-fastfetch
+if command -v fastfetch >/dev/null 2>&1; then
+  fastfetch
+fi

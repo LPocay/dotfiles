@@ -36,6 +36,8 @@ shell_packages=(
     xclip
     wl-clipboard
     cliphist
+    imagemagick
+    libnotify
     ttf-jetbrains-mono-nerd
 )
 

@@ -4,6 +4,7 @@ hypr/.config/hypr/current_wallpaper
 **/.qmlls.ini
 
 # Editor junk
+nvim.log
 *.swp
 *.swo
 *~

@@ -1,26 +1,78 @@
 #!/usr/bin/env bash
 
-tproj() {
-  #set -euo pipefail
-
-  local base="$HOME/Projects"
+_pick_project() {
+  local base="${PROJECTS_DIR:-$HOME/Projects}"
   if [[ ! -d "$base" ]]; then
-    echo "✗ Base directory not found: $base" >&2
-    return 1
+    printf 'Project directory not found: %s\n' "$base" >&2
+    return 2
   fi
 
-  command -v fzf >/dev/null 2>&1 || { echo "✗ fzf not found" >&2; return 1; }
-  command -v herdr >/dev/null 2>&1 || { echo "✗ herdr not found" >&2; return 1; }
+  command -v fd >/dev/null 2>&1 || { printf 'fd not found\n' >&2; return 2; }
+  command -v fzf >/dev/null 2>&1 || { printf 'fzf not found\n' >&2; return 2; }
 
-  local picked="$base/$(cd $base && fd . -d 1 -t d | fzf)"
-  local session_name="$(basename $picked)" 
-  cd "$picked" && herdr --session "$session_name"
-  return 0
+  REPLY="$(fd -t d -d 1 . "$base" | fzf --prompt='project> ')" || return 1
+  [[ -n "$REPLY" && -d "$REPLY" ]] || return 1
+}
+
+tmproj() {
+  command -v tmux >/dev/null 2>&1 || { printf 'tmux not found\n' >&2; return 2; }
+
+  local pick_status session_name
+  if _pick_project; then
+    :
+  else
+    pick_status=$?
+    (( pick_status == 1 )) && return 0
+    return "$pick_status"
+  fi
+
+  session_name="$(basename "$REPLY")"
+  cd -- "$REPLY" || return
+
+  if [[ -n "${TMUX:-}" ]]; then
+    tmux has-session -t "=$session_name" 2>/dev/null ||
+      tmux new-session -d -s "$session_name" -c "$PWD" || return
+    tmux switch-client -t "=$session_name"
+  else
+    tmux new-session -A -s "$session_name" -c "$PWD"
+  fi
+}
+
+hproj() {
+  command -v herdr >/dev/null 2>&1 || { printf 'herdr not found\n' >&2; return 2; }
+
+  local pick_status session_name
+  if _pick_project; then
+    :
+  else
+    pick_status=$?
+    (( pick_status == 1 )) && return 0
+    return "$pick_status"
+  fi
+
+  session_name="$(basename "$REPLY")"
+  cd -- "$REPLY" || return
+  herdr --session "$session_name"
 }
 
 tsessions() {
-  local session_name="$(tmux ls | fzf | cut -d":" -f 1)"
-  "$(tmux a -t $session_name)" 
+  command -v tmux >/dev/null 2>&1 || { printf 'tmux not found\n' >&2; return 2; }
+  command -v fzf >/dev/null 2>&1 || { printf 'fzf not found\n' >&2; return 2; }
+
+  local sessions session_name
+  sessions="$(tmux list-sessions -F '#S' 2>/dev/null)" || {
+    printf 'No tmux sessions are running\n' >&2
+    return 0
+  }
+  [[ -n "$sessions" ]] || return 0
+  session_name="$(printf '%s\n' "$sessions" | fzf --prompt='tmux> ')" || return 0
+  [[ -n "$session_name" ]] || return 0
+
+  if [[ -n "${TMUX:-}" ]]; then
+    tmux switch-client -t "=$session_name"
+  else
+    tmux attach-session -t "=$session_name"
+  fi
 }
 
 update_all() {
