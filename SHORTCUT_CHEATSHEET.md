@@ -79,6 +79,7 @@ after changing this environment setting.
 - `Super+Shift+0`: move active window to workspace `10`
 - `Super+s`: toggle special workspace `magic`
 - `Super+Shift+s`: move active window to special workspace `magic`
+- `Super+Shift+o`: choose another monitor and move the current workspace there
 - `Super+MouseWheelDown`: next workspace
 - `Super+MouseWheelUp`: previous workspace
 

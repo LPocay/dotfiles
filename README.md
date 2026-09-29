@@ -145,7 +145,7 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [hyprlock](https://github.com/hyprwm/hyprlock): lock screen used by the Hyprland idle flow.
 - [hyprpaper](https://github.com/hyprwm/hyprpaper): wallpaper daemon for Hyprland.
 - [Waybar](https://github.com/Alexays/Waybar): status bar used in the main Wayland setup.
-- [wofi](https://github.com/SimplyCEO/wofi): application launcher used in Hyprland and Sway.
+- [wofi](https://github.com/SimplyCEO/wofi): application launcher and monitor picker used in Hyprland and Sway.
 - [thunar](https://docs.xfce.org/xfce/thunar/start): file manager launched from Hyprland keybindings.
 - [grim](https://gitlab.freedesktop.org/emersion/grim): screenshot tool used by keybindings.
 - [slurp](https://github.com/emersion/slurp): region selector used together with `grim`.
@@ -157,6 +157,8 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal): desktop portal service used by sandboxed apps and screen sharing.
 - [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland): Hyprland portal backend for screen sharing and related integrations.
 - [xdg-desktop-portal-gtk](https://github.com/flatpak/xdg-desktop-portal-gtk): GTK portal backend used for file picker fallback with XDPH.
+
+Press `Super+Shift+o` to choose another connected monitor and move the current workspace there. The picker uses `wofi` and does not require fixed monitor names or positions.
 
 ## Shared Services And Media
 

@@ -225,6 +225,9 @@ end
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
+-- Move the current workspace to another connected monitor
+hl.bind(mainMod .. " + SHIFT + o", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/workspace_monitor_menu.sh"]]))
+
 -- Wallpaper picker
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
 
