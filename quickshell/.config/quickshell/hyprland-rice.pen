@@ -1,0 +1,2362 @@
+{
+  "version": "2.19",
+  "children": [
+    {
+      "type": "frame",
+      "id": "pN4hA",
+      "x": 0,
+      "y": 0,
+      "name": "01 / Dragon Command",
+      "clip": true,
+      "width": 1600,
+      "height": 390,
+      "fill": "#0D0C0C",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "text",
+          "id": "GBOKv",
+          "layoutPosition": "absolute",
+          "x": 40,
+          "y": 325,
+          "name": "Concept number",
+          "fill": "#87A987",
+          "content": "01  /  DRAGON COMMAND",
+          "fontFamily": "JetBrains Mono",
+          "fontSize": 13,
+          "fontWeight": "bold",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "id": "yQ1YJ",
+          "layoutPosition": "absolute",
+          "x": 40,
+          "y": 353,
+          "name": "Concept description",
+          "fill": "#A6A69C",
+          "content": "A calm, legible daily driver. Colored status appears only when it has meaning.",
+          "fontFamily": "Inter",
+          "fontSize": 19,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "mnB6x",
+          "name": "Top toolbar",
+          "width": 1600,
+          "height": 58,
+          "fill": "#181816",
+          "stroke": "#393836",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            0,
+            22
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "hmhWA",
+              "name": "Workspace zone",
+              "width": 520,
+              "height": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "h7eeS",
+                  "name": "Dragon mark",
+                  "width": 34,
+                  "height": 34,
+                  "fill": "#273128",
+                  "cornerRadius": 9,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qPngf",
+                      "name": "Jörmungandr serpent emblem",
+                      "clip": true,
+                      "width": 26,
+                      "height": 26,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "aw3zR",
+                          "x": 2.9477,
+                          "y": 2.3108,
+                          "geometry": "M12.84075 2.6c-0.013 0.00975-0.0065 0.039 0.0195 0.04875 3.12 1.131 5.33975 4.5825 5.33975 8.099 0 4.4395-3.66925 7.735-7.761 7.735-4.4005 0-7.86825-3.57825-7.86825-7.748 0-4.29325 3.4255-7.7545 6.63975-7.7545 0.221 0.3575 0.64675 0.5915 1.16675 0.67925 0.55575 0.08775 1.105 0.25025 1.68025 0.51675 0.54925 0.247 0.9945-0.45825 1.053-0.66625-0.4745 0.104-1.3195-0.2275-1.3195-0.68575 0-0.43875 1.28375-0.6305 1.91425-0.62075 0.08775 0.0065 0.0975 0.13975 0.0975 0.2015 0.26975-0.117 0.416-0.468 0.403-0.741-0.0065-0.21125-0.143-0.3055-0.36725-0.3445-0.38025-0.06825-0.82225-0.19825-1.17-0.4615-0.6045-0.468-1.30325-0.858-2.21-0.858-0.715 0-1.599 0.286-2.31075 0.30225 0.07475 0.143 0.32825 0.2925 0.455 0.36075-4.98225 1.027-8.60275 5.2715-8.60275 10.2895 0 5.65825 4.50125 10.39025 10.25375 10.39025 5.512 0 9.84425-4.57925 9.84425-9.7955 0-5.2715-3.90325-8.905-7.25725-8.94725z m-0.38675-1.23175c-0.533 0.1365-0.98475-0.12675-1.0335-0.468 0.43875-0.1105 0.8125 0.19175 1.0335 0.468z",
+                          "fill": "#98B785",
+                          "width": 20.098,
+                          "height": 21.3427
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "rGBXr",
+                  "name": "Workspace divider",
+                  "fill": "#45443F",
+                  "width": 1,
+                  "height": 20
+                },
+                {
+                  "type": "frame",
+                  "id": "W3klCA",
+                  "name": "Workspaces",
+                  "gap": 5,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qir6x",
+                      "name": "Workspace 1",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#181816",
+                      "cornerRadius": 7,
+                      "stroke": "#181816",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "d3tuQn",
+                          "name": "Workspace 1 number",
+                          "fill": "#8BA4B0",
+                          "content": "1",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qyTAF",
+                      "name": "Workspace 2",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#181816",
+                      "cornerRadius": 7,
+                      "stroke": "#181816",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H821d",
+                          "name": "Workspace 2 number",
+                          "fill": "#8BA4B0",
+                          "content": "2",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "i8E8IZ",
+                      "name": "Workspace 3",
+                      "width": 39,
+                      "height": 32,
+                      "fill": "#2B3A35",
+                      "cornerRadius": 7,
+                      "stroke": "#87A987",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "aiqsR",
+                          "name": "Workspace 3 number",
+                          "fill": "#C5C9C5",
+                          "content": "3",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13,
+                          "fontWeight": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vpHZx",
+                      "name": "Workspace 4",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#181816",
+                      "cornerRadius": 7,
+                      "stroke": "#181816",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "HmmKK",
+                          "name": "Workspace 4 number",
+                          "fill": "#6B6B66",
+                          "content": "4",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nhzIt",
+                      "name": "Workspace 5",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#181816",
+                      "cornerRadius": 7,
+                      "stroke": "#181816",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dWPlw",
+                          "name": "Workspace 5 number",
+                          "fill": "#6B6B66",
+                          "content": "5",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "IYHqF",
+                  "name": "Active workspace label",
+                  "fill": "#87A987",
+                  "content": "DEV",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "bold",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yEmnL",
+              "name": "Clock zone",
+              "width": 520,
+              "height": "fill_container",
+              "gap": 13,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qchXt",
+                  "name": "Clock",
+                  "fill": "#C5C9C5",
+                  "content": "16:03",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 19,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "edfZs",
+                  "name": "Clock separator",
+                  "fill": "#45443F",
+                  "width": 1,
+                  "height": 18
+                },
+                {
+                  "type": "text",
+                  "id": "bT8oC",
+                  "name": "Date",
+                  "fill": "#A6A69C",
+                  "content": "TUE 29 SEP",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sePWt",
+              "name": "System zone",
+              "width": 516,
+              "height": "fill_container",
+              "gap": 13,
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "pbLvw",
+                  "name": "Notifications muted",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "bell-off",
+                  "library": "lucide",
+                  "fill": "#6B6B66"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "wNHjl",
+                  "name": "Status divider 1",
+                  "fill": "#45443F",
+                  "width": 1,
+                  "height": 19
+                },
+                {
+                  "type": "frame",
+                  "id": "hkrEd",
+                  "name": "Wi-Fi",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "GGfcU",
+                      "name": "Wi-Fi icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "wifi",
+                      "library": "lucide",
+                      "fill": "#8BA4B0"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lumPO",
+                      "name": "Wi-Fi value",
+                      "fill": "#B8B9B0",
+                      "content": "W3JTS",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MaF0R",
+                  "name": "Volume",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "KjUlE",
+                      "name": "Volume icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "volume-2",
+                      "library": "lucide",
+                      "fill": "#8BA4B0"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gW4qj",
+                      "name": "Volume value",
+                      "fill": "#B8B9B0",
+                      "content": "100%",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uxlLb",
+                  "name": "Microphone",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "WypKd",
+                      "name": "Microphone icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "mic",
+                      "library": "lucide",
+                      "fill": "#87A987"
+                    },
+                    {
+                      "type": "text",
+                      "id": "q7jT6J",
+                      "name": "Microphone value",
+                      "fill": "#B8B9B0",
+                      "content": "ON",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "DQd93",
+                  "name": "Status divider 2",
+                  "fill": "#45443F",
+                  "width": 1,
+                  "height": 19
+                },
+                {
+                  "type": "frame",
+                  "id": "Gccwx",
+                  "name": "Battery",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "Lo62F",
+                      "name": "Battery icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "battery-full",
+                      "library": "lucide",
+                      "fill": "#87A987"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h63yV",
+                      "name": "Battery value",
+                      "fill": "#B8B9B0",
+                      "content": "100%",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tfgjd",
+                  "name": "CPU",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "ftOGw",
+                      "name": "CPU icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "cpu",
+                      "library": "lucide",
+                      "fill": "#A6A69C"
+                    },
+                    {
+                      "type": "text",
+                      "id": "V9U1tU",
+                      "name": "CPU value",
+                      "fill": "#B8B9B0",
+                      "content": "28%",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pRtXN",
+                  "name": "Temperature",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "m5OhoL",
+                      "name": "Temperature icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "thermometer",
+                      "library": "lucide",
+                      "fill": "#C4B28A"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B4LBf",
+                      "name": "Temperature value",
+                      "fill": "#B8B9B0",
+                      "content": "48°",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EOMXr",
+                  "name": "Power menu trigger",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#48302E",
+                  "cornerRadius": 6,
+                  "stroke": "#C4746E",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "NKRnB",
+                      "name": "Power trigger icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "power",
+                      "library": "lucide",
+                      "fill": "#D88D86"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "g4Dtx",
+          "layoutPosition": "absolute",
+          "x": 0,
+          "y": 57,
+          "name": "Accent line",
+          "fill": "#87A987",
+          "width": 1600,
+          "height": 2
+        },
+        {
+          "type": "frame",
+          "id": "VcWM7",
+          "layoutPosition": "absolute",
+          "x": 1348,
+          "y": 66,
+          "name": "Power menu / Dragon Command",
+          "width": 230,
+          "fill": "#20211E",
+          "cornerRadius": 8,
+          "stroke": "#4A4A42",
+          "strokeWidth": 1,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000088",
+            "offset": {
+              "x": 0,
+              "y": 10
+            },
+            "blur": 24
+          },
+          "layout": "vertical",
+          "gap": 2,
+          "padding": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "tMfhO",
+              "name": "Power menu heading",
+              "fill": "#8A9188",
+              "content": "SESSION",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 10,
+              "fontWeight": "bold",
+              "letterSpacing": 1.5
+            },
+            {
+              "type": "frame",
+              "id": "p3a7H",
+              "name": "Lock action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#20211E",
+              "cornerRadius": 5,
+              "gap": 10,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "bMvF3",
+                  "name": "Lock icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "lock-keyhole",
+                  "library": "lucide",
+                  "fill": "#C5C9C5"
+                },
+                {
+                  "type": "text",
+                  "id": "lvwGd",
+                  "name": "Lock label",
+                  "fill": "#C5C9C5",
+                  "content": "Lock",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "D11cGr",
+                  "name": "Lock spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "I4ULK",
+                  "name": "Lock hint",
+                  "fill": "#6F756E",
+                  "content": "SUPER + L",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "aSqHC",
+              "name": "Suspend action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#20211E",
+              "cornerRadius": 5,
+              "gap": 10,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "yykUs",
+                  "name": "Suspend icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "moon",
+                  "library": "lucide",
+                  "fill": "#C5C9C5"
+                },
+                {
+                  "type": "text",
+                  "id": "jZOsV",
+                  "name": "Suspend label",
+                  "fill": "#C5C9C5",
+                  "content": "Suspend",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "p4oSaI",
+                  "name": "Suspend spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "pLMQa",
+                  "name": "Suspend hint",
+                  "fill": "#6F756E",
+                  "content": "SLEEP",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "P8Z5EJ",
+              "name": "Reboot action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#20211E",
+              "cornerRadius": 5,
+              "gap": 10,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "cDzDV",
+                  "name": "Reboot icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "rotate-cw",
+                  "library": "lucide",
+                  "fill": "#C5C9C5"
+                },
+                {
+                  "type": "text",
+                  "id": "oEXr1",
+                  "name": "Reboot label",
+                  "fill": "#C5C9C5",
+                  "content": "Reboot",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "lbIqq",
+                  "name": "Reboot spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "Y6a9W",
+                  "name": "Reboot hint",
+                  "fill": "#6F756E",
+                  "content": "RESTART",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "rA5H7",
+              "name": "Shutdown action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#352625",
+              "cornerRadius": 5,
+              "gap": 10,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "s0RB65",
+                  "name": "Shutdown icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "power",
+                  "library": "lucide",
+                  "fill": "#C4746E"
+                },
+                {
+                  "type": "text",
+                  "id": "DoWIn",
+                  "name": "Shutdown label",
+                  "fill": "#C4746E",
+                  "content": "Shutdown",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "L0Z0p",
+                  "name": "Shutdown spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "vPHbd",
+                  "name": "Shutdown hint",
+                  "fill": "#A66D68",
+                  "content": "OFF",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "AljpZ",
+      "x": 0,
+      "y": 440,
+      "name": "02 / Terminal Prompt",
+      "clip": true,
+      "width": 1600,
+      "height": 390,
+      "fill": "#0D0C0C",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "CA9VF",
+          "name": "Terminal toolbar",
+          "width": 1600,
+          "height": 62,
+          "fill": "#11110F",
+          "stroke": "#49634F",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            0,
+            25
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "V4fdTl",
+              "name": "Workspace command",
+              "width": 520,
+              "height": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hpI8s",
+                  "name": "Prompt symbol",
+                  "fill": "#87A987",
+                  "content": "❯_",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 21,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "tXfDO",
+                  "name": "Session path",
+                  "fill": "#8BA4B0",
+                  "content": "~/hypr",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Irv7p",
+                  "name": "Prompt separator",
+                  "fill": "#51534D",
+                  "content": "│",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "m3aBl",
+                  "name": "Workspace list",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "b1ivZ",
+                      "name": "Terminal workspace 1",
+                      "width": 38,
+                      "height": 32,
+                      "fill": "#11110F",
+                      "cornerRadius": 2,
+                      "stroke": "#44463F",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QgaQ6",
+                          "name": "Terminal workspace label 1",
+                          "fill": "#848780",
+                          "content": "01",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "H5nDrA",
+                      "name": "Terminal workspace 2",
+                      "width": 38,
+                      "height": 32,
+                      "fill": "#11110F",
+                      "cornerRadius": 2,
+                      "stroke": "#44463F",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "D2Vk1",
+                          "name": "Terminal workspace label 2",
+                          "fill": "#848780",
+                          "content": "02",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "g1XmUh",
+                      "name": "Terminal workspace 3",
+                      "width": 84,
+                      "height": 32,
+                      "fill": "#2A382E",
+                      "cornerRadius": 2,
+                      "stroke": "#87A987",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WMXqd",
+                          "name": "Terminal workspace label 3",
+                          "fill": "#B7C7AD",
+                          "content": "03:DEV",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mNLuU",
+                      "name": "Terminal workspace 4",
+                      "width": 38,
+                      "height": 32,
+                      "fill": "#11110F",
+                      "cornerRadius": 2,
+                      "stroke": "#44463F",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "EB9UF",
+                          "name": "Terminal workspace label 4",
+                          "fill": "#848780",
+                          "content": "04",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UKExz",
+                      "name": "Terminal workspace 5",
+                      "width": 38,
+                      "height": 32,
+                      "fill": "#11110F",
+                      "cornerRadius": 2,
+                      "stroke": "#44463F",
+                      "strokeWidth": 1,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qRIJo",
+                          "name": "Terminal workspace label 5",
+                          "fill": "#848780",
+                          "content": "05",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lp4UN",
+              "name": "Clock command",
+              "width": 520,
+              "height": "fill_container",
+              "gap": 10,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "K6dbXH",
+                  "name": "Clock command prefix",
+                  "fill": "#87A987",
+                  "content": "TIME",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "rlXME",
+                  "name": "Clock digits",
+                  "fill": "#C5C9C5",
+                  "content": "16:03:55",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 19,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "D6UQSp",
+                  "name": "Clock date",
+                  "fill": "#767B72",
+                  "content": "// 2026.09.29",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ER2de",
+              "name": "Telemetry command",
+              "width": 510,
+              "height": "fill_container",
+              "gap": 12,
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Y27dz",
+                  "name": "NET status",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ND9Tx",
+                      "name": "NET key",
+                      "fill": "#70746E",
+                      "content": "NET=",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "v2QZB",
+                      "name": "NET reading",
+                      "fill": "#8BA4B0",
+                      "content": "W3JTS",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qzEGi",
+                  "name": "VOL status",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gGkXx",
+                      "name": "VOL key",
+                      "fill": "#70746E",
+                      "content": "VOL=",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xTQH0",
+                      "name": "VOL reading",
+                      "fill": "#C4B28A",
+                      "content": "100",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ruRtj",
+                  "name": "MIC status",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mUM4R",
+                      "name": "MIC key",
+                      "fill": "#70746E",
+                      "content": "MIC=",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ll2Sh",
+                      "name": "MIC reading",
+                      "fill": "#87A987",
+                      "content": "ON",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DXvbh",
+                  "name": "BAT status",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sc01v",
+                      "name": "BAT key",
+                      "fill": "#70746E",
+                      "content": "BAT=",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nD2tH",
+                      "name": "BAT reading",
+                      "fill": "#87A987",
+                      "content": "100",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "B0KLFI",
+                  "name": "CPU status",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "e32ja",
+                      "name": "CPU key",
+                      "fill": "#70746E",
+                      "content": "CPU=",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J40kLZ",
+                      "name": "CPU reading",
+                      "fill": "#C5C9C5",
+                      "content": "28",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "u2Psw",
+                  "name": "TMP status",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FSCW4",
+                      "name": "TMP key",
+                      "fill": "#70746E",
+                      "content": "TMP=",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "e0FYwP",
+                      "name": "TMP reading",
+                      "fill": "#B6927B",
+                      "content": "48°",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "E2Lqir",
+                  "name": "Terminal power trigger",
+                  "width": 30,
+                  "height": 30,
+                  "fill": "#1D2A20",
+                  "cornerRadius": 2,
+                  "stroke": "#87A987",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "W1or3",
+                      "name": "Terminal power trigger icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "power",
+                      "library": "lucide",
+                      "fill": "#A3BE8C"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "outYK",
+          "layoutPosition": "absolute",
+          "x": 40,
+          "y": 325,
+          "name": "Terminal concept number",
+          "fill": "#87A987",
+          "content": "02  /  TERMINAL PROMPT",
+          "fontFamily": "JetBrains Mono",
+          "fontSize": 13,
+          "fontWeight": "bold",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "id": "qLTYy",
+          "layoutPosition": "absolute",
+          "x": 40,
+          "y": 353,
+          "name": "Terminal concept description",
+          "fill": "#A6A69C",
+          "content": "A shell-like bar for keyboard-first use. Labels make every sensor explicit.",
+          "fontFamily": "Inter",
+          "fontSize": 19,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "c4Crm",
+          "layoutPosition": "absolute",
+          "x": 1345,
+          "y": 69,
+          "name": "Power menu / Terminal Prompt",
+          "width": 230,
+          "fill": "#151914",
+          "cornerRadius": 2,
+          "stroke": "#557158",
+          "strokeWidth": 1,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000099",
+            "offset": {
+              "x": 0,
+              "y": 12
+            },
+            "blur": 24
+          },
+          "layout": "vertical",
+          "gap": 3,
+          "padding": 10,
+          "children": [
+            {
+              "type": "text",
+              "id": "mvbSa",
+              "name": "Terminal menu heading",
+              "fill": "#87A987",
+              "content": "root@hypr:~$ session",
+              "fontFamily": "JetBrains Mono",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "rectangle",
+              "id": "Q3tfuS",
+              "name": "Terminal menu rule",
+              "fill": "#3E5942",
+              "width": "fill_container",
+              "height": 1
+            },
+            {
+              "type": "frame",
+              "id": "S4BLA",
+              "name": "Lock command",
+              "width": "fill_container",
+              "height": 39,
+              "fill": "#151914",
+              "cornerRadius": 2,
+              "gap": 7,
+              "padding": [
+                0,
+                7
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HQVLr",
+                  "name": "Lock prompt",
+                  "fill": "#87A987",
+                  "content": ">",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 14,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "qajIy",
+                  "name": "Lock command text",
+                  "fill": "#C5C9C5",
+                  "content": "lock",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "m8zy2b",
+                  "name": "Lock command spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "l7qVQ",
+                  "name": "Lock command index",
+                  "fill": "#677169",
+                  "content": "01",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "q75t2c",
+              "name": "Suspend command",
+              "width": "fill_container",
+              "height": 39,
+              "fill": "#151914",
+              "cornerRadius": 2,
+              "gap": 7,
+              "padding": [
+                0,
+                7
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "n0YLCn",
+                  "name": "Suspend prompt",
+                  "fill": "#87A987",
+                  "content": ">",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 14,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "lzEsu",
+                  "name": "Suspend command text",
+                  "fill": "#C5C9C5",
+                  "content": "suspend",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "zdFxY",
+                  "name": "Suspend command spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "rbp8E",
+                  "name": "Suspend command index",
+                  "fill": "#677169",
+                  "content": "02",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "obKaQ",
+              "name": "Reboot command",
+              "width": "fill_container",
+              "height": 39,
+              "fill": "#151914",
+              "cornerRadius": 2,
+              "gap": 7,
+              "padding": [
+                0,
+                7
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ILtzc",
+                  "name": "Reboot prompt",
+                  "fill": "#87A987",
+                  "content": ">",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 14,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "MwdMq",
+                  "name": "Reboot command text",
+                  "fill": "#C5C9C5",
+                  "content": "reboot",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "uoLa5",
+                  "name": "Reboot command spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "y2Kja",
+                  "name": "Reboot command index",
+                  "fill": "#677169",
+                  "content": "03",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "o5mid",
+              "name": "Shutdown command",
+              "width": "fill_container",
+              "height": 39,
+              "fill": "#302322",
+              "cornerRadius": 2,
+              "gap": 7,
+              "padding": [
+                0,
+                7
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qThmF",
+                  "name": "Shutdown prompt",
+                  "fill": "#C4746E",
+                  "content": ">",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 14,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "zok8p",
+                  "name": "Shutdown command text",
+                  "fill": "#C4746E",
+                  "content": "shutdown",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "BNC8w",
+                  "name": "Shutdown command spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "J1CSCY",
+                  "name": "Shutdown command index",
+                  "fill": "#677169",
+                  "content": "04",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ylFBN",
+      "x": 0,
+      "y": 880,
+      "name": "03 / Signal Deck",
+      "clip": true,
+      "width": 1600,
+      "height": 390,
+      "fill": "#111218",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "FMY47",
+          "name": "Signal toolbar",
+          "width": 1600,
+          "height": 66,
+          "fill": "#1B1D27",
+          "stroke": "#353B4A",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            0,
+            20
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "y5MVO",
+              "name": "Signal workspace zone",
+              "width": 520,
+              "height": "fill_container",
+              "gap": 13,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "aftUY",
+                  "name": "Hypr badge",
+                  "width": 62,
+                  "height": 30,
+                  "fill": "#2B3B4B",
+                  "cornerRadius": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wD9M0",
+                      "name": "Hypr badge text",
+                      "fill": "#A9BED0",
+                      "content": "HYPR",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "bold",
+                      "letterSpacing": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "mfhxV",
+                  "name": "Signal divider",
+                  "fill": "#4B5060",
+                  "width": 1,
+                  "height": 24
+                },
+                {
+                  "type": "frame",
+                  "id": "LX5c4",
+                  "name": "Signal workspace 1",
+                  "width": 44,
+                  "height": 36,
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "stroke": "#353846",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "bWnjN",
+                      "name": "Signal workspace text 1",
+                      "fill": "#7B8290",
+                      "content": "01",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F7hXWc",
+                  "name": "Signal workspace 2",
+                  "width": 44,
+                  "height": 36,
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "stroke": "#353846",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "E22BCV",
+                      "name": "Signal workspace text 2",
+                      "fill": "#7B8290",
+                      "content": "02",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cexgX",
+                  "name": "Signal workspace 3",
+                  "width": 72,
+                  "height": 36,
+                  "fill": "#353D4B",
+                  "cornerRadius": 4,
+                  "stroke": "#8BA4B0",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SWbHj",
+                      "name": "Signal workspace text 3",
+                      "fill": "#C5C9C5",
+                      "content": "03 DEV",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "bold"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "J8KR1D",
+                  "name": "Signal workspace 4",
+                  "width": 44,
+                  "height": 36,
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "stroke": "#353846",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WBr2v",
+                      "name": "Signal workspace text 4",
+                      "fill": "#7B8290",
+                      "content": "04",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zNl8r",
+                  "name": "Signal workspace 5",
+                  "width": 44,
+                  "height": 36,
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "stroke": "#353846",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "deQkF",
+                      "name": "Signal workspace text 5",
+                      "fill": "#7B8290",
+                      "content": "05",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "u3rUdo",
+              "name": "Signal time zone",
+              "width": 520,
+              "height": "fill_container",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "NN3H4",
+                  "name": "Clock module",
+                  "width": 286,
+                  "height": 40,
+                  "fill": "#242630",
+                  "cornerRadius": 5,
+                  "stroke": "#454956",
+                  "strokeWidth": 1,
+                  "gap": 14,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SavP7",
+                      "name": "Time module label",
+                      "fill": "#87A987",
+                      "content": "◉ LOCAL",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 10,
+                      "fontWeight": "bold",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "O601i",
+                      "name": "Time module digits",
+                      "fill": "#C5C9C5",
+                      "content": "16:03",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 19,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cLtCs",
+                      "name": "Time module date",
+                      "fill": "#8992A7",
+                      "content": "29 SEP",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JB1V2",
+              "name": "Signal system zone",
+              "width": 520,
+              "height": "fill_container",
+              "gap": 8,
+              "justifyContent": "end",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "PDygx",
+                  "name": "Network module",
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    9
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "oO4Jj",
+                      "name": "Network icon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "wifi",
+                      "library": "lucide",
+                      "fill": "#8BA4B0"
+                    },
+                    {
+                      "type": "text",
+                      "id": "d2Pa9v",
+                      "name": "Network value",
+                      "fill": "#B9BDBB",
+                      "content": "W3JTS",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "iczug",
+                  "name": "Audio module",
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    9
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "ANaQH",
+                      "name": "Audio icon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "volume-2",
+                      "library": "lucide",
+                      "fill": "#8BA4B0"
+                    },
+                    {
+                      "type": "text",
+                      "id": "EAUbx",
+                      "name": "Audio value",
+                      "fill": "#B9BDBB",
+                      "content": "100",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jyQ1w",
+                  "name": "Battery module",
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    9
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "O7ZC5D",
+                      "name": "Battery icon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "battery-full",
+                      "library": "lucide",
+                      "fill": "#87A987"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OgOf4",
+                      "name": "Battery value",
+                      "fill": "#B9BDBB",
+                      "content": "100",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z3Ypa",
+                  "name": "Processor module",
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    9
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "hoxV6",
+                      "name": "Processor icon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "cpu",
+                      "library": "lucide",
+                      "fill": "#C4B28A"
+                    },
+                    {
+                      "type": "text",
+                      "id": "BS8Et",
+                      "name": "Processor value",
+                      "fill": "#B9BDBB",
+                      "content": "28",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WS4h5",
+                  "name": "Heat module",
+                  "fill": "#242630",
+                  "cornerRadius": 4,
+                  "gap": 6,
+                  "padding": [
+                    7,
+                    9
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "KZZFR",
+                      "name": "Heat icon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "thermometer",
+                      "library": "lucide",
+                      "fill": "#C4746E"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ke94F",
+                      "name": "Heat value",
+                      "fill": "#B9BDBB",
+                      "content": "48°",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cWmWn",
+                  "name": "Quick controls",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#34433B",
+                  "cornerRadius": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "VRjCr",
+                      "name": "Quick controls icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "sliders-horizontal",
+                      "library": "lucide",
+                      "fill": "#A3BE8C"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z8MROs",
+                  "name": "Signal power trigger",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#432D30",
+                  "cornerRadius": 4,
+                  "stroke": "#C4746E",
+                  "strokeWidth": 1,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "yzLTA",
+                      "name": "Signal power trigger icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "power",
+                      "library": "lucide",
+                      "fill": "#D88D86"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "p7dUy",
+          "layoutPosition": "absolute",
+          "x": 40,
+          "y": 325,
+          "name": "Signal concept number",
+          "fill": "#8BA4B0",
+          "content": "03  /  SIGNAL DECK",
+          "fontFamily": "JetBrains Mono",
+          "fontSize": 13,
+          "fontWeight": "bold",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "id": "S8GSE3",
+          "layoutPosition": "absolute",
+          "x": 40,
+          "y": 353,
+          "name": "Signal concept description",
+          "fill": "#A6A69C",
+          "content": "A compact control surface. Status is grouped into modules; quick controls get a clear entry point.",
+          "fontFamily": "Inter",
+          "fontSize": 19,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "bjbFB",
+          "layoutPosition": "absolute",
+          "x": 1350,
+          "y": 73,
+          "name": "Power menu / Signal Deck",
+          "width": 230,
+          "fill": "#242630",
+          "cornerRadius": 6,
+          "stroke": "#51576A",
+          "strokeWidth": 1,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000099",
+            "offset": {
+              "x": 0,
+              "y": 12
+            },
+            "blur": 24
+          },
+          "layout": "vertical",
+          "gap": 3,
+          "padding": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "MEdiM",
+              "name": "Signal menu header",
+              "width": "fill_container",
+              "height": 23,
+              "gap": 7,
+              "padding": [
+                0,
+                7
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "nfDRx",
+                  "name": "Signal menu status light",
+                  "fill": "#C4746E",
+                  "width": 6,
+                  "height": 6
+                },
+                {
+                  "type": "text",
+                  "id": "c0ovE7",
+                  "name": "Signal menu heading",
+                  "fill": "#9CA8B2",
+                  "content": "SYSTEM  /  POWER",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 10,
+                  "fontWeight": "bold",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mae3w",
+              "name": "Lock signal action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#2C303D",
+              "cornerRadius": 4,
+              "gap": 9,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "dg8Hq",
+                  "name": "Lock signal icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "lock-keyhole",
+                  "library": "lucide",
+                  "fill": "#8BA4B0"
+                },
+                {
+                  "type": "text",
+                  "id": "mcihM",
+                  "name": "Lock signal label",
+                  "fill": "#C5C9C5",
+                  "content": "Lock",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "AQw8V",
+                  "name": "Lock signal spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "K2Ni5",
+                  "name": "Lock signal hint",
+                  "fill": "#7D8792",
+                  "content": "SECURE",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qHn3c",
+              "name": "Suspend signal action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#2C303D",
+              "cornerRadius": 4,
+              "gap": 9,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "cz56t",
+                  "name": "Suspend signal icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "moon",
+                  "library": "lucide",
+                  "fill": "#8BA4B0"
+                },
+                {
+                  "type": "text",
+                  "id": "CnMW4",
+                  "name": "Suspend signal label",
+                  "fill": "#C5C9C5",
+                  "content": "Suspend",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "jlNhw",
+                  "name": "Suspend signal spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "euPT2",
+                  "name": "Suspend signal hint",
+                  "fill": "#7D8792",
+                  "content": "SLEEP",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FPxxW",
+              "name": "Reboot signal action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#2C303D",
+              "cornerRadius": 4,
+              "gap": 9,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "a9u5f",
+                  "name": "Reboot signal icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "rotate-cw",
+                  "library": "lucide",
+                  "fill": "#8BA4B0"
+                },
+                {
+                  "type": "text",
+                  "id": "k0Vg6Y",
+                  "name": "Reboot signal label",
+                  "fill": "#C5C9C5",
+                  "content": "Reboot",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "Rix1J",
+                  "name": "Reboot signal spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "f1WgV5",
+                  "name": "Reboot signal hint",
+                  "fill": "#7D8792",
+                  "content": "RESTART",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fyxSq",
+              "name": "Shutdown signal action",
+              "width": "fill_container",
+              "height": 41,
+              "fill": "#3B2B32",
+              "cornerRadius": 4,
+              "gap": 9,
+              "padding": [
+                0,
+                9
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "K9amK3",
+                  "name": "Shutdown signal icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "power",
+                  "library": "lucide",
+                  "fill": "#D88D86"
+                },
+                {
+                  "type": "text",
+                  "id": "cBLd2",
+                  "name": "Shutdown signal label",
+                  "fill": "#D88D86",
+                  "content": "Shutdown",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "HZsFF",
+                  "name": "Shutdown signal spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "jmDHv",
+                  "name": "Shutdown signal hint",
+                  "fill": "#C4746E",
+                  "content": "OFF",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fileToken": "43f6baf2-95fa-4636-81d7-fa14f6446565"
+}
