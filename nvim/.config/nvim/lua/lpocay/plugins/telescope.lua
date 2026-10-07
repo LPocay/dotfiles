@@ -1,7 +1,6 @@
 local gh = function(repo) return 'https://github.com/' .. repo end
 
 local telescope_plugins = {
-  gh 'nvim-lua/plenary.nvim',
   gh 'nvim-telescope/telescope.nvim',
   gh 'nvim-telescope/telescope-ui-select.nvim',
 }
@@ -15,8 +14,12 @@ require('telescope').setup {
   },
 }
 
-pcall(require('telescope').load_extension, 'fzf')
-pcall(require('telescope').load_extension, 'ui-select')
+local function load_extension(name)
+  local ok, err = pcall(require('telescope').load_extension, name)
+  if not ok then vim.notify(('Telescope extension %s failed: %s'):format(name, err), vim.log.levels.WARN) end
+end
+if vim.fn.executable 'make' == 1 then load_extension 'fzf' end
+load_extension 'ui-select'
 
 local builtin = require 'telescope.builtin'
 

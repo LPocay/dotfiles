@@ -78,6 +78,7 @@ do
   end
 
   vim.api.nvim_create_autocmd('PackChanged', {
+    group = vim.api.nvim_create_augroup('lpocay-pack-builds', { clear = true }),
     callback = function(ev)
       local name = ev.data.spec.name
       local kind = ev.data.kind
@@ -85,11 +86,6 @@ do
 
       if name == 'telescope-fzf-native.nvim' and vim.fn.executable 'make' == 1 then
         run_build(name, { 'make' }, ev.data.path)
-        return
-      end
-
-      if name == 'LuaSnip' then
-        if vim.fn.has 'win32' ~= 1 and vim.fn.executable 'make' == 1 then run_build(name, { 'make', 'install_jsregexp' }, ev.data.path) end
         return
       end
 
@@ -117,6 +113,8 @@ do
 end
 
 -- Plugins
+-- Shared by todo-comments and Telescope.
+vim.pack.add { 'https://github.com/nvim-lua/plenary.nvim' }
 require 'lpocay.plugins.guess-indent'
 require 'lpocay.plugins.devicons'
 require 'lpocay.plugins.gisigns'
