@@ -14,13 +14,44 @@ PanelWindow {
     color: Colors.topbar.toolbar_background
     implicitHeight: 62
     RowLayout {
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.fill: parent
         anchors.leftMargin: 25
         anchors.rightMargin: 25
-        anchors.left: parent.left
 
-        TerminalPrompt {}
-        Separator {}
-        Workspaces {}
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredWidth: 0
+            RowLayout {
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                TerminalPrompt {}
+                Separator {}
+                Workspaces {}
+            }
+        }
+
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredWidth: 0
+            RowLayout {
+                anchors.centerIn: parent
+                Clock {}
+            }
+        }
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredWidth: 0
+            RowLayout {
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                Text {
+                    text: "Derecha"
+                    color: "white"
+                }
+            }
+        }
     }
 }

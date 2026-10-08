@@ -3,9 +3,7 @@ import QtQuick.Layouts
 import "../theme/"
 
 RowLayout {
-    id: root
-
-    spacing: 18
+    spacing: 16
 
     Text {
         text: "❯_"
