@@ -1,0 +1,4 @@
+module Theme
+
+singleton Colors 1.0 Colors.qml
+ToolBarColors 1.0 ToolBarColors.qml
