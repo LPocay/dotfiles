@@ -5,8 +5,8 @@ import "../theme/"
 
 RowLayout {
     spacing: 8
-    anchors.leftMargin: 16
-    anchors.left: parent.left
+    Layout.leftMargin: 16
+    Layout.alignment: Qt.AlignLeft
     Repeater {
         model: Hyprland.workspaces
         Rectangle {
@@ -16,8 +16,8 @@ RowLayout {
             implicitHeight: 32
             radius: 2
             border.width: 1
-            border.color: workspace.modelData.active ? Colors.toolbar.accent_green : mouseArea.containsMouse ? Colors.toolbar.workspace_active_background : Colors.toolbar.workspace_idle_background
-            color: workspace.modelData.active ? Colors.toolbar.workspace_hover_background : mouseArea.containsMouse ? Colors.toolbar.workspace_hover_border : "transparent"
+            border.color: workspace.modelData.active ? Colors.topbar.accent_green : mouseArea.containsMouse ? Colors.topbar.workspace_active_background : Colors.topbar.workspace_idle_background
+            color: workspace.modelData.active ? Colors.topbar.workspace_hover_background : mouseArea.containsMouse ? Colors.topbar.workspace_hover_border : "transparent"
             Behavior on color {
                 ColorAnimation {
                     duration: 100
@@ -31,7 +31,7 @@ RowLayout {
             Text {
                 anchors.centerIn: parent
                 text: `0${workspace.modelData.id}`
-                color: workspace.modelData.active ? "#B7C7AD" : mouseArea.containsMouse ? "#B7C7AD" : "#848780"
+                color: workspace.modelData.active ? Colors.topbar.text_selected : mouseArea.containsMouse ? Colors.topbar.text_selected : Colors.topbar.text_muted
                 font.pixelSize: 12
                 font.bold: true
                 font.family: "JetBrainsMono Nerd Font"

@@ -11,7 +11,7 @@ PanelWindow {
         left: true
         right: true
     }
-    color: Colors.toolbar.toolbar_background
+    color: Colors.topbar.toolbar_background
     implicitHeight: 62
     RowLayout {
         anchors.verticalCenter: parent.verticalCenter
