@@ -5,8 +5,6 @@ import "../theme/"
 
 RowLayout {
     spacing: 8
-    Layout.leftMargin: 16
-    Layout.alignment: Qt.AlignLeft
     Repeater {
         model: Hyprland.workspaces
         Rectangle {

@@ -18,6 +18,9 @@ PanelWindow {
         anchors.leftMargin: 25
         anchors.rightMargin: 25
         anchors.left: parent.left
+
+        TerminalPrompt {}
+        Separator {}
         Workspaces {}
     }
 }
