@@ -4,3 +4,4 @@ TerminalPrompt 1.0 TerminalPrompt.qml
 Workspaces 1.0 Workspaces.qml
 Separator 1.0 Separator.qml
 Clock 1.0 Clock.qml
+Calendar 1.0 Calendar.qml
