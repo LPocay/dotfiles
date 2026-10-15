@@ -27,7 +27,7 @@ do
   vim.o.tabstop = 2
   vim.o.expandtab = true
   vim.o.winborder = 'rounded'
-  vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+  vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlighting' })
 
   vim.diagnostic.config {
     update_in_insert = false,

@@ -48,6 +48,6 @@ require('gitsigns').setup {
     map('n', '<leader>tw', gitsigns.toggle_word_diff, { desc = '[T]oggle git intra-line [w]ord diff' })
 
     -- Text object
-    map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
+    map({ 'o', 'x' }, 'ih', gitsigns.select_hunk, { desc = 'Select git hunk' })
   end,
 }
