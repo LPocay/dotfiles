@@ -109,7 +109,7 @@ do
   map('n', '<leader>Y', [["+Y]], '󰅍 Copy line to system clipboard')
   map({ 'n', 'v' }, '<leader>d', [["_d]], ' Delete without overwriting register')
   map('n', '<leader>u', function() vim.pack.update() end, '[U]pdate packages')
-  map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], ' Substitute word under cursor')
+  map('n', '<leader>S', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], ' Substitute word under cursor')
 end
 
 -- Plugins

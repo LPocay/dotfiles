@@ -14,4 +14,3 @@ require('oil').setup {
 }
 
 vim.keymap.set('n', '<leader>e', '<CMD>Oil --float<CR>', { desc = ' Explorer' })
-vim.keymap.set('n', '<leader>pv', '<CMD>Oil --float<CR>', { desc = ' Project view' })
