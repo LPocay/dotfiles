@@ -105,6 +105,7 @@ PopupWindow {
                         anchors.fill: parent
                         source: musicPopup.hasPlayer ? musicPopup.player.trackArtUrl : ""
                         fillMode: Image.PreserveAspectCrop
+                        clip: true
                         visible: status === Image.Ready
                     }
                     Icon {
