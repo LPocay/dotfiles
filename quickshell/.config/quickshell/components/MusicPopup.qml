@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Services.Mpris
 import QtQuick
 import QtQuick.Layouts
@@ -40,6 +41,12 @@ PopupWindow {
 
     visible: expanded
     color: "transparent"
+
+    HyprlandFocusGrab {
+        windows: [musicPopup]
+        active: musicPopup.expanded
+        onCleared: musicPopup.expanded = false
+    }
 
     component Divider: Rectangle {
         Layout.fillWidth: true

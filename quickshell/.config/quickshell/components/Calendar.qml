@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "../theme/"
@@ -12,7 +13,6 @@ PopupWindow {
     property bool expanded: false
     property int viewYear: clock.date.getFullYear()
     property int viewMonth: clock.date.getMonth()
-    property var selectedDate: null
 
     function shiftMonth(delta) {
         const d = new Date(viewYear, viewMonth + delta, 1);
@@ -22,6 +22,12 @@ PopupWindow {
 
     visible: expanded
     color: "transparent"
+
+    HyprlandFocusGrab {
+        windows: [calendarPopup]
+        active: calendarPopup.expanded
+        onCleared: calendarPopup.expanded = false
+    }
 
     SystemClock {
         id: clock
@@ -116,13 +122,12 @@ PopupWindow {
                             readonly property date cellDate: CalendarLogic.dateForCell(calendarPopup.viewYear, calendarPopup.viewMonth, index)
                             readonly property bool inMonth: cellDate.getMonth() === calendarPopup.viewMonth
                             readonly property bool isToday: inMonth && CalendarLogic.sameDay(cellDate, clock.date)
-                            readonly property bool isSelected: CalendarLogic.sameDay(cellDate, calendarPopup.selectedDate)
 
                             Layout.fillWidth: true
                             Layout.preferredWidth: 0
                             Layout.preferredHeight: 28
                             radius: 2
-                            color: isSelected ? Colors.topbar.day_31 : "transparent"
+                            color: isToday ? Colors.topbar.day_31 : "transparent"
 
                             Text {
                                 anchors.centerIn: parent
@@ -131,12 +136,6 @@ PopupWindow {
                                 font.pixelSize: 12
                                 font.bold: cell.isToday
                                 color: cell.isToday ? Colors.topbar.accent_lime : cell.inMonth ? Colors.topbar.text_primary : Colors.topbar.date_30_1_0
-                            }
-                            MouseArea {
-                                anchors.fill: parent
-                                enabled: cell.inMonth
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: calendarPopup.selectedDate = cell.cellDate
                             }
                         }
                     }

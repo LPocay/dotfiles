@@ -1,3 +1,4 @@
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import "../theme/"
@@ -8,6 +9,24 @@ Rectangle {
     property string number
     property bool danger: false
     signal triggered
+
+    function runCommand() {
+        if (root.command === "lock") {
+            Quickshell.execDetached(["loginctl", "lock-session"]);
+            return;
+        }
+        if (root.command === "suspend") {
+            Quickshell.execDetached(["systemctl", "suspend"]);
+            return;
+        }
+        if (root.command === "reboot") {
+            Quickshell.execDetached(["systemctl", "reboot"]);
+            return;
+        }
+        if (root.command === "shutdown") {
+            Quickshell.execDetached(["systemctl", "poweroff"]);
+        }
+    }
 
     Layout.fillWidth: true
     implicitHeight: 39
@@ -51,6 +70,9 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: root.triggered()
+        onClicked: {
+            root.triggered();
+            root.runCommand();
+        }
     }
 }

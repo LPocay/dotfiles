@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "../theme/"
@@ -11,6 +12,12 @@ PopupWindow {
     property bool expanded: false
     visible: expanded
     color: "transparent"
+
+    HyprlandFocusGrab {
+        windows: [powerMenu]
+        active: powerMenu.expanded
+        onCleared: powerMenu.expanded = false
+    }
 
     Rectangle {
         anchors.fill: parent
