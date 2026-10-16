@@ -12,11 +12,11 @@ Rectangle {
 
     function runCommand() {
         if (root.command === "lock") {
-            Quickshell.execDetached(["hyprlock"]);
+            Quickshell.execDetached(["loginctl", "lock-session"]);
             return;
         }
         if (root.command === "suspend") {
-            Quickshell.execDetached(["sh", "-c", "loginctl lock-session && systemctl suspend"]);
+            Quickshell.execDetached(["systemctl", "suspend"]);
             return;
         }
         if (root.command === "reboot") {
