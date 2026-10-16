@@ -32,6 +32,7 @@ shell_packages=(
     yazi
     fastfetch
     impala
+    btop
     bluetui
     xclip
     wl-clipboard
