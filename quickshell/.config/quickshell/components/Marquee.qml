@@ -63,7 +63,7 @@ Item {
     // Restart from the beginning when the text changes
     onTextChanged: Qt.callLater(() => {
         strip.x = 0;
-        if (root.overflowing && root.visible)
+        if (root.enabled && root.overflowing && root.visible)
             scrollAnimation.restart();
     })
     onOverflowingChanged: strip.x = 0
