@@ -33,7 +33,9 @@ local menu = "uwsm app -- wofi --show drun"
 -------------------
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("uwsm app -- waybar")
+	hl.exec_cmd("uwsm app -- quickshell")
+	-- Quickshell is currently under evaluation and may move to legacy if we switch back.
+	-- hl.exec_cmd("uwsm app -- waybar")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("uwsm app -- hypridle")
 	hl.exec_cmd("uwsm app -- hyprpaper")
