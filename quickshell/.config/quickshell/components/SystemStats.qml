@@ -62,7 +62,7 @@ Singleton {
 
     Poll {
         id: netProc
-        command: ["sh", "-c", "l=$(LC_ALL=C nmcli -t -f TYPE,STATE,DEVICE,CONNECTION device | awk -F: '($1==\"ethernet\"||$1==\"wifi\")&&$2==\"connected\"{print;exit}'); [ -z \"$l\" ] && exit 0; dev=$(echo \"$l\" | cut -d: -f3); name=$(echo \"$l\" | cut -d: -f4-); ip=$(LC_ALL=C nmcli -g IP4.ADDRESS device show \"$dev\" | head -n1 | cut -d/ -f1); echo \"$name|$ip\""]
+        command: ["sh", "-c", "l=$(LC_ALL=C nmcli -t -f TYPE,STATE,DEVICE,CONNECTION device 2>/dev/null | awk -F: '($1==\"ethernet\"||$1==\"wifi\")&&$2==\"connected\"{print;exit}'); if [ -n \"$l\" ]; then dev=$(echo \"$l\" | cut -d: -f3); name=$(echo \"$l\" | cut -d: -f4-); ip=$(LC_ALL=C nmcli -g IP4.ADDRESS device show \"$dev\" | head -n1 | cut -d/ -f1); else r=$(ip -4 route get 1.1.1.1 2>/dev/null | head -n1); dev=$(echo \"$r\" | sed -n 's/.* dev \\([^ ]*\\).*/\\1/p'); [ -z \"$dev\" ] && exit 0; ip=$(echo \"$r\" | sed -n 's/.* src \\([^ ]*\\).*/\\1/p'); name=$(iwctl station \"$dev\" show 2>/dev/null | sed -n 's/.*Connected network *\\([^ ]*\\).*/\\1/p'); [ -z \"$name\" ] && name=$dev; fi; echo \"$name|$ip\""]
         handler: out => {
             const i = out.indexOf("|");
             root.netName = i < 0 ? "" : out.slice(0, i);

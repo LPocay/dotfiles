@@ -26,7 +26,7 @@ RowLayout {
     StatusReading {
         label: "NET"
         visible: root.availableWidth >= 330
-        value: SystemStats.netName ? SystemStats.netName.toUpperCase().substring(0, 10) : "OFF"
+        value: SystemStats.netName ? SystemStats.netName.toUpperCase().substring(0, 3) : "OFF"
         valueColor: SystemStats.netName ? Colors.topbar.accent_blue : Colors.topbar.text_dim
         tooltip: SystemStats.netIp ? `${SystemStats.netName}  ${SystemStats.netIp}` : "sin conexión"
         valueWidthSample: "OFF"
