@@ -10,6 +10,7 @@ Item {
     property color valueColor: Colors.topbar.text_primary
     property string tooltip: ""
     property bool clickable: false
+    property string valueWidthSample: "888"
     signal clicked
 
     implicitWidth: row.implicitWidth
@@ -63,6 +64,16 @@ Item {
             font.pixelSize: 15
             font.bold: true
             font.family: "JetBrainsMono Nerd Font"
+            horizontalAlignment: Text.AlignRight
+            Layout.preferredWidth: metrics.advanceWidth
         }
+    }
+
+    TextMetrics {
+        id: metrics
+        font.pixelSize: 15
+        font.bold: true
+        font.family: "JetBrainsMono Nerd Font"
+        text: root.valueWidthSample
     }
 }

@@ -29,6 +29,7 @@ RowLayout {
         value: SystemStats.netName ? SystemStats.netName.toUpperCase().substring(0, 10) : "OFF"
         valueColor: SystemStats.netName ? Colors.topbar.accent_blue : Colors.topbar.text_dim
         tooltip: SystemStats.netIp ? `${SystemStats.netName}  ${SystemStats.netIp}` : "sin conexión"
+        valueWidthSample: "OFF"
         clickable: true
         onClicked: Quickshell.execDetached(["ghostty", "-e", "impala"])
     }
@@ -37,6 +38,7 @@ RowLayout {
         visible: root.availableWidth >= 400
         value: SystemStats.volumeMuted ? "MUTE" : String(SystemStats.volume)
         valueColor: SystemStats.volumeMuted ? Colors.topbar.text_dim : Colors.topbar.accent_gold
+        valueWidthSample: "MUTE"
         clickable: true
         onClicked: Quickshell.execDetached(["pavucontrol"])
     }
@@ -45,6 +47,7 @@ RowLayout {
         visible: root.availableWidth >= 540
         value: SystemStats.micMuted ? "OFF" : "ON"
         valueColor: SystemStats.micMuted ? Colors.topbar.text_dim : Colors.topbar.accent_green
+        valueWidthSample: "OFF"
         clickable: true
         onClicked: Quickshell.execDetached(["pavucontrol", "--tab=4"])
     }
@@ -53,11 +56,13 @@ RowLayout {
         visible: SystemStats.hasBattery && root.availableWidth >= 470
         value: String(SystemStats.batteryPercent) + (SystemStats.batteryCharging ? "+" : "")
         valueColor: SystemStats.batteryPercent < 20 && !SystemStats.batteryCharging ? Colors.topbar.accent_warm : Colors.topbar.accent_green
+        valueWidthSample: "100+"
     }
     StatusReading {
         label: "CPU"
         visible: root.availableWidth >= 610
         value: String(SystemStats.cpu)
+        valueWidthSample: "100"
         clickable: true
         onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
     }
@@ -65,6 +70,7 @@ RowLayout {
         label: "RAM"
         visible: root.availableWidth >= 680
         value: String(SystemStats.ram)
+        valueWidthSample: "100"
         clickable: true
         onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
     }
@@ -73,6 +79,7 @@ RowLayout {
         visible: SystemStats.temp >= 0 && root.availableWidth >= 750
         value: SystemStats.temp + "°"
         valueColor: Colors.topbar.accent_warm
+        valueWidthSample: "100°"
     }
     IconButton {
         id: powerButton
