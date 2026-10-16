@@ -6,6 +6,7 @@ import "../theme"
 import "../components/"
 
 PanelWindow {
+    id: root
     anchors {
         top: true
         left: true
@@ -37,7 +38,9 @@ PanelWindow {
             Layout.preferredWidth: 0
             RowLayout {
                 anchors.centerIn: parent
-                Clock {}
+                Clock {
+                    id: clock
+                }
             }
         }
         Item {
@@ -47,7 +50,10 @@ PanelWindow {
             RowLayout {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
-                Telemetry {}
+                Telemetry {
+                    // Space between the right edge and the centered clock
+                    availableWidth: root.width / 2 - 25 - clock.implicitWidth / 2 - 24
+                }
             }
         }
     }
