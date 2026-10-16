@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "../theme/"
@@ -22,8 +23,11 @@ PopupWindow {
     visible: expanded
     color: "transparent"
 
-    onActiveChanged: if (expanded && !active)
-        expanded = false
+    HyprlandFocusGrab {
+        windows: [calendarPopup]
+        active: calendarPopup.expanded
+        onCleared: calendarPopup.expanded = false
+    }
 
     SystemClock {
         id: clock
