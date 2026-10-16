@@ -1,3 +1,4 @@
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import "../theme/"
@@ -25,41 +26,50 @@ RowLayout {
     StatusReading {
         label: "NET"
         visible: root.availableWidth >= 330
-        value: "W3JTS"
-        valueColor: Colors.topbar.accent_blue
+        value: SystemStats.netName ? SystemStats.netName.toUpperCase().substring(0, 10) : "OFF"
+        valueColor: SystemStats.netName ? Colors.topbar.accent_blue : Colors.topbar.text_dim
+        tooltip: SystemStats.netIp ? `${SystemStats.netName}  ${SystemStats.netIp}` : "sin conexión"
     }
     StatusReading {
         label: "VOL"
         visible: root.availableWidth >= 400
-        value: "100"
-        valueColor: Colors.topbar.accent_gold
+        value: SystemStats.volumeMuted ? "MUTE" : String(SystemStats.volume)
+        valueColor: SystemStats.volumeMuted ? Colors.topbar.text_dim : Colors.topbar.accent_gold
+        clickable: true
+        onClicked: Quickshell.execDetached(["pavucontrol"])
     }
     StatusReading {
         label: "MIC"
         visible: root.availableWidth >= 540
-        value: "ON"
-        valueColor: Colors.topbar.accent_green
+        value: SystemStats.micMuted ? "OFF" : "ON"
+        valueColor: SystemStats.micMuted ? Colors.topbar.text_dim : Colors.topbar.accent_green
+        clickable: true
+        onClicked: Quickshell.execDetached(["pavucontrol", "--tab=4"])
     }
     StatusReading {
         label: "BAT"
-        visible: root.availableWidth >= 470
-        value: "100"
-        valueColor: Colors.topbar.accent_green
+        visible: SystemStats.hasBattery && root.availableWidth >= 470
+        value: String(SystemStats.batteryPercent) + (SystemStats.batteryCharging ? "+" : "")
+        valueColor: SystemStats.batteryPercent < 20 && !SystemStats.batteryCharging ? Colors.topbar.accent_warm : Colors.topbar.accent_green
     }
     StatusReading {
         label: "CPU"
         visible: root.availableWidth >= 610
-        value: "28"
+        value: String(SystemStats.cpu)
+        clickable: true
+        onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
     }
     StatusReading {
         label: "RAM"
         visible: root.availableWidth >= 680
-        value: "42"
+        value: String(SystemStats.ram)
+        clickable: true
+        onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
     }
     StatusReading {
         label: "TMP"
-        visible: root.availableWidth >= 750
-        value: "48°"
+        visible: SystemStats.temp >= 0 && root.availableWidth >= 750
+        value: SystemStats.temp + "°"
         valueColor: Colors.topbar.accent_warm
     }
     IconButton {
