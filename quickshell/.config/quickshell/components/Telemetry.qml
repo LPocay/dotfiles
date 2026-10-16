@@ -29,6 +29,8 @@ RowLayout {
         value: SystemStats.netName ? SystemStats.netName.toUpperCase().substring(0, 10) : "OFF"
         valueColor: SystemStats.netName ? Colors.topbar.accent_blue : Colors.topbar.text_dim
         tooltip: SystemStats.netIp ? `${SystemStats.netName}  ${SystemStats.netIp}` : "sin conexión"
+        clickable: true
+        onClicked: Quickshell.execDetached(["ghostty", "-e", "impala"])
     }
     StatusReading {
         label: "VOL"

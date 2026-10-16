@@ -134,6 +134,7 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [yazi](https://github.com/sxyazi/yazi): terminal file manager.
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch): system info tool launched from shell startup.
 - [impala](https://github.com/pythops/impala): terminal UI for Wi-Fi management.
+- [btop](https://github.com/aristocratos/btop): terminal CPU and RAM monitor opened from telemetry actions.
 - [bluetui](https://github.com/pythops/bluetui): terminal UI for Bluetooth management.
 - [xclip](https://github.com/astrand/xclip): clipboard integration used by tmux copy bindings.
 

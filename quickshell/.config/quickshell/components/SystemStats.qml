@@ -40,7 +40,7 @@ Singleton {
         handler: out => {
             const f = out.split(/\s+/).slice(1).map(Number);
             const idle = f[3] + (f[4] || 0);
-            const total = f.reduce((a, b) => a + b, 0);
+            const total = f.slice(0, 8).reduce((a, b) => a + b, 0);
             if (root._prevTotal > 0 && total > root._prevTotal)
                 root.cpu = Math.round(100 * (1 - (idle - root._prevIdle) / (total - root._prevTotal)));
             root._prevTotal = total;
@@ -62,7 +62,7 @@ Singleton {
 
     Poll {
         id: netProc
-        command: ["sh", "-c", "l=$(nmcli -t -f TYPE,STATE,DEVICE,CONNECTION device | awk -F: '($1==\"ethernet\"||$1==\"wifi\")&&$2==\"connected\"{print;exit}'); [ -z \"$l\" ] && exit 0; dev=$(echo \"$l\" | cut -d: -f3); name=$(echo \"$l\" | cut -d: -f4-); ip=$(nmcli -g IP4.ADDRESS device show \"$dev\" | head -n1 | cut -d/ -f1); echo \"$name|$ip\""]
+        command: ["sh", "-c", "l=$(LC_ALL=C nmcli -t -f TYPE,STATE,DEVICE,CONNECTION device | awk -F: '($1==\"ethernet\"||$1==\"wifi\")&&$2==\"connected\"{print;exit}'); [ -z \"$l\" ] && exit 0; dev=$(echo \"$l\" | cut -d: -f3); name=$(echo \"$l\" | cut -d: -f4-); ip=$(LC_ALL=C nmcli -g IP4.ADDRESS device show \"$dev\" | head -n1 | cut -d/ -f1); echo \"$name|$ip\""]
         handler: out => {
             const i = out.indexOf("|");
             root.netName = i < 0 ? "" : out.slice(0, i);
