@@ -115,7 +115,7 @@ PopupWindow {
                             required property int index
                             readonly property date cellDate: CalendarLogic.dateForCell(calendarPopup.viewYear, calendarPopup.viewMonth, index)
                             readonly property bool inMonth: cellDate.getMonth() === calendarPopup.viewMonth
-                            readonly property bool isToday: CalendarLogic.sameDay(cellDate, clock.date)
+                            readonly property bool isToday: inMonth && CalendarLogic.sameDay(cellDate, clock.date)
                             readonly property bool isSelected: CalendarLogic.sameDay(cellDate, calendarPopup.selectedDate)
 
                             Layout.fillWidth: true
