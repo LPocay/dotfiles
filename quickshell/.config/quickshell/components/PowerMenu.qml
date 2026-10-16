@@ -12,6 +12,9 @@ PopupWindow {
     visible: expanded
     color: "transparent"
 
+    onActiveChanged: if (expanded && !active)
+        expanded = false
+
     Rectangle {
         anchors.fill: parent
         border.color: Colors.topbar.power_menu_terminal_prompt

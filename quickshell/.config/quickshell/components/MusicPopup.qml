@@ -41,6 +41,9 @@ PopupWindow {
     visible: expanded
     color: "transparent"
 
+    onActiveChanged: if (expanded && !active)
+        expanded = false
+
     component Divider: Rectangle {
         Layout.fillWidth: true
         Layout.preferredHeight: 1
