@@ -76,26 +76,9 @@ tsessions() {
 }
 
 update_all() {
-  printf 'Updating system packages...\n'
-  yay -Syu || return $?
-
-  printf 'Updating Rust...\n'
-  rustup upgrade || return $?
-
-  printf 'Updating Deno...\n'
-  deno upgrade || return $?
-
-  printf 'Updating OpenCode...\n'
-  opencode upgrade || return $?
-
-  printf 'Updating pi...\n'
-  pi update || return $?
-
-  printf 'Updating Herdr...\n'
-  herdr update || return $?
-
-  printf 'Updating Codex...\n'
-  codex update || return $?
+  local source_path
+  source_path="$(readlink -f -- "${BASH_SOURCE[0]}")" || return
+  bash "${source_path%/*}/../scripts/update_all.sh" "$@"
 }
 
 tshortcuts() {

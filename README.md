@@ -62,6 +62,21 @@ change the current shell's directory, so they must be sourced as functions.
 Set `PROJECTS_DIR` to use a different project root. Project directory names
 must be unique directly under that root because they become session names.
 
+## Updates
+
+Run `update_all` after sourcing `bash/functions.sh`. It runs `yay -Syu` in the
+foreground first and stops if that fails. Installed tools then update in
+parallel; missing tools are skipped and individual failures do not stop other
+groups. Pi updates itself before its extensions. Herdr updates its installed,
+outdated integrations one at a time after all tool updates finish, provided its
+own update succeeded.
+
+The terminal shows compact progress, durations, a summary, and the last log lines
+for failed groups. Each run keeps separate logs under
+`${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/update/`. Colors are enabled only
+in a terminal and respect `NO_COLOR`. The command returns a nonzero status if an
+update fails; skipped tools do not count as failures. Requires Bash 5.1 or newer.
+
 ## Neovim plugin lock
 
 `nvim/.config/nvim/nvim-pack-lock.json` belongs in Git. On the machine where
