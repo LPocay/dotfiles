@@ -42,6 +42,7 @@ Item {
     }
 
     SequentialAnimation {
+        id: scrollAnimation
         running: root.overflowing && root.visible
         loops: Animation.Infinite
         onRunningChanged: if (!running)
@@ -59,5 +60,9 @@ Item {
     }
 
     // Restart from the beginning when the text changes
-    onTextChanged: strip.x = 0
+    onTextChanged: Qt.callLater(() => {
+        strip.x = 0;
+        if (root.overflowing && root.visible)
+            scrollAnimation.restart();
+    })
 }
