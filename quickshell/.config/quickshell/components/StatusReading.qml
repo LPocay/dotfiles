@@ -58,13 +58,21 @@ Item {
             font.pixelSize: 15
             font.family: "JetBrainsMono Nerd Font"
         }
-        Text {
-            text: root.value
-            color: root.valueColor
-            font.pixelSize: 15
-            font.bold: true
-            font.family: "JetBrainsMono Nerd Font"
-            width: metrics.advanceWidth
+        Item {
+            Layout.preferredWidth: metrics.advanceWidth
+            implicitWidth: metrics.advanceWidth
+            implicitHeight: valueText.implicitHeight
+            clip: true
+            Text {
+                id: valueText
+                anchors.left: parent.left
+                anchors.top: parent.top
+                text: root.value
+                color: root.valueColor
+                font.pixelSize: 15
+                font.bold: true
+                font.family: "JetBrainsMono Nerd Font"
+            }
         }
     }
 
