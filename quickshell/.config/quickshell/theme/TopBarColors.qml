@@ -31,4 +31,10 @@ QtObject {
     readonly property color terminal_menu_rule: "#3E5942"
     readonly property color states_subtitle: "#88948A"
     readonly property color terminal_concept_description: "#A6A69C"
+    readonly property color panel_divider: "#334237"
+    readonly property color icon_muted: "#9AA39A"
+    readonly property color track_title: "#D3D7D1"
+    readonly property color time_label: "#8C9189"
+    readonly property color queue_song: "#B9C5B7"
+    readonly property color queue_icon: "#7F9A82"
 }

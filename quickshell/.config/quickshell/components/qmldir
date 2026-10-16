@@ -5,3 +5,10 @@ Workspaces 1.0 Workspaces.qml
 Separator 1.0 Separator.qml
 Clock 1.0 Clock.qml
 Calendar 1.0 Calendar.qml
+Icon 1.0 Icon.qml
+IconButton 1.0 IconButton.qml
+StatusReading 1.0 StatusReading.qml
+PowerMenuItem 1.0 PowerMenuItem.qml
+PowerMenu 1.0 PowerMenu.qml
+MusicPopup 1.0 MusicPopup.qml
+Telemetry 1.0 Telemetry.qml

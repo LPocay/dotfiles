@@ -47,10 +47,7 @@ PanelWindow {
             RowLayout {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
-                Text {
-                    text: "Derecha"
-                    color: "white"
-                }
+                Telemetry {}
             }
         }
     }
