@@ -10,6 +10,7 @@ Item {
     property string fontFamily: "JetBrainsMono Nerd Font"
     property int gap: 40
     property real speed: 40 // pixels per second
+    property bool enabled: true
 
     readonly property bool overflowing: measure.implicitWidth > width
 
@@ -43,7 +44,7 @@ Item {
 
     SequentialAnimation {
         id: scrollAnimation
-        running: root.overflowing && root.visible
+        running: root.enabled && root.overflowing && root.visible
         loops: Animation.Infinite
         onRunningChanged: if (!running)
             strip.x = 0
@@ -65,4 +66,5 @@ Item {
         if (root.overflowing && root.visible)
             scrollAnimation.restart();
     })
+    onOverflowingChanged: strip.x = 0
 }

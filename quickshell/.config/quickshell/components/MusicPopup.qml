@@ -84,6 +84,7 @@ PopupWindow {
                 Layout.fillWidth: true
                 spacing: 14
                 Rectangle {
+                    clip: true
                     Layout.preferredWidth: 82
                     Layout.preferredHeight: 82
                     gradient: Gradient {
@@ -113,6 +114,7 @@ PopupWindow {
                         name: "disc-3"
                         size: 34
                         color: "#D1DED2"
+                        visible: !musicPopup.hasPlayer || !musicPopup.player.trackArtUrl
                     }
                 }
                 ColumnLayout {
@@ -124,12 +126,14 @@ PopupWindow {
                         color: Colors.topbar.track_title
                         pixelSize: 19
                         bold: true
+                        enabled: musicPopup.expanded
                     }
                     Marquee {
                         Layout.fillWidth: true
                         text: musicPopup.artist
                         color: Colors.topbar.terminal_concept_description
                         pixelSize: 15
+                        enabled: musicPopup.expanded
                     }
                     Label {
                         Layout.fillWidth: true
