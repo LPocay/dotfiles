@@ -64,8 +64,7 @@ Item {
             font.pixelSize: 15
             font.bold: true
             font.family: "JetBrainsMono Nerd Font"
-            horizontalAlignment: Text.AlignRight
-            Layout.preferredWidth: metrics.advanceWidth
+            width: metrics.advanceWidth
         }
     }
 
