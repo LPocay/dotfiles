@@ -14,7 +14,7 @@ RowLayout {
             implicitHeight: 32
             radius: 2
             border.width: 1
-            border.color: workspace.modelData.active ? Colors.topbar.accent_green : mouseArea.containsMouse ? Colors.topbar.workspace_active_background : Colors.topbar.workspace_idle_background
+            border.color: workspace.modelData.urgent ? Colors.topbar.accent_danger : workspace.modelData.active ? Colors.topbar.accent_green : mouseArea.containsMouse ? Colors.topbar.workspace_active_background : Colors.topbar.workspace_idle_background
             color: workspace.modelData.active ? Colors.topbar.workspace_hover_background : mouseArea.containsMouse ? Colors.topbar.workspace_hover_border : "transparent"
             Behavior on color {
                 ColorAnimation {
@@ -29,7 +29,7 @@ RowLayout {
             Text {
                 anchors.centerIn: parent
                 text: `0${workspace.modelData.id}`
-                color: workspace.modelData.active ? Colors.topbar.text_selected : mouseArea.containsMouse ? Colors.topbar.text_selected : Colors.topbar.text_muted
+                color: workspace.modelData.urgent ? Colors.topbar.accent_danger : workspace.modelData.active ? Colors.topbar.text_selected : mouseArea.containsMouse ? Colors.topbar.text_selected : Colors.topbar.text_muted
                 font.pixelSize: 12
                 font.bold: true
                 font.family: "JetBrainsMono Nerd Font"
@@ -38,6 +38,16 @@ RowLayout {
                         duration: 100
                     }
                 }
+            }
+            Rectangle {
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.margins: 4
+                width: 4
+                height: 4
+                radius: 2
+                color: Colors.topbar.accent_danger
+                visible: workspace.modelData.urgent
             }
             MouseArea {
                 id: mouseArea
