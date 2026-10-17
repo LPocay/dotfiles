@@ -2,3 +2,4 @@ module Theme
 
 singleton Colors 1.0 Colors.qml
 TopBarColors 1.0 TopBarColors.qml
+WallpaperColors 1.0 WallpaperColors.qml
