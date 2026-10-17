@@ -12,7 +12,10 @@ RowLayout {
     property real availableWidth: 1000
     property var panelWindow
     readonly property real separatorFootprint: traySeparator.Layout.leftMargin + traySeparator.implicitWidth + traySeparator.Layout.rightMargin
-    readonly property real trayFootprint: tray.implicitWidth + (SystemTray.items.count > 0 ? separatorFootprint + spacing * 2 : 0)
+    readonly property real fixedControlsWidth: musicButton.implicitWidth + powerButton.implicitWidth + spacing
+    readonly property real trayDecorationWidth: SystemTray.items.values.length > 0 ? separatorFootprint + spacing * 2 : 0
+    // Keep reading visibility based on the unbounded tray width.
+    readonly property real trayFootprint: tray.naturalWidth + trayDecorationWidth
     readonly property real statusWidth: Math.max(0, availableWidth - trayFootprint)
 
     IconButton {
@@ -88,11 +91,15 @@ RowLayout {
     }
     Separator {
         id: traySeparator
-        visible: SystemTray.items.count > 0
+        Layout.leftMargin: 4
+        Layout.rightMargin: 4
+        visible: SystemTray.items.values.length > 0
     }
     SystemTrayView {
         id: tray
         panelWindow: root.panelWindow
+        maximumWidth: Math.max(0, root.availableWidth - root.fixedControlsWidth - root.trayDecorationWidth)
+        Layout.maximumWidth: maximumWidth
     }
     IconButton {
         id: powerButton
