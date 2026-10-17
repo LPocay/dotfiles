@@ -12,14 +12,6 @@ RowLayout {
     property real availableWidth: 1000
     readonly property real statusWidth: Math.max(0, availableWidth - tray.implicitWidth - (SystemTray.items.count > 0 ? 10 : 0))
 
-    SystemTrayView {
-        id: tray
-    }
-
-    Separator {
-        visible: SystemTray.items.count > 0
-    }
-
     IconButton {
         id: musicButton
         icon: "music"
@@ -90,6 +82,12 @@ RowLayout {
         value: SystemStats.temp + "°"
         valueColor: Colors.topbar.accent_warm
         valueWidthSample: "100°"
+    }
+    Separator {
+        visible: SystemTray.items.count > 0
+    }
+    SystemTrayView {
+        id: tray
     }
     IconButton {
         id: powerButton
