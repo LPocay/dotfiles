@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 
@@ -7,6 +8,8 @@ import "../components/"
 
 PanelWindow {
     id: root
+    required property var notifications
+    WlrLayershell.namespace: "quickshell-topbar"
     signal launcherRequested()
     anchors {
         top: true
@@ -55,6 +58,7 @@ PanelWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 Telemetry {
                     panelWindow: root
+                    notifications: root.notifications
                     // Space between the right edge and the centered clock
                     availableWidth: root.width / 2 - 25 - clock.implicitWidth / 2 - 24
                 }

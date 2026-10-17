@@ -6,3 +6,5 @@ WallpaperColors 1.0 WallpaperColors.qml
 LauncherColors 1.0 LauncherColors.qml
 ClipboardColors 1.0 ClipboardColors.qml
 MonitorColors 1.0 MonitorColors.qml
+ShortcutColors 1.0 ShortcutColors.qml
+NotificationColors 1.0 NotificationColors.qml

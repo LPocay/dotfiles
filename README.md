@@ -153,6 +153,8 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch): system info tool launched from shell startup.
 - [impala](https://github.com/pythops/impala): terminal UI for Wi-Fi management.
 - [btop](https://github.com/aristocratos/btop): terminal CPU and RAM monitor opened from telemetry actions.
+- [amdgpu_top](https://github.com/Umio-Yasuno/amdgpu_top): AMD GPU monitor opened from the GPU and VRAM telemetry readings.
+- [Python](https://www.python.org/): lightweight GPU sysfs reader used by Quickshell telemetry.
 - [bluetui](https://github.com/pythops/bluetui): terminal UI for Bluetooth management.
 - [xclip](https://github.com/astrand/xclip): clipboard integration used by tmux copy bindings.
 
@@ -164,7 +166,7 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [hyprlock](https://github.com/hyprwm/hyprlock): lock screen used by the Hyprland idle flow.
 - [hyprpaper](https://github.com/hyprwm/hyprpaper): wallpaper daemon for Hyprland.
 - [Waybar](https://github.com/Alexays/Waybar): status bar used in the main Wayland setup.
-- [Quickshell](https://quickshell.org/): top bar, application launcher, clipboard manager, wallpaper picker, and workspace monitor picker in Hyprland.
+- [Quickshell](https://quickshell.org/): top bar, application launcher, clipboard manager, wallpaper picker, workspace monitor picker, shortcut reference, and notification server/center in Hyprland.
 - [thunar](https://docs.xfce.org/xfce/thunar/start): file manager launched from Hyprland keybindings.
 - [grim](https://gitlab.freedesktop.org/emersion/grim): screenshot tool used by keybindings.
 - [slurp](https://github.com/emersion/slurp): region selector used together with `grim`.
@@ -186,6 +188,22 @@ also refresh automatically, and the destination is revalidated before each move.
 With one monitor connected, the panel explains that another output is needed.
 No monitor names or positions are hardcoded. Scripts can toggle the same panel
 with `quickshell ipc call monitors toggle`.
+
+The top bar shows AMD GPU utilization as `GPU=…%` and occupied VRAM as
+`VRAM=…G` (GiB), refreshed every two seconds from the driver's sysfs counters.
+Hover VRAM to see used/total GiB and percentage. With multiple AMD GPUs, the
+reader prefers one with a connected output, then the boot GPU, then the one
+with the most VRAM. Card numbers and PCI addresses are discovered each poll;
+unavailable counters hide their reading instead of showing stale values.
+Click GPU or VRAM to open `amdgpu_top --dark --single --pci <address>` in Ghostty
+through UWSM, targeting the same GPU. The monitor is launched only on demand.
+If it is installed in `~/.local/bin`, the launcher can find it there even when
+Quickshell started with a different PATH. `amdgpu_top` and Python are included in
+the setup package list. Telemetry measures each reading's width and hides
+lower-priority metrics when space is limited to avoid overlapping the clock.
+
+GPU/telemetry regression checks: `node quickshell/tests/telemetry.test.cjs` and
+`python quickshell/tests/gpu_backend_test.py`.
 
 Monitor regression checks: `node quickshell/tests/monitor.test.cjs` and
 `python quickshell/tests/monitor_backend_test.py`.
@@ -228,9 +246,80 @@ Clipboard regression checks use isolated histories and a simulated clipboard:
 `node quickshell/tests/clipboard.test.cjs` and
 `python quickshell/tests/clipboard_backend_test.py`.
 
+Press `Super+F1` to toggle the Quickshell Hyprland shortcut reference on the
+focused monitor. Search actions or combinations (`super+shift+0`, `terminal`,
+`XF86AudioRaiseVolume`); click a category or use `Tab`/`Shift+Tab` to filter.
+`Up`/`Down` browses the scrollable list. `Esc` or a click outside closes the
+panel, and `Ctrl+r` refreshes it. Scripts can use
+`quickshell ipc call shortcuts toggle` or `quickshell ipc call shortcuts close`.
+The reference displays bindings for consultation; selecting a row does not
+execute its action.
+
+The catalog comes from `hyprctl -j binds` each time it opens, and refreshes when
+Hyprland reports a configuration reload. The `bind(category, description, ... )`
+helper in `hyprland.lua` keeps descriptions beside their actual bindings using
+the format `Category | Action`. Existing flags and dispatchers are preserved.
+Bindings without descriptions or with unfamiliar categories still appear under
+`Other`, with a technical fallback when needed. Mouse, media and workspace
+bindings are included. Equivalent actions share one row, with alternative
+combinations separated by ` / `; search matches either combination. Bindings
+with different submaps or input behavior remain separate. The modal
+coordinates focus with the launcher, clipboard, monitor and wallpaper panels.
+
+Shortcut regression checks: `node quickshell/tests/shortcuts.test.cjs` and
+`lua quickshell/tests/shortcut_bindings_test.lua` (run from the repository root).
+
+Press `Super+n` or click the bell to open the notification center. It follows
+Desktop 06 in `hyprland-rice.pen`: a 430 px right drawer, a full-height scrim,
+the latest notification expanded, and older entries in a scrollable history.
+Click an older entry or use `Up`/`Down` to expand it. `Enter` invokes its default
+action when available. `Delete` or **DELETE** removes it from history, and
+`Ctrl+l` or **CLEAR ALL** clears history. `Esc`, `N` or a click outside closes
+the drawer. `D` or the
+**DO NOT DISTURB** control toggles quiet mode. Opening the drawer marks its
+notifications read; the gold bell dot indicates unread entries while closed.
+
+Notification toasts follow Desktop 07/09: 390 px cards at the top right of the
+focused monitor, with application icons, timestamps, action buttons and image
+previews. Up to three appear at once. Every popup hides after at most six seconds,
+including critical alerts and notifications requesting a zero or longer timeout.
+Shorter application timeout hints are honored. Hover pauses the timer. Clicking
+**×** or **DISMISS** hides the popup and marks it read without removing its
+history entry. DND keeps ordinary notifications in history and suppresses
+their popups; critical alerts
+still appear. Supported inline replies are available in the center.
+
+Quickshell owns `org.freedesktop.Notifications`; the main shell stops
+`dunst.service` after its notification server is ready to acquire that name.
+Dunst's config remains as a legacy fallback and Dunst is no longer installed by
+the main dependency script. Avoid launching another notification daemon while
+this shell is running. Existing application notifications and `notify-send`
+work without changing their callers. A replacement ID updates the existing
+entry. A client close request or a non-resident action closes the live
+notification as required by the protocol while retaining an inactive history
+entry without obsolete action callbacks.
+
+Ordinary notifications remain in the center after their popup hides or is
+dismissed, and stay actionable while the sending application keeps them live.
+Only **DELETE**, **CLEAR ALL** or eviction from the bounded 100-entry history
+removes them. Image-data previews are retained in memory for archived entries
+until their history entry is deleted or Quickshell reloads.
+Transient notifications skip history and expire when their toast times out.
+History, unread flags and DND are saved in Quickshell's state directory as
+`notifications.json`. Reloads retain live actions and images without repeating
+the popup. After a full process restart, saved entries are display-only;
+application-owned image providers and old action callbacks are not restored.
+File-backed images remain usable while their source exists. Notification text
+is rendered as plain text. This panel coordinates keyboard focus with the other
+desktop panels and recreates popup windows when monitors reconnect.
+
+Scripts can call `quickshell ipc call notifications toggle`, `close`, `clear`
+or `dnd`. Logic and persistence regression checks:
+`node quickshell/tests/notifications.test.cjs`.
+
 ## Shared Services And Media
 
-- [dunst](https://github.com/dunst-project/dunst): notification daemon configuration kept in the repo.
+- [dunst](https://github.com/dunst-project/dunst): legacy notification daemon configuration; the active Hyprland shell uses Quickshell notifications.
 - [mpd](https://www.musicpd.org/): music daemon used by the Waybar `mpd` module.
 - [power-profiles-daemon](https://gitlab.freedesktop.org/hadess/power-profiles-daemon): exposes power profile status in Waybar.
 

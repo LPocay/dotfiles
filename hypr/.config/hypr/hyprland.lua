@@ -171,114 +171,122 @@ hl.device({
 
 local mainMod = "SUPER"
 
+-- The shortcut viewer reads these descriptions from `hyprctl -j binds`.
+-- Keep the category and action beside the binding so the catalog stays in sync.
+local function bind(category, description, keys, handler, options)
+	options = options or {}
+	options.description = category .. " | " .. description
+	return hl.bind(keys, handler, options)
+end
+
 local function dispatch(command)
 	return hl.dsp.exec_cmd("hyprctl dispatch " .. command)
 end
 
 -- Applications / session
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm stop"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
-hl.bind(mainMod .. " + W", hl.dsp.group.toggle())
+bind("Apps", "Open terminal", mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+bind("Windows", "Close active window", mainMod .. " + Q", hl.dsp.window.close())
+bind("Session", "End desktop session", mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm stop"))
+bind("Apps", "Open file manager", mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+bind("Windows", "Toggle floating", mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+bind("Apps", "Open clipboard history", mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
+bind("Apps", "Open app launcher", mainMod .. " + D", hl.dsp.exec_cmd(menu))
+bind("Apps", "Open app launcher", mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
+bind("Windows", "Toggle pseudotile", mainMod .. " + P", hl.dsp.window.pseudo())
+bind("Windows", "Toggle maximized fullscreen", mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+bind("Groups", "Toggle window group", mainMod .. " + W", hl.dsp.group.toggle())
+
+-- Shortcut reference
+bind("Apps", "Open shortcut reference", mainMod .. " + F1", hl.dsp.exec_cmd("quickshell ipc call shortcuts toggle"))
+bind("Apps", "Open notification center", mainMod .. " + N", hl.dsp.exec_cmd("quickshell ipc call notifications toggle"))
 
 -- Move focus with mainMod + home row or arrow keys
-hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+bind("Windows", "Focus left", mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
+bind("Windows", "Focus right", mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
+bind("Windows", "Focus up", mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
+bind("Windows", "Focus down", mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
+bind("Windows", "Focus left", mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
+bind("Windows", "Focus right", mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+bind("Windows", "Focus up", mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
+bind("Windows", "Focus down", mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- Move windows with mainMod + Shift + home row or arrow keys
-hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.swap({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.swap({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.swap({ direction = "down" }))
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.swap({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.swap({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.swap({ direction = "down" }))
+bind("Windows", "Swap window left", mainMod .. " + SHIFT + h", hl.dsp.window.swap({ direction = "left" }))
+bind("Windows", "Swap window right", mainMod .. " + SHIFT + l", hl.dsp.window.swap({ direction = "right" }))
+bind("Windows", "Swap window up", mainMod .. " + SHIFT + k", hl.dsp.window.swap({ direction = "up" }))
+bind("Windows", "Swap window down", mainMod .. " + SHIFT + j", hl.dsp.window.swap({ direction = "down" }))
+bind("Windows", "Swap window left", mainMod .. " + SHIFT + left", hl.dsp.window.swap({ direction = "left" }))
+bind("Windows", "Swap window right", mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
+bind("Windows", "Swap window up", mainMod .. " + SHIFT + up", hl.dsp.window.swap({ direction = "up" }))
+bind("Windows", "Swap window down", mainMod .. " + SHIFT + down", hl.dsp.window.swap({ direction = "down" }))
 
 -- Move window into group with mainMod + Ctrl + home row or arrow keys
-hl.bind(mainMod .. " + CTRL + h", dispatch("moveintogroup l"))
-hl.bind(mainMod .. " + CTRL + l", dispatch("moveintogroup r"))
-hl.bind(mainMod .. " + CTRL + k", dispatch("moveintogroup u"))
-hl.bind(mainMod .. " + CTRL + j", dispatch("moveintogroup d"))
-hl.bind(mainMod .. " + CTRL + left", dispatch("moveintogroup l"))
-hl.bind(mainMod .. " + CTRL + right", dispatch("moveintogroup r"))
-hl.bind(mainMod .. " + CTRL + up", dispatch("moveintogroup u"))
-hl.bind(mainMod .. " + CTRL + down", dispatch("moveintogroup d"))
+bind("Groups", "Move window into group left", mainMod .. " + CTRL + h", dispatch("moveintogroup l"))
+bind("Groups", "Move window into group right", mainMod .. " + CTRL + l", dispatch("moveintogroup r"))
+bind("Groups", "Move window into group up", mainMod .. " + CTRL + k", dispatch("moveintogroup u"))
+bind("Groups", "Move window into group down", mainMod .. " + CTRL + j", dispatch("moveintogroup d"))
+bind("Groups", "Move window into group left", mainMod .. " + CTRL + left", dispatch("moveintogroup l"))
+bind("Groups", "Move window into group right", mainMod .. " + CTRL + right", dispatch("moveintogroup r"))
+bind("Groups", "Move window into group up", mainMod .. " + CTRL + up", dispatch("moveintogroup u"))
+bind("Groups", "Move window into group down", mainMod .. " + CTRL + down", dispatch("moveintogroup d"))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
-	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	bind("Workspaces", "Switch to workspace " .. i, mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	bind("Workspaces", "Move window to workspace " .. i, mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+bind("Workspaces", "Toggle scratchpad", mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+bind("Workspaces", "Move window to scratchpad", mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Move the current workspace to another connected monitor
-hl.bind(mainMod .. " + SHIFT + o", hl.dsp.exec_cmd("quickshell ipc call monitors toggle"))
+bind("Monitors", "Move workspace to another monitor", mainMod .. " + SHIFT + o", hl.dsp.exec_cmd("quickshell ipc call monitors toggle"))
 
 -- Wallpaper picker
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
+bind("Apps", "Open wallpaper picker", mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
 
 -- Spotify controls popup
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/spotify_controls.sh"]]))
+bind("Media", "Open Spotify controls", mainMod .. " + M", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/spotify_controls.sh"]]))
 
 -- Screenshot selection
-hl.bind(mainMod .. " + CTRL + 4", hl.dsp.exec_cmd([[grim -g "$(slurp)"]]), { locked = true, repeating = true })
+bind("Apps", "Capture screen region", mainMod .. " + CTRL + 4", hl.dsp.exec_cmd([[grim -g "$(slurp)"]]), { locked = true, repeating = true })
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+bind("Workspaces", "Next workspace", mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+bind("Workspaces", "Previous workspace", mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+bind("Mouse", "Drag window", mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+bind("Mouse", "Resize window", mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind(
-	"XF86AudioRaiseVolume",
+bind("Media", "Raise volume", "XF86AudioRaiseVolume",
 	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
 	{ locked = true, repeating = true }
 )
-hl.bind(
-	"XF86AudioLowerVolume",
+bind("Media", "Lower volume", "XF86AudioLowerVolume",
 	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
 	{ locked = true, repeating = true }
 )
-hl.bind(
-	"XF86AudioMute",
+bind("Media", "Mute audio output", "XF86AudioMute",
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
 	{ locked = true, repeating = true }
 )
-hl.bind(
-	"XF86AudioMicMute",
+bind("Media", "Mute microphone", "XF86AudioMicMute",
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+bind("Media", "Raise brightness", "XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
+bind("Media", "Lower brightness", "XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
 -- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+bind("Media", "Next track", "XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+bind("Media", "Play or pause", "XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+bind("Media", "Play or pause", "XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+bind("Media", "Previous track", "XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----

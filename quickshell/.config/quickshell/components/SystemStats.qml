@@ -2,6 +2,7 @@ pragma Singleton
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "TelemetryLogic.js" as Logic
 
 Singleton {
     id: root
@@ -9,6 +10,14 @@ Singleton {
     property int cpu: 0
     property int ram: 0
     property int temp: -1
+    property int gpu: -1
+    property real vramUsed: 0
+    property real vramTotal: 0
+    property string gpuPci: ""
+    readonly property string vramLabel: Logic.gib(vramUsed) + "G"
+    readonly property string vramTooltip: "VRAM: " + Logic.gib(vramUsed) + " / " + Logic.gib(vramTotal)
+        + " GiB (" + (vramTotal ? Math.round(vramUsed / vramTotal * 100) : 0) + "%)\nAMD GPU · " + gpuPci
+    readonly property string gpuBackend: Quickshell.shellPath("services/gpu.py")
     property string netName: ""
     property string netIp: ""
     property int volume: 0
@@ -24,6 +33,10 @@ Singleton {
     function _run(proc) {
         if (!proc.running)
             proc.running = true;
+    }
+
+    function openGpuMonitor() {
+        Quickshell.execDetached(["python3", gpuBackend, "open"]);
     }
 
     component Poll: Process {
@@ -52,6 +65,18 @@ Singleton {
         id: ramProc
         command: ["awk", "/MemTotal/{t=$2} /MemAvailable/{a=$2} END{printf \"%d\", (t-a)*100/t}", "/proc/meminfo"]
         handler: out => root.ram = parseInt(out) || 0
+    }
+
+    Poll {
+        id: gpuProc
+        command: ["python3", root.gpuBackend, "scan"]
+        handler: out => {
+            const data = Logic.gpuSnapshot(out);
+            root.gpu = data.busy;
+            root.vramUsed = data.vramUsed;
+            root.vramTotal = data.vramTotal;
+            root.gpuPci = data.pci;
+        }
     }
 
     Poll {
@@ -105,6 +130,7 @@ Singleton {
         onTriggered: {
             root._run(cpuProc);
             root._run(ramProc);
+            root._run(gpuProc);
             root._run(audioProc);
         }
     }

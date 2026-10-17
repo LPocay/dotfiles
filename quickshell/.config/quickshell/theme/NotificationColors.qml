@@ -1,0 +1,25 @@
+import QtQuick
+
+QtObject {
+    readonly property color panel_background: "#151914"
+    readonly property color panel_border: "#49634F"
+    readonly property color divider: "#334237"
+    readonly property color scrim: "#44000000"
+    readonly property color accent: "#87A987"
+    readonly property color success: "#A3BE8C"
+    readonly property color image_accent: "#8BA4B0"
+    readonly property color image_border: "#688898"
+    readonly property color toast_background: "#1E2B22"
+    readonly property color toast_border: "#729474"
+    readonly property color title: "#D3DED2"
+    readonly property color body: "#A9B6A7"
+    readonly property color timestamp: "#829282"
+    readonly property color muted: "#7F8D80"
+    readonly property color text_dim: "#70746E"
+    readonly property color control: "#8F9A8F"
+    readonly property color history_background: "#111A13"
+    readonly property color history_title: "#C9D0C7"
+    readonly property color history_body: "#9BA79A"
+    readonly property color unread: "#C4B28A"
+    readonly property color critical: "#C4746E"
+}

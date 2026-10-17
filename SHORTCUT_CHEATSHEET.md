@@ -18,10 +18,11 @@ UWSM migration note: when using the `Hyprland (uwsm-managed)` session, app-launc
 - `Super+v`: toggle Quickshell clipboard history (`cliphist`)
 - In clipboard history: type to search, `↑` / `↓` to select, `Tab` / `Shift+Tab` to change filter, `Enter` to copy, `Delete` to remove, `Ctrl+l` then `Enter` to clear history, `Esc` to cancel/close
 - `Super+d` / `Super+Space`: Quickshell app launcher (also opens by clicking the top-bar prompt)
+- `Super+F1`: Quickshell Hyprland shortcut reference; type to search, `Tab` / `Shift+Tab` filters categories, `↑` / `↓` browses, `Ctrl+r` refreshes, `Esc` closes
+- `Super+n`: Quickshell notification center (also opens from the top-bar bell); `D` toggles do not disturb, `↑` / `↓` browses, `Enter` invokes the default action, `Delete` removes from history, `Ctrl+l` clears history, `Esc` closes
 - In the app launcher: type to search, `↑` / `↓` to select, `Enter` to launch, `Esc` to close, `Ctrl+r` to refresh results
 - `Super+p`: toggle pseudotile
-- `Super+t`: toggle split
-- `Super+f`: fullscreen
+- `Super+f`: toggle maximized fullscreen
 - `Super+w`: toggle group
 - `Super+Ctrl+4`: screenshot region with `grim` + `slurp`
 
@@ -53,14 +54,14 @@ after changing this environment setting.
 
 ### Move windows
 
-- `Super+Shift+h`: move window left
-- `Super+Shift+j`: move window down
-- `Super+Shift+k`: move window up
-- `Super+Shift+l`: move window right
-- `Super+Shift+Left`: move window left
-- `Super+Shift+Down`: move window down
-- `Super+Shift+Up`: move window up
-- `Super+Shift+Right`: move window right
+- `Super+Shift+h`: swap window left
+- `Super+Shift+j`: swap window down
+- `Super+Shift+k`: swap window up
+- `Super+Shift+l`: swap window right
+- `Super+Shift+Left`: swap window left
+- `Super+Shift+Down`: swap window down
+- `Super+Shift+Up`: swap window up
+- `Super+Shift+Right`: swap window right
 
 ### Move into group
 
@@ -82,6 +83,7 @@ after changing this environment setting.
 - `Super+s`: toggle special workspace `magic`
 - `Super+Shift+s`: move active window to special workspace `magic`
 - `Super+Shift+o`: Quickshell monitor picker; arrows or Tab select, Enter moves the workspace captured at opening, Esc closes
+- `Super+Shift+w`: Quickshell wallpaper picker
 - `Super+MouseWheelDown`: next workspace
 - `Super+MouseWheelUp`: previous workspace
 

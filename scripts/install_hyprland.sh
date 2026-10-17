@@ -33,6 +33,8 @@ shell_packages=(
     fastfetch
     impala
     btop
+    amdgpu_top
+    python
     bluetui
     xclip
     wl-clipboard
@@ -56,7 +58,6 @@ hyprland_packages=(
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     waybar
-    dunst
     thunar
     grim
     slurp

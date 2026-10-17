@@ -26,3 +26,13 @@ ClipboardItem 1.0 ClipboardItem.qml
 MonitorPicker 1.0 MonitorPicker.qml
 MonitorModal 1.0 MonitorModal.qml
 MonitorItem 1.0 MonitorItem.qml
+ShortcutViewer 1.0 ShortcutViewer.qml
+ShortcutModal 1.0 ShortcutModal.qml
+ShortcutItem 1.0 ShortcutItem.qml
+NotificationManager 1.0 NotificationManager.qml
+NotificationTracker 1.0 NotificationTracker.qml
+NotificationCard 1.0 NotificationCard.qml
+NotificationActionButton 1.0 NotificationActionButton.qml
+NotificationToasts 1.0 NotificationToasts.qml
+NotificationCenter 1.0 NotificationCenter.qml
+NotificationBell 1.0 NotificationBell.qml
