@@ -3,13 +3,13 @@ import Quickshell.Services.SystemTray
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Window
 
 import "../theme/"
 
 RowLayout {
     id: root
 
+    property var panelWindow
     spacing: 4
 
     Repeater {
@@ -28,9 +28,8 @@ RowLayout {
                 width: 26
                 height: 26
                 radius: 2
-                color: mouseArea.containsMouse ? Colors.topbar.workspace_hover_background : "transparent"
-                border.width: mouseArea.containsMouse ? 1 : 0
-                border.color: Colors.topbar.accent_lime
+                color: "transparent"
+                border.width: 0
 
                 Image {
                     id: iconImage
@@ -64,21 +63,27 @@ RowLayout {
                     acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
                     cursorShape: Qt.PointingHandCursor
 
+                    function openMenu() {
+                        const item = trayIcon.modelData;
+                        if (!item.hasMenu || !root.panelWindow)
+                            return;
+
+                        const point = trayIcon.mapToItem(null, 0, trayIcon.height + 4);
+                        item.display(root.panelWindow, Math.round(point.x), Math.round(point.y));
+                    }
+
                     onClicked: event => {
+                        const item = trayIcon.modelData;
                         if (event.button === Qt.LeftButton) {
-                            if (trayIcon.modelData.onlyMenu && trayIcon.modelData.hasMenu) {
-                                const window = trayIcon.Window.window;
-                                const point = trayIcon.mapToItem(window.contentItem, 0, trayIcon.height);
-                                trayIcon.modelData.display(window, Math.round(point.x), Math.round(point.y));
+                            if (item.onlyMenu) {
+                                openMenu();
                             } else {
-                                trayIcon.modelData.activate();
+                                item.activate();
                             }
                         } else if (event.button === Qt.MiddleButton) {
-                            trayIcon.modelData.secondaryActivate();
+                            item.secondaryActivate();
                         } else if (event.button === Qt.RightButton && trayIcon.modelData.hasMenu) {
-                            const window = trayIcon.Window.window;
-                            const point = trayIcon.mapToItem(window.contentItem, 0, trayIcon.height);
-                            trayIcon.modelData.display(window, Math.round(point.x), Math.round(point.y));
+                            openMenu();
                         }
                     }
 

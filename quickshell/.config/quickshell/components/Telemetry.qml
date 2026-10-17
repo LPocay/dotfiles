@@ -10,6 +10,7 @@ RowLayout {
 
     // Width available before overlapping the clock; lower-priority items hide first
     property real availableWidth: 1000
+    property var panelWindow
     readonly property real statusWidth: Math.max(0, availableWidth - tray.implicitWidth - (SystemTray.items.count > 0 ? 10 : 0))
 
     IconButton {
@@ -88,6 +89,7 @@ RowLayout {
     }
     SystemTrayView {
         id: tray
+        panelWindow: root.panelWindow
     }
     IconButton {
         id: powerButton
