@@ -1,0 +1,30 @@
+import QtQuick
+
+QtObject {
+    readonly property color panel_background: "#151914"
+    readonly property color toolbar_accent: "#49634F"
+    readonly property color accent_green: "#87A987"
+    readonly property color accent_lime: "#A3BE8C"
+    readonly property color text_dim: "#70746E"
+    readonly property color subtle_divider: "#334237"
+    readonly property color thumbnail_border: "#445048"
+    readonly property color thumbnail_label: "#EEF1E7"
+    // .pen uses RRGGBBAA; QML uses AARRGGBB.
+    readonly property color current_wallpaper_label: "#CC111711"
+    readonly property color current_wallpaper_name: "#DBE7D3"
+    readonly property color wallpaper_scrim: "#33000000"
+    readonly property color output_selected_background: "#26352A"
+    readonly property color output_selected_border: "#729474"
+    readonly property color output_selected_text: "#D4E0D0"
+    readonly property color output_background: "#101611"
+    readonly property color output_border: "#344639"
+    readonly property color output_text: "#8C9D8E"
+    readonly property color output_state: "#6C7B6D"
+    readonly property color live_preview_note: "#9AAB9B"
+    readonly property color apply_background: "#2A382E"
+    readonly property color apply_label: "#CDE1C8"
+    readonly property color cancel_background: "#111711"
+    readonly property color cancel_border: "#435647"
+    readonly property color cancel_label: "#9AA99A"
+    readonly property color error: "#C4746E"
+}

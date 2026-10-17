@@ -15,3 +15,5 @@ SystemTrayView 1.0 SystemTrayView.qml
 singleton SystemStats 1.0 SystemStats.qml
 Telemetry 1.0 Telemetry.qml
 Marquee 1.0 Marquee.qml
+WallpaperPicker 1.0 WallpaperPicker.qml
+WallpaperDrawer 1.0 WallpaperDrawer.qml
