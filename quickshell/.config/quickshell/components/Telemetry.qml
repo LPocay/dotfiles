@@ -11,7 +11,9 @@ RowLayout {
     // Width available before overlapping the clock; lower-priority items hide first
     property real availableWidth: 1000
     property var panelWindow
-    readonly property real statusWidth: Math.max(0, availableWidth - tray.implicitWidth - (SystemTray.items.count > 0 ? 10 : 0))
+    readonly property real separatorFootprint: traySeparator.Layout.leftMargin + traySeparator.implicitWidth + traySeparator.Layout.rightMargin
+    readonly property real trayFootprint: tray.implicitWidth + (SystemTray.items.count > 0 ? separatorFootprint + spacing * 2 : 0)
+    readonly property real statusWidth: Math.max(0, availableWidth - trayFootprint)
 
     IconButton {
         id: musicButton
@@ -85,6 +87,7 @@ RowLayout {
         valueWidthSample: "100°"
     }
     Separator {
+        id: traySeparator
         visible: SystemTray.items.count > 0
     }
     SystemTrayView {

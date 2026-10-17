@@ -1,7 +1,6 @@
 import Quickshell
 import Quickshell.Services.SystemTray
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 
 import "../theme/"
@@ -19,6 +18,12 @@ RowLayout {
             id: trayIcon
 
             required property var modelData
+            readonly property string tooltipText: {
+                const item = modelData;
+                const title = item.tooltipTitle || item.title || item.id || "";
+                const description = item.tooltipDescription || "";
+                return description ? `${title}\n${description}` : title;
+            }
 
             Layout.preferredWidth: 26
             Layout.preferredHeight: 30
@@ -87,13 +92,34 @@ RowLayout {
                         }
                     }
 
-                    ToolTip.visible: containsMouse && (trayIcon.modelData.tooltipTitle || trayIcon.modelData.title)
-                    ToolTip.text: {
-                        const title = trayIcon.modelData.tooltipTitle || trayIcon.modelData.title || trayIcon.modelData.id;
-                        const description = trayIcon.modelData.tooltipDescription;
-                        return description ? `${title}\n${description}` : title;
+                }
+            }
+
+            PopupWindow {
+                anchor.item: trayIcon
+                anchor.rect.x: 0
+                anchor.rect.y: trayIcon.height + 10
+                implicitWidth: tipText.width + 20
+                implicitHeight: tipText.implicitHeight + 14
+                visible: mouseArea.containsMouse && trayIcon.tooltipText !== ""
+                color: "transparent"
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: Colors.topbar.panel_background
+                    border.color: Colors.topbar.power_menu_terminal_prompt
+                    radius: 2
+
+                    Text {
+                        id: tipText
+                        anchors.centerIn: parent
+                        width: Math.min(implicitWidth, 360)
+                        text: trayIcon.tooltipText
+                        wrapMode: Text.Wrap
+                        color: Colors.topbar.text_primary
+                        font.pixelSize: 13
+                        font.family: "JetBrainsMono Nerd Font"
                     }
-                    ToolTip.delay: 500
                 }
             }
         }
