@@ -7,6 +7,7 @@ import "../components/"
 
 PanelWindow {
     id: root
+    signal launcherRequested()
     anchors {
         top: true
         left: true
@@ -26,7 +27,9 @@ PanelWindow {
             RowLayout {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                TerminalPrompt {}
+                TerminalPrompt {
+                    onClicked: root.launcherRequested()
+                }
                 Separator {}
                 Workspaces {}
             }

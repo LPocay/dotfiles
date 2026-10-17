@@ -56,7 +56,6 @@ hyprland_packages=(
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     waybar
-    wofi
     dunst
     thunar
     grim

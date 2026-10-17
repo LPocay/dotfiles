@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Legacy Wofi picker. Active Hyprland uses `quickshell ipc call monitors toggle`.
 set -euo pipefail
 
 fail() {

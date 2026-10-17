@@ -15,7 +15,6 @@ ln -s "$repo/ghostty/.config/ghostty" "$HOME/.config/ghostty"
 ln -s "$repo/quickshell/.config/quickshell" "$HOME/.config/quickshell"
 ln -s "$repo/waybar/.config/waybar" "$HOME/.config/waybar"
 ln -s "$repo/dunst/.config/dunst" "$HOME/.config/dunst"
-ln -s "$repo/wofi/.config/wofi" "$HOME/.config/wofi"
 ln -s "$repo/zellij/.config/zellij" "$HOME/.config/zellij"
 ln -s "$repo/tmux/.tmux.conf" "$HOME/.tmux.conf"
 ln -s "$repo/bash/.bash_aliases" "$HOME/.bash_aliases"
@@ -95,7 +94,11 @@ the scripts under `scripts/`. The `hyprland-old.conf` file is a previous
 Hyprland configuration. `sway` and `swaylock` are kept as a Wayland fallback.
 `i3`, `picom`, `polybar`, `rofi`, and `monitors/configure-monitors.sh` belong to
 the older X11 setup; that monitor script uses `xrandr` and is not part of the
-Hyprland setup. Link or run legacy components only when using those sessions.
+Hyprland setup. Wofi is also legacy: its configuration and the previous
+`scripts/clipboard_history.sh` and `scripts/workspace_monitor_menu.sh` pickers
+are retained, while the active Hyprland shortcuts use Quickshell. Wofi is no
+longer installed by the main dependency script; see [its legacy setup](wofi/README.md)
+for Sway or older sessions. Link or run legacy components only when using those sessions.
 
 ## Commits
 
@@ -161,7 +164,7 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [hyprlock](https://github.com/hyprwm/hyprlock): lock screen used by the Hyprland idle flow.
 - [hyprpaper](https://github.com/hyprwm/hyprpaper): wallpaper daemon for Hyprland.
 - [Waybar](https://github.com/Alexays/Waybar): status bar used in the main Wayland setup.
-- [wofi](https://github.com/SimplyCEO/wofi): application launcher and monitor picker used in Hyprland and Sway.
+- [Quickshell](https://quickshell.org/): top bar, application launcher, clipboard manager, wallpaper picker, and workspace monitor picker in Hyprland.
 - [thunar](https://docs.xfce.org/xfce/thunar/start): file manager launched from Hyprland keybindings.
 - [grim](https://gitlab.freedesktop.org/emersion/grim): screenshot tool used by keybindings.
 - [slurp](https://github.com/emersion/slurp): region selector used together with `grim`.
@@ -174,7 +177,56 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland): Hyprland portal backend for screen sharing and related integrations.
 - [xdg-desktop-portal-gtk](https://github.com/flatpak/xdg-desktop-portal-gtk): GTK portal backend used for file picker fallback with XDPH.
 
-Press `Super+Shift+o` to choose another connected monitor and move the current workspace there. The picker uses `wofi` and does not require fixed monitor names or positions.
+Press `Super+Shift+o` to open the Quickshell workspace monitor picker. It captures
+the active workspace when opened, shows each connected monitor's mode and
+workspaces, and marks its current monitor. Use the arrows or `Tab`/`Shift+Tab`
+to select a different monitor, then `Enter` or a click to move the workspace.
+`Esc` or a click outside closes the panel; `Ctrl+r` refreshes it. Monitor changes
+also refresh automatically, and the destination is revalidated before each move.
+With one monitor connected, the panel explains that another output is needed.
+No monitor names or positions are hardcoded. Scripts can toggle the same panel
+with `quickshell ipc call monitors toggle`.
+
+Monitor regression checks: `node quickshell/tests/monitor.test.cjs` and
+`python quickshell/tests/monitor_backend_test.py`.
+
+Press `Super+d` or `Super+Space`, or click the top-bar prompt, to toggle the
+Quickshell application launcher on the focused monitor. Type to search app names,
+descriptions, or keywords; `Up`/`Down` (or `Tab`/`Shift+Tab`) selects a result,
+`Enter` launches it, and `Esc` or a click outside closes the palette. The list
+scrolls beyond its four visible rows. `Ctrl+r` rebuilds the results from
+Quickshell's automatically updated desktop-entry catalog.
+
+Applications launch through `uwsm app -t service -- <entry.desktop>`, including
+entries that require a terminal. Recent apps launched from this palette appear
+first when the search is empty. History is stored in
+`$XDG_STATE_HOME/quickshell/by-shell/<shell-id>/launcher-recent.json`
+(`~/.local/state` when `XDG_STATE_HOME` is unset). To toggle it from a script, use
+`quickshell ipc call launcher toggle`. Opening the launcher waits for an active
+wallpaper preview to be cancelled and restored.
+
+Launcher search and history regression checks can be run with
+`node quickshell/tests/launcher.test.cjs`; Node.js is only needed for these checks.
+
+Press `Super+v` to toggle Quickshell's clipboard manager. It uses the existing
+`cliphist` history and the text/image watchers started with Hyprland. Search the
+entry previews, click a type filter or use `Tab`/`Shift+Tab` to cycle through
+all entries, text (including colors), links, and images. `Up`/`Down` selects an
+entry; `Enter` or a click restores its original text or image to the clipboard
+and closes the panel. Paste it into your app with `Ctrl+v`.
+
+`Delete` removes the selected history entry. `Ctrl+l` requests clearing the
+entire history, `Enter` confirms, and `Esc` cancels. Clearing history does not
+clear the current clipboard. `Ctrl+r` refreshes manually; history also refreshes
+while the panel is open. The installed cliphist 0.7 interface does not expose
+timestamps, so the panel shows content types and available image details.
+`quickshell ipc call clipboard toggle` opens the same integrated panel from a
+script. Clipboard, launcher, monitor, and wallpaper panels coordinate keyboard focus.
+The previous `scripts/clipboard_history.sh` Wofi picker remains available as legacy.
+
+Clipboard regression checks use isolated histories and a simulated clipboard:
+`node quickshell/tests/clipboard.test.cjs` and
+`python quickshell/tests/clipboard_backend_test.py`.
 
 ## Shared Services And Media
 
@@ -184,6 +236,7 @@ Press `Super+Shift+o` to choose another connected monitor and move the current w
 
 ## Legacy: Sway
 
+- [wofi](https://github.com/SimplyCEO/wofi): launcher for Sway and the old Hyprland pickers; see [legacy configuration](wofi/README.md).
 - [sway](https://swaywm.org/): legacy Wayland compositor configuration kept for fallback/reference.
 - [swayidle](https://github.com/swaywm/swayidle): idle management used by the legacy Sway setup.
 - [swaylock](https://github.com/swaywm/swaylock): lock screen used by the legacy Sway setup.

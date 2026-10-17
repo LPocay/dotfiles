@@ -17,3 +17,12 @@ Telemetry 1.0 Telemetry.qml
 Marquee 1.0 Marquee.qml
 WallpaperPicker 1.0 WallpaperPicker.qml
 WallpaperDrawer 1.0 WallpaperDrawer.qml
+AppLauncher 1.0 AppLauncher.qml
+AppLauncherModal 1.0 AppLauncherModal.qml
+AppLauncherItem 1.0 AppLauncherItem.qml
+ClipboardManager 1.0 ClipboardManager.qml
+ClipboardModal 1.0 ClipboardModal.qml
+ClipboardItem 1.0 ClipboardItem.qml
+MonitorPicker 1.0 MonitorPicker.qml
+MonitorModal 1.0 MonitorModal.qml
+MonitorItem 1.0 MonitorItem.qml

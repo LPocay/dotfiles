@@ -15,8 +15,10 @@ UWSM migration note: when using the `Hyprland (uwsm-managed)` session, app-launc
 - `Super+Shift+m`: stop the UWSM-managed Hyprland session (`uwsm stop` after migration)
 - `Super+e`: open file manager (`thunar`)
 - `Super+Shift+Space`: toggle floating
-- `Super+v`: open clipboard history picker
-- `Super+d`: app launcher (`wofi --show drun`)
+- `Super+v`: toggle Quickshell clipboard history (`cliphist`)
+- In clipboard history: type to search, `↑` / `↓` to select, `Tab` / `Shift+Tab` to change filter, `Enter` to copy, `Delete` to remove, `Ctrl+l` then `Enter` to clear history, `Esc` to cancel/close
+- `Super+d` / `Super+Space`: Quickshell app launcher (also opens by clicking the top-bar prompt)
+- In the app launcher: type to search, `↑` / `↓` to select, `Enter` to launch, `Esc` to close, `Ctrl+r` to refresh results
 - `Super+p`: toggle pseudotile
 - `Super+t`: toggle split
 - `Super+f`: fullscreen
@@ -79,7 +81,7 @@ after changing this environment setting.
 - `Super+Shift+0`: move active window to workspace `10`
 - `Super+s`: toggle special workspace `magic`
 - `Super+Shift+s`: move active window to special workspace `magic`
-- `Super+Shift+o`: choose another monitor and move the current workspace there
+- `Super+Shift+o`: Quickshell monitor picker; arrows or Tab select, Enter moves the workspace captured at opening, Esc closes
 - `Super+MouseWheelDown`: next workspace
 - `Super+MouseWheelUp`: previous workspace
 

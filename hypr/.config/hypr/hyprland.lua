@@ -26,7 +26,7 @@ hl.monitor({
 
 local terminal = "uwsm app -- ghostty"
 local fileManager = "uwsm app -- thunar"
-local menu = "uwsm app -- wofi --show drun"
+local menu = "quickshell ipc call launcher toggle"
 
 -------------------
 ---- AUTOSTART ----
@@ -181,8 +181,9 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/clipboard_history.sh"]]))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + W", hl.dsp.group.toggle())
@@ -230,7 +231,7 @@ hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Move the current workspace to another connected monitor
-hl.bind(mainMod .. " + SHIFT + o", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/workspace_monitor_menu.sh"]]))
+hl.bind(mainMod .. " + SHIFT + o", hl.dsp.exec_cmd("quickshell ipc call monitors toggle"))
 
 -- Wallpaper picker
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
