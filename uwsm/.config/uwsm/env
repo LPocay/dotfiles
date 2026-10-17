@@ -1,3 +1,5 @@
 export XCURSOR_SIZE=24
 export TZ=America/Argentina/Buenos_Aires
 export GTK_IM_MODULE=simple
+# Let the compositor handle blur instead of GTK's background-effect protocol.
+export GDK_WAYLAND_DISABLE=ext_background_effect_manager_v1
