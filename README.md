@@ -181,7 +181,7 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [xdg-desktop-portal-gtk](https://github.com/flatpak/xdg-desktop-portal-gtk): GTK portal backend used for file picker fallback with XDPH.
 
 Ghostty uses the local `Terminal Prompt` theme from `hyprland-rice.pen`, with an
-opaque `#101711` background, green/gold ANSI accents, an underline cursor,
+`#101711` background at 80% opacity with blur, green/gold ANSI accents, an underline cursor,
 the original 17.5 pt font size, and approximately 23 px of padding. Window decorations are
 disabled. Bash shows the current directory followed by a green `❯` when `TERM_PROGRAM=ghostty`, via
 `bash/.bash_aliases`. Open a new Ghostty window to apply all changes; run

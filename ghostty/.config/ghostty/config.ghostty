@@ -6,8 +6,8 @@ adjust-cell-height = 11
 window-padding-x = 17
 window-padding-y = 17
 window-padding-balance = false
-background-opacity = 1
-background-blur = false
+background-opacity = 0.80
+background-blur = true
 cursor-style = underline
 cursor-style-blink = false
 
