@@ -1,5 +1,10 @@
-PROMPT_COMMAND='PS1_CMD1=$(git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git branch --show-current 2>/dev/null || echo "")'
-PS1='💩 [\[\e[38;5;105m\]\u\[\e[0m\]@\[\e[38;5;71m\]\h\[\e[0m\]] \[\e[38;5;167;1m\]/\W\[\e[0m\]${PS1_CMD1:+ \[\e[38;5;255;2m\](${PS1_CMD1})}\[\e[0m\] \\$ '
+if [[ ${TERM_PROGRAM:-} == ghostty ]]; then
+  # Current directory and the Terminal Prompt accent from hyprland-rice.pen.
+  PS1='\[\e[38;2;143;159;144m\]\w \[\e[38;2;163;190;140m\]❯\[\e[0m\] '
+else
+  PROMPT_COMMAND='PS1_CMD1=$(git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git branch --show-current 2>/dev/null || echo "")'
+  PS1='💩 [\[\e[38;5;105m\]\u\[\e[0m\]@\[\e[38;5;71m\]\h\[\e[0m\]] \[\e[38;5;167;1m\]/\W\[\e[0m\]${PS1_CMD1:+ \[\e[38;5;255;2m\](${PS1_CMD1})}\[\e[0m\] \\$ '
+fi
 
 alias ll='eza -l -g --icons'
 # alias fzf="fzf --preview 'bat --style=numbers --theme=TwoDark --color=always --line-range :500 {}'"

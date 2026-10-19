@@ -1,0 +1,46 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  // Terminal Prompt: a small Arch mark and the essential local system details.
+  "logo": {
+    "type": "builtin",
+    "source": "arch_small",
+    "color": { "1": "#87A987", "2": "#A3BE8C" },
+    "padding": { "top": 1, "right": 3 }
+  },
+  "display": {
+    "brightColor": false,
+    "separator": "  ",
+    "key": { "width": 9 },
+    "color": {
+      "keys": "#A3BE8C",
+      "output": "#8F9F90",
+      "separator": "#49634F"
+    }
+  },
+  "modules": [
+    "break",
+    {
+      "type": "custom",
+      "format": "// SYSTEM",
+      "outputColor": "#B7C7AD"
+    },
+    {
+      "type": "custom",
+      "format": "─────────────────────────────────",
+      "outputColor": "#49634F"
+    },
+    { "type": "os", "key": "OS", "format": "{name}" },
+    { "type": "kernel", "key": "KERNEL", "format": "{release}" },
+    { "type": "wm", "key": "DESKTOP", "format": "{pretty-name}{?protocol-name} / {protocol-name}{?}" },
+    { "type": "cpu", "key": "CPU", "format": "{name:-27}" },
+    { "type": "gpu", "key": "GPU", "format": "{name:-27}" },
+    {
+      "type": "memory",
+      "key": "MEMORY",
+      "format": "{used} / {total}",
+      "outputColor": "#C4B28A"
+    },
+    { "type": "uptime", "key": "UPTIME", "format": "{formatted}" },
+    "break"
+  ]
+}

@@ -12,6 +12,7 @@ ln -s "$repo/hypr/.config/hypr" "$HOME/.config/hypr"
 ln -s "$repo/uwsm/.config/uwsm" "$HOME/.config/uwsm"
 ln -s "$repo/nvim/.config/nvim" "$HOME/.config/nvim"
 ln -s "$repo/ghostty/.config/ghostty" "$HOME/.config/ghostty"
+ln -s "$repo/fastfetch/.config/fastfetch" "$HOME/.config/fastfetch"
 ln -s "$repo/quickshell/.config/quickshell" "$HOME/.config/quickshell"
 ln -s "$repo/waybar/.config/waybar" "$HOME/.config/waybar"
 ln -s "$repo/dunst/.config/dunst" "$HOME/.config/dunst"
@@ -178,6 +179,36 @@ The Hyprland setup is being migrated to `uwsm` so that Hyprland starts as a syst
 - [xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal): desktop portal service used by sandboxed apps and screen sharing.
 - [xdg-desktop-portal-hyprland](https://github.com/hyprwm/xdg-desktop-portal-hyprland): Hyprland portal backend for screen sharing and related integrations.
 - [xdg-desktop-portal-gtk](https://github.com/flatpak/xdg-desktop-portal-gtk): GTK portal backend used for file picker fallback with XDPH.
+
+Ghostty uses the local `Terminal Prompt` theme from `hyprland-rice.pen`, with an
+opaque `#101711` background, green/gold ANSI accents, an underline cursor,
+the original 17.5 pt font size, and approximately 23 px of padding. Window decorations are
+disabled. Bash shows the current directory followed by a green `❯` when `TERM_PROGRAM=ghostty`, via
+`bash/.bash_aliases`. Open a new Ghostty window to apply all changes; run
+`source ~/.bash_aliases` to refresh the prompt in an existing Ghostty shell.
+
+Fastfetch uses a compact `Terminal Prompt` configuration with a green Arch logo,
+system/kernel/desktop, CPU/GPU, memory usage, and uptime. Values are detected at
+runtime; memory uses the theme's gold accent. Bash already runs `fastfetch` on
+startup. Link its config directory as shown above, or preview it directly with
+`fastfetch --config "$HOME/dotfiles/fastfetch/.config/fastfetch/config.jsonc"`.
+Edit the `modules` list to choose or reorder the information displayed.
+
+Hyprlock implements `Lock screen / Terminal Prompt` (`aMbJ6`) from
+`quickshell/.config/quickshell/hyprland-rice.pen`: a green gradient, large local
+clock, and a password panel on every output. Open the power menu and choose
+`lock`, or run `loginctl lock-session` with Hypridle running; `hyprlock` also
+starts it directly. The existing idle and suspend hooks use the same config.
+Type your account password and press `Enter`; `Esc` or `Ctrl+U` clears input.
+The border turns amber for Caps Lock and red after failed authentication.
+The footer polls Quickshell's unread notification count every five seconds and
+shows `--` when the shell is unavailable. JetBrains Mono is provided by the
+existing Nerd Font dependency. The background PNG is shipped alongside its
+editable SVG; regenerate it after editing with:
+
+```bash
+magick -background none hypr/.config/hypr/assets/lock-background.svg hypr/.config/hypr/assets/lock-background.png
+```
 
 Press `Super+Shift+o` to open the Quickshell workspace monitor picker. It captures
 the active workspace when opened, shows each connected monitor's mode and

@@ -1,0 +1,25 @@
+# Terminal Prompt — hyprland-rice.pen / Terminal colors.
+background = #101711
+foreground = #8F9F90
+cursor-color = #A3BE8C
+cursor-text = #101711
+selection-background = #2B4432
+selection-foreground = #E2E8D9
+
+# ANSI colors: semantic accents from the desktop's Kanagawa-derived palette.
+palette = 0=#101711
+palette = 1=#C4746E
+palette = 2=#87A987
+palette = 3=#C4B28A
+palette = 4=#8BA4B0
+palette = 5=#A292A3
+palette = 6=#8EA4A2
+palette = 7=#B7C7AD
+palette = 8=#677169
+palette = 9=#E46876
+palette = 10=#A3BE8C
+palette = 11=#E6C384
+palette = 12=#7FB4CA
+palette = 13=#B4A7BA
+palette = 14=#9ABCB0
+palette = 15=#E2E8D9

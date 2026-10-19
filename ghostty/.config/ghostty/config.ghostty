@@ -1,9 +1,17 @@
-theme = Kanagawa Dragon
+theme = Terminal Prompt
+# Keep the original readable font size with the Terminal Prompt colors.
 font-size = 17.5
 font-family = JetBrainsMono Nerd Font
-window-decoration = false
-background-opacity = 0.80
-background-blur = true
+adjust-cell-height = 11
+window-padding-x = 17
+window-padding-y = 17
+window-padding-balance = false
+background-opacity = 1
+background-blur = false
+cursor-style = underline
+cursor-style-blink = false
+
+window-decoration = none
 
 #keybind = ctrl+space>t=new_tab
 #keybind = ctrl+space>v=new_split:right

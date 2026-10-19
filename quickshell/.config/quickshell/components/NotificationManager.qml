@@ -304,6 +304,7 @@ Scope {
 
     IpcHandler {
         target: "notifications"
+        function count(): string { return String(root.unreadCount); }
         function toggle(): void { root.toggle(); }
         function close(): void { root.close(); }
         function clear(): void { root.clear(); }

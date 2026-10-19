@@ -67,6 +67,7 @@ PopupWindow {
                     command: modelData.command
                     danger: modelData.danger
                     number: String(index + 1).padStart(2, "0")
+                    onTriggered: powerMenu.expanded = false
                 }
             }
         }
