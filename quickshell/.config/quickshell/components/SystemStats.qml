@@ -87,11 +87,14 @@ Singleton {
 
     Poll {
         id: netProc
-        command: ["sh", "-c", "l=$(LC_ALL=C nmcli -t -f TYPE,STATE,DEVICE,CONNECTION device | awk -F: '($1==\"ethernet\"||$1==\"wifi\")&&$2==\"connected\"{print;exit}'); [ -z \"$l\" ] && exit 0; dev=$(echo \"$l\" | cut -d: -f3); name=$(echo \"$l\" | cut -d: -f4-); ip=$(LC_ALL=C nmcli -g IP4.ADDRESS device show \"$dev\" | head -n1 | cut -d/ -f1); echo \"$name|$ip\""]
+        command: ["python3", Quickshell.shellPath("services/network.py")]
         handler: out => {
-            const i = out.indexOf("|");
-            root.netName = i < 0 ? "" : out.slice(0, i);
-            root.netIp = i < 0 ? "" : out.slice(i + 1);
+            let data = {};
+            try {
+                data = JSON.parse(out) || {};
+            } catch (e) {}
+            root.netName = data.name || "";
+            root.netIp = data.ip || "";
         }
     }
 

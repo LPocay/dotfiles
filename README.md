@@ -233,8 +233,16 @@ Quickshell started with a different PATH. `amdgpu_top` and Python are included i
 the setup package list. Telemetry measures each reading's width and hides
 lower-priority metrics when space is limited to avoid overlapping the clock.
 
+The `NET` reading refreshes every five seconds using `ip` addresses and routes,
+without requiring NetworkManager. Wi-Fi names come from iwd (`iwctl`) when
+available, with a NetworkManager connection-name fallback; otherwise the interface
+name is shown. Hover to see the full name and IP (IPv4 or IPv6). A connected local
+network can still be displayed without a default route; this is a link/address
+indicator, not an internet reachability check. Click to open `impala` in Ghostty.
+
 GPU/telemetry regression checks: `node quickshell/tests/telemetry.test.cjs` and
 `python quickshell/tests/gpu_backend_test.py`.
+Network regression checks: `python quickshell/tests/network_backend_test.py`.
 
 Monitor regression checks: `node quickshell/tests/monitor.test.cjs` and
 `python quickshell/tests/monitor_backend_test.py`.
