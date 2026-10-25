@@ -40,6 +40,13 @@
       "format": "{used} / {total}",
       "outputColor": "#C4B28A"
     },
+    {
+      "type": "disk",
+      "key": "DISK",
+      "folders": "/",
+      "format": "{size-used} / {size-total} ({size-percentage})",
+      "outputColor": "#C4B28A"
+    },
     { "type": "uptime", "key": "UPTIME", "format": "{formatted}" },
     "break"
   ]
