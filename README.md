@@ -50,6 +50,13 @@ The package script installs `fd` and `fzf` for project selection and ImageMagick
 (`magick`) for `scripts/wallpaper_menu.sh`. That wallpaper script also needs
 `quickshell`, `hyprctl`, `jq`, and `notify-send`. The workspace layout script
 needs a running Hyprland session, `hyprctl`, `jq`, `uwsm`, and `notify-send`.
+It places Firefox on workspace 2, Discord on 3, Deezer on 4, and ZenNotes on 5.
+Install Deezer with `flatpak install --user flathub dev.aunetx.deezer` first.
+The layout launches it through UWSM with `flatpak run dev.aunetx.deezer` and
+recognizes its own window class independently of Firefox.
+If a terminal retains an old Hyprland session signature, the layout script
+reconnects to the instance on its Wayland display, or the only running instance.
+Run its regression checks with `python scripts/tests/workspace_layout_test.py`.
 `tmproj` and `tsessions` need tmux; `hproj` needs Herdr.
 
 ## Projects and sessions
