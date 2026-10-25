@@ -11,6 +11,7 @@ StatusReading 1.0 StatusReading.qml
 PowerMenuItem 1.0 PowerMenuItem.qml
 PowerMenu 1.0 PowerMenu.qml
 MusicPopup 1.0 MusicPopup.qml
+MusicPosition 1.0 MusicPosition.qml
 SystemTrayView 1.0 SystemTrayView.qml
 singleton SystemStats 1.0 SystemStats.qml
 Telemetry 1.0 Telemetry.qml

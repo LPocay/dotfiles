@@ -358,6 +358,16 @@ or `dnd`. Logic and persistence regression checks:
 
 ## Shared Services And Media
 
+The top-bar music icon opens the integrated MPRIS controls. The panel keeps the
+selected player when paused instead of switching to an idle browser. Deezer's
+Flatpak app exposes its media controls directly over MPRIS.
+While the panel is open, `playerctl` reads the actual position every second and
+on track/playback changes, including while paused. Samples from an earlier track
+are discarded, and elapsed time and progress are bounded by the track duration.
+Unsupported controls are dimmed. Music selection regression
+checks: `node quickshell/tests/music.test.cjs` and
+`python quickshell/tests/music_position_test.py` (requires Quickshell).
+
 - [dunst](https://github.com/dunst-project/dunst): legacy notification daemon configuration; the active Hyprland shell uses Quickshell notifications.
 - [mpd](https://www.musicpd.org/): music daemon used by the Waybar `mpd` module.
 - [power-profiles-daemon](https://gitlab.freedesktop.org/hadess/power-profiles-daemon): exposes power profile status in Waybar.

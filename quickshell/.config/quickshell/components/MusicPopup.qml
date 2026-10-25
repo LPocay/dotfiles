@@ -4,6 +4,7 @@ import Quickshell.Services.Mpris
 import QtQuick
 import QtQuick.Layouts
 import "../theme/"
+import "MusicLogic.js" as Logic
 
 PopupWindow {
     id: musicPopup
@@ -12,17 +13,33 @@ PopupWindow {
 
     property bool expanded: false
 
-    // Prefer a playing player, otherwise fall back to the first available one
-    readonly property var player: {
-        const list = Mpris.players.values;
-        return list.find(p => p.isPlaying) ?? list[0] ?? null;
-    }
+    property string selectedPlayerName: ""
+    readonly property var player: Logic.selectPlayer(Mpris.players.values, selectedPlayerName)
     readonly property bool hasPlayer: player !== null
     readonly property bool playing: hasPlayer && player.isPlaying
+    readonly property bool canGoNext: hasPlayer && player.canGoNext
+    readonly property bool canGoPrevious: hasPlayer && player.canGoPrevious
     readonly property string title: hasPlayer && player.trackTitle ? player.trackTitle : "NO MEDIA"
     readonly property string artist: hasPlayer && player.trackArtist ? player.trackArtist : "—"
-    readonly property int elapsed: hasPlayer ? Math.floor(player.position) : 0
-    readonly property int duration: hasPlayer && player.lengthSupported ? Math.floor(player.length) : 0
+    readonly property var timeline: Logic.playbackTime(positionReader.position, hasPlayer && player.lengthSupported ? player.length : 0)
+    readonly property int elapsed: timeline.elapsed
+    readonly property int duration: timeline.duration
+
+    function rememberPlayer() {
+        selectedPlayerName = player ? player.dbusName : "";
+    }
+
+    // Defer the memory update so it does not write into its own active binding.
+    onPlayerChanged: Qt.callLater(rememberPlayer)
+
+    function skip(direction) {
+        if (!hasPlayer)
+            return;
+        if (direction === "next" && player.canGoNext)
+            player.next();
+        else if (direction === "previous" && player.canGoPrevious)
+            player.previous();
+    }
 
     function formatTime(seconds) {
         const m = Math.floor(seconds / 60);
@@ -30,13 +47,10 @@ PopupWindow {
         return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
     }
 
-    // MPRIS position is not pushed over D-Bus, so poll it while visible and playing
-    Timer {
-        interval: 1000
-        repeat: true
-        running: musicPopup.expanded && musicPopup.playing
-        triggeredOnStart: true
-        onTriggered: musicPopup.player.positionChanged()
+    MusicPosition {
+        id: positionReader
+        player: musicPopup.player
+        active: musicPopup.expanded
     }
 
     visible: expanded
@@ -170,7 +184,7 @@ PopupWindow {
                     Layout.preferredHeight: 4
                     color: Colors.topbar.panel_divider
                     Rectangle {
-                        width: musicPopup.duration > 0 ? parent.width * Math.min(1, musicPopup.elapsed / musicPopup.duration) : 0
+                        width: parent.width * musicPopup.timeline.progress
                         height: parent.height
                         color: Colors.topbar.accent_green
                     }
@@ -182,6 +196,8 @@ PopupWindow {
                 IconButton {
                     flat: true
                     icon: "shuffle"
+                    enabled: musicPopup.hasPlayer && musicPopup.player.canControl && musicPopup.player.shuffleSupported
+                    opacity: enabled ? 1 : 0.35
                     active: musicPopup.hasPlayer && musicPopup.player.shuffleSupported && musicPopup.player.shuffle
                     onClicked: if (musicPopup.hasPlayer && musicPopup.player.shuffleSupported)
                         musicPopup.player.shuffle = !musicPopup.player.shuffle
@@ -192,8 +208,9 @@ PopupWindow {
                 IconButton {
                     flat: true
                     icon: "skip-back"
-                    onClicked: if (musicPopup.hasPlayer && musicPopup.player.canGoPrevious)
-                        musicPopup.player.previous()
+                    enabled: musicPopup.canGoPrevious
+                    opacity: enabled ? 1 : 0.35
+                    onClicked: musicPopup.skip("previous")
                     iconSize: 17
                     implicitWidth: 32
                     implicitHeight: 32
@@ -201,6 +218,8 @@ PopupWindow {
                 IconButton {
                     active: true
                     icon: musicPopup.playing ? "pause" : "play"
+                    enabled: musicPopup.hasPlayer && musicPopup.player.canTogglePlaying
+                    opacity: enabled ? 1 : 0.35
                     onClicked: if (musicPopup.hasPlayer && musicPopup.player.canTogglePlaying)
                         musicPopup.player.togglePlaying()
                     iconSize: 20
@@ -210,8 +229,9 @@ PopupWindow {
                 IconButton {
                     flat: true
                     icon: "skip-forward"
-                    onClicked: if (musicPopup.hasPlayer && musicPopup.player.canGoNext)
-                        musicPopup.player.next()
+                    enabled: musicPopup.canGoNext
+                    opacity: enabled ? 1 : 0.35
+                    onClicked: musicPopup.skip("next")
                     iconSize: 17
                     implicitWidth: 32
                     implicitHeight: 32
@@ -219,6 +239,8 @@ PopupWindow {
                 IconButton {
                     flat: true
                     icon: "repeat-2"
+                    enabled: musicPopup.hasPlayer && musicPopup.player.canControl && musicPopup.player.loopSupported
+                    opacity: enabled ? 1 : 0.35
                     active: musicPopup.hasPlayer && musicPopup.player.loopSupported && musicPopup.player.loopState !== MprisLoopState.None
                     onClicked: {
                         if (!musicPopup.hasPlayer || !musicPopup.player.loopSupported)
