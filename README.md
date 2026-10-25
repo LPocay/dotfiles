@@ -77,6 +77,8 @@ parallel; missing tools are skipped and individual failures do not stop other
 groups. Pi updates itself before its extensions. Herdr updates its installed,
 outdated integrations one at a time after all tool updates finish, provided its
 own update succeeded.
+When Flatpak is installed, its parallel group updates apps and runtimes in both
+the user and default system installations without interactive prompts.
 
 The terminal shows compact progress, durations, a summary, and the last log lines
 for failed groups. Each run keeps separate logs under
