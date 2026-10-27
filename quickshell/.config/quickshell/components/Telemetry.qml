@@ -8,34 +8,38 @@ import "TelemetryLogic.js" as Logic
 RowLayout {
     id: root
     required property var notifications
-    spacing: 6
-
-    // Width available before overlapping the clock; lower-priority items hide first
     property real availableWidth: 1000
     property var panelWindow
+    spacing: 6
+
+    // Essential readings never compete with tray icons. Scroll the tray first;
+    // on narrower outputs replace labels with icons, keeping all values visible.
+    readonly property int groupCount: SystemStats.hasBattery ? 4 : 3
+    readonly property real controlsWidth: musicButton.implicitWidth + notificationBell.implicitWidth + powerButton.implicitWidth
     readonly property real separatorFootprint: traySeparator.Layout.leftMargin + traySeparator.implicitWidth + traySeparator.Layout.rightMargin
-    readonly property real fixedControlsWidth: musicButton.implicitWidth + notificationBell.implicitWidth + powerButton.implicitWidth + spacing * 2
-    readonly property real trayDecorationWidth: SystemTray.items.values.length > 0 ? separatorFootprint + spacing * 2 : 0
-    // Keep reading visibility based on the unbounded tray width.
-    readonly property real trayFootprint: tray.naturalWidth + trayDecorationWidth
-    readonly property real statusWidth: Math.max(0, availableWidth - trayFootprint)
-    readonly property var visibleMetrics: Logic.fit([
-        { key: "vol", width: volumeReading.implicitWidth, available: true },
-        { key: "net", width: netReading.implicitWidth, available: true },
-        { key: "bat", width: batteryReading.implicitWidth, available: SystemStats.hasBattery },
-        { key: "cpu", width: cpuReading.implicitWidth, available: true },
-        { key: "ram", width: ramReading.implicitWidth, available: true },
-        { key: "gpu", width: gpuReading.implicitWidth, available: SystemStats.gpu >= 0 },
-        { key: "vram", width: vramReading.implicitWidth, available: SystemStats.vramTotal > 0 },
-        { key: "mic", width: micReading.implicitWidth, available: true },
-        { key: "tmp", width: tempReading.implicitWidth, available: SystemStats.temp >= 0 }
-    ], Math.max(0, statusWidth - fixedControlsWidth), spacing)
+    readonly property real trayDecorationWidth: separatorFootprint + spacing * 2
+    readonly property real expandedStatusWidth: systemGroup.expandedWidth + netGroup.expandedWidth + audioGroup.expandedWidth
+        + (SystemStats.hasBattery ? batteryReading.expandedWidth : 0)
+    readonly property bool compactMode: availableWidth < controlsWidth + expandedStatusWidth + spacing * (groupCount + 2)
+        + (SystemTray.items.values.length > 0 ? 26 + trayDecorationWidth : 0)
+    readonly property real essentialWidth: controlsWidth + systemGroup.implicitWidth + netGroup.implicitWidth + audioGroup.implicitWidth
+        + (SystemStats.hasBattery ? batteryReading.implicitWidth : 0) + spacing * (groupCount + 2)
+    readonly property bool systemWarning: Logic.systemWarning(SystemStats.ram, SystemStats.temp, SystemStats.vramUsed, SystemStats.vramTotal)
+    readonly property bool hoverBlocked: musicPopup.expanded || powerMenu.expanded || root.notifications.expanded
+
+    function closeStatusPanels(except) {
+        for (const group of [systemGroup, netGroup, audioGroup]) {
+            if (group !== except)
+                group.close();
+        }
+    }
 
     IconButton {
         id: musicButton
         icon: "music"
         active: musicPopup.expanded
         onClicked: {
+            root.closeStatusPanels(null);
             powerMenu.expanded = false;
             musicPopup.expanded = !musicPopup.expanded;
         }
@@ -43,106 +47,120 @@ RowLayout {
     NotificationBell {
         id: notificationBell
         manager: root.notifications
-        onClicked: root.notifications.toggle(root.panelWindow.screen)
+        onClicked: {
+            root.closeStatusPanels(null);
+            root.notifications.toggle(root.panelWindow.screen);
+        }
     }
-    StatusReading {
-        id: netReading
-        label: "NET"
-        visible: root.visibleMetrics.includes("net")
-        value: SystemStats.netName ? SystemStats.netName.toUpperCase().substring(0, 10) : "OFF"
-        valueColor: SystemStats.netName ? Colors.topbar.accent_blue : Colors.topbar.text_dim
-        tooltip: SystemStats.netIp ? `${SystemStats.netName}  ${SystemStats.netIp}` : "sin conexión"
-        valueWidthSample: "OFF"
+    StatusGroup {
+        id: netGroup
+        label: ""
+        value: ""
+        iconButtonStyle: true
+        active: expanded
+        icon: !SystemStats.netName ? "wifi-off" : SystemStats.netType === "wifi" ? "wifi" : "ethernet"
+        title: "red"
+        blocked: root.hoverBlocked
         clickable: true
-        onClicked: Quickshell.execDetached(["ghostty", "-e", "impala"])
+        readings: [
+            { label: "Estado", value: SystemStats.netName ? "Conectado" : "Sin conexión" },
+            { label: "Red", value: SystemStats.netName, available: SystemStats.netName !== "" },
+            { label: "Interfaz", value: SystemStats.netDevice, available: SystemStats.netDevice !== "" },
+            { label: "IP", value: SystemStats.netIp, available: SystemStats.netIp !== "" }
+        ]
+        actions: [{ key: "network", label: "Abrir impala" }]
+        onOpened: root.closeStatusPanels(netGroup)
+        onClicked: {
+            close();
+            Quickshell.execDetached(["ghostty", "-e", "impala"]);
+        }
+        onActionTriggered: Quickshell.execDetached(["ghostty", "-e", "impala"])
     }
-    StatusReading {
-        id: volumeReading
+    StatusGroup {
+        id: systemGroup
+        label: "SYS"
+        compactIcon: "cpu"
+        compact: root.compactMode
+        value: SystemStats.cpu + "%"
+        valueWidthSample: "100%"
+        valueColor: root.systemWarning ? Colors.topbar.accent_danger : Colors.topbar.text_primary
+        title: root.systemWarning ? "sistema !" : "sistema"
+        blocked: root.hoverBlocked
+        clickable: true
+        readings: [
+            { label: "CPU", value: SystemStats.cpu + "%" },
+            { label: "RAM", value: SystemStats.ram + "%", color: SystemStats.ram >= 90 ? Colors.topbar.accent_danger : Colors.topbar.text_primary },
+            { label: "GPU", value: SystemStats.gpu + "%", available: SystemStats.gpu >= 0, color: Colors.topbar.accent_blue },
+            { label: "VRAM", value: Logic.gib(SystemStats.vramUsed) + " / " + Logic.gib(SystemStats.vramTotal) + " GiB", available: SystemStats.vramTotal > 0, color: Colors.topbar.accent_gold },
+            { label: "VRAM %", value: (SystemStats.vramTotal > 0 ? Math.round(SystemStats.vramUsed / SystemStats.vramTotal * 100) : 0) + "%", available: SystemStats.vramTotal > 0, color: Colors.topbar.accent_gold },
+            { label: "GPU PCI", value: SystemStats.gpuPci, available: SystemStats.gpuPci !== "" },
+            { label: "CPU temp", value: SystemStats.temp + " °C", available: SystemStats.temp >= 0, color: SystemStats.temp >= 85 ? Colors.topbar.accent_danger : Colors.topbar.accent_warm }
+        ]
+        actions: [
+            { key: "btop", label: "Abrir btop" },
+            { key: "gpu", label: "Monitor GPU", available: SystemStats.gpuPci !== "" }
+        ]
+        onOpened: root.closeStatusPanels(systemGroup)
+        onClicked: {
+            close();
+            Quickshell.execDetached(["ghostty", "-e", "btop"]);
+        }
+        onActionTriggered: action => {
+            if (action === "gpu")
+                SystemStats.openGpuMonitor();
+            else
+                Quickshell.execDetached(["ghostty", "-e", "btop"]);
+        }
+    }
+    StatusGroup {
+        id: audioGroup
         label: "VOL"
-        visible: root.visibleMetrics.includes("vol")
+        compactIcon: SystemStats.volumeMuted ? "volume-x" : "volume-2"
+        compact: root.compactMode
         value: SystemStats.volumeMuted ? "MUTE" : String(SystemStats.volume)
         valueColor: SystemStats.volumeMuted ? Colors.topbar.text_dim : Colors.topbar.accent_gold
         valueWidthSample: "MUTE"
+        title: "audio"
+        blocked: root.hoverBlocked
         clickable: true
-        onClicked: Quickshell.execDetached(["pavucontrol"])
-    }
-    StatusReading {
-        id: micReading
-        label: "MIC"
-        visible: root.visibleMetrics.includes("mic")
-        value: SystemStats.micMuted ? "OFF" : "ON"
-        valueColor: SystemStats.micMuted ? Colors.topbar.text_dim : Colors.topbar.accent_green
-        valueWidthSample: "OFF"
-        clickable: true
-        onClicked: Quickshell.execDetached(["pavucontrol", "--tab=4"])
+        readings: [
+            { label: "Volumen", value: SystemStats.volumeMuted ? "Silenciado" : SystemStats.volume + "%", color: Colors.topbar.accent_gold },
+            { label: "Micrófono", value: SystemStats.micMuted ? "Silenciado" : "Activo", color: SystemStats.micMuted ? Colors.topbar.text_dim : Colors.topbar.accent_green }
+        ]
+        actions: [
+            { key: "volume", label: "Controles de audio" },
+            { key: "mic", label: "Configurar micrófono" }
+        ]
+        onOpened: root.closeStatusPanels(audioGroup)
+        onClicked: {
+            close();
+            Quickshell.execDetached(["pavucontrol"]);
+        }
+        onActionTriggered: action => Quickshell.execDetached(action === "mic" ? ["pavucontrol", "--tab=4"] : ["pavucontrol"])
     }
     StatusReading {
         id: batteryReading
         label: "BAT"
-        visible: root.visibleMetrics.includes("bat")
-        value: String(SystemStats.batteryPercent) + (SystemStats.batteryCharging ? "+" : "")
-        valueColor: SystemStats.batteryPercent < 20 && !SystemStats.batteryCharging ? Colors.topbar.accent_warm : Colors.topbar.accent_green
-        valueWidthSample: "100+"
-    }
-    StatusReading {
-        id: cpuReading
-        label: "CPU"
-        visible: root.visibleMetrics.includes("cpu")
-        value: String(SystemStats.cpu)
-        valueWidthSample: "100"
-        clickable: true
-        onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
-    }
-    StatusReading {
-        id: ramReading
-        label: "RAM"
-        visible: root.visibleMetrics.includes("ram")
-        value: String(SystemStats.ram)
-        valueWidthSample: "100"
-        clickable: true
-        onClicked: Quickshell.execDetached(["ghostty", "-e", "btop"])
-    }
-    StatusReading {
-        id: gpuReading
-        label: "GPU"
-        visible: root.visibleMetrics.includes("gpu")
-        value: SystemStats.gpu + "%"
-        valueWidthSample: "100%"
-        valueColor: Colors.topbar.accent_blue
-        tooltip: "AMD GPU · " + SystemStats.gpuPci + "\nUso: " + SystemStats.gpu + "% · clic para abrir amdgpu_top"
-        clickable: true
-        onClicked: SystemStats.openGpuMonitor()
-    }
-    StatusReading {
-        id: vramReading
-        label: "VRAM"
-        visible: root.visibleMetrics.includes("vram")
-        value: SystemStats.vramLabel
-        valueWidthSample: "99.9G"
-        valueColor: Colors.topbar.accent_gold
-        tooltip: SystemStats.vramTooltip + "\nClic para abrir amdgpu_top"
-        clickable: true
-        onClicked: SystemStats.openGpuMonitor()
-    }
-    StatusReading {
-        id: tempReading
-        label: "TMP"
-        visible: root.visibleMetrics.includes("tmp")
-        value: SystemStats.temp + "°"
-        valueColor: Colors.topbar.accent_warm
-        valueWidthSample: "100°"
+        compactIcon: SystemStats.batteryCharging ? "battery-charging" : "battery"
+        compact: root.compactMode
+        visible: SystemStats.hasBattery
+        value: SystemStats.batteryPercent + "%" + (SystemStats.batteryCharging ? "+" : "")
+        valueColor: SystemStats.batteryPercent < 20 && !SystemStats.batteryCharging ? Colors.topbar.accent_danger : Colors.topbar.accent_green
+        valueWidthSample: "100%+"
+        tooltip: SystemStats.batteryCharging ? "Cargando / conectada" : "Usando batería"
     }
     Separator {
         id: traySeparator
         Layout.leftMargin: 4
         Layout.rightMargin: 4
-        visible: SystemTray.items.values.length > 0
+        visible: tray.visible
     }
     SystemTrayView {
         id: tray
         panelWindow: root.panelWindow
-        maximumWidth: Math.max(0, root.availableWidth - root.fixedControlsWidth - root.trayDecorationWidth)
+        maximumWidth: Math.max(0, root.availableWidth - root.essentialWidth - root.trayDecorationWidth)
         Layout.maximumWidth: maximumWidth
+        visible: SystemTray.items.values.length > 0 && maximumWidth > 0
     }
     IconButton {
         id: powerButton
@@ -152,6 +170,7 @@ RowLayout {
         implicitHeight: 30
         active: powerMenu.expanded
         onClicked: {
+            root.closeStatusPanels(null);
             musicPopup.expanded = false;
             powerMenu.expanded = !powerMenu.expanded;
         }
@@ -167,6 +186,7 @@ RowLayout {
         target: root.notifications
         function onExpandedChanged() {
             if (root.notifications.expanded) {
+                root.closeStatusPanels(null);
                 musicPopup.expanded = false;
                 powerMenu.expanded = false;
             }

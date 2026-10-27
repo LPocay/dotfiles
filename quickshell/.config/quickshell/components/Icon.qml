@@ -15,7 +15,7 @@ Item {
         id: image
         anchors.fill: parent
         visible: false
-        source: Qt.resolvedUrl(`../assets/icons/${root.name}.svg`)
+        source: root.name ? Qt.resolvedUrl(`../assets/icons/${root.name}.svg`) : ""
         sourceSize: Qt.size(root.size * 2, root.size * 2)
     }
     MultiEffect {

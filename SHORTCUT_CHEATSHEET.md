@@ -84,6 +84,7 @@ after changing this environment setting.
 - `Super+Shift+s`: move active window to special workspace `magic`
 - `Super+Shift+o`: Quickshell monitor picker; arrows or Tab select, Enter moves the workspace captured at opening, Esc closes
 - `Super+Shift+w`: Quickshell wallpaper picker
+- `Super+[` / `Super+]`: previous / next existing workspace
 - `Super+MouseWheelDown`: next workspace
 - `Super+MouseWheelUp`: previous workspace
 

@@ -20,6 +20,8 @@ Singleton {
     readonly property string gpuBackend: Quickshell.shellPath("services/gpu.py")
     property string netName: ""
     property string netIp: ""
+    property string netDevice: ""
+    property string netType: ""
     property int volume: 0
     property bool volumeMuted: false
     property bool micMuted: false
@@ -95,6 +97,8 @@ Singleton {
             } catch (e) {}
             root.netName = data.name || "";
             root.netIp = data.ip || "";
+            root.netDevice = data.device || "";
+            root.netType = data.type || "";
         }
     }
 

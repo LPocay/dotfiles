@@ -46,12 +46,14 @@ class NetworkTests(unittest.TestCase):
         raise AssertionError(command)
 
     def test_iwd_wifi_without_networkmanager_preserves_ssid(self):
-        self.assertEqual(network.scan(self.root), {"name": "Casa: Wi-Fi | 5G", "ip": "192.168.1.86"})
+        self.assertEqual(network.scan(self.root), {"name": "Casa: Wi-Fi | 5G", "ip": "192.168.1.86",
+                                                   "device": "wlan0", "type": "wifi"})
 
     def test_wired_route_with_lower_metric_wins(self):
         self.interfaces.append(interface("enp2s0", "192.168.1.20"))
         self.routes.append({"dev": "enp2s0", "metric": 100})
-        self.assertEqual(network.scan(self.root), {"name": "enp2s0", "ip": "192.168.1.20"})
+        self.assertEqual(network.scan(self.root), {"name": "enp2s0", "ip": "192.168.1.20",
+                                                   "device": "enp2s0", "type": "ethernet"})
 
     def test_networkmanager_connection_name_still_works(self):
         self.station = ""
@@ -74,11 +76,11 @@ class NetworkTests(unittest.TestCase):
 
     def test_disconnected_link_does_not_show_stale_address(self):
         self.interfaces = [interface("wlan0", state="DOWN"), interface("lo", "127.0.0.1")]
-        self.assertEqual(network.scan(self.root), {"name": "", "ip": ""})
+        self.assertEqual(network.scan(self.root), {"name": "", "ip": "", "device": "", "type": ""})
 
     def test_empty_or_invalid_ip_output_reports_offline(self):
         with patch.object(network, "run", return_value="not json"):
-            self.assertEqual(network.scan(self.root), {"name": "", "ip": ""})
+            self.assertEqual(network.scan(self.root), {"name": "", "ip": "", "device": "", "type": ""})
 
 
 class CommandTests(unittest.TestCase):

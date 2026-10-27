@@ -54,11 +54,12 @@ def scan(root=Path("/sys/class/net")):
     routes = sorted((r for r in routes if r.get("dev") in active), key=lambda r: r.get("metric", 0))
     device = routes[0]["dev"] if routes else next(iter(active), "")
     if not device:
-        return {"name": "", "ip": ""}
+        return {"name": "", "ip": "", "device": "", "type": ""}
     addresses = active[device]
     address = next((a for a in addresses if a.get("family") == "inet"), addresses[0])
     wireless = (root / device / "wireless").exists()
-    return {"name": connection_name(device, wireless), "ip": address.get("local", "")}
+    return {"name": connection_name(device, wireless), "ip": address.get("local", ""),
+            "device": device, "type": "wifi" if wireless else "ethernet"}
 
 
 if __name__ == "__main__":

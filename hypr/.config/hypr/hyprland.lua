@@ -254,7 +254,9 @@ bind("Media", "Open Spotify controls", mainMod .. " + M", hl.dsp.exec_cmd([[bash
 -- Screenshot selection
 bind("Apps", "Capture screen region", mainMod .. " + CTRL + 4", hl.dsp.exec_cmd([[grim -g "$(slurp)"]]), { locked = true, repeating = true })
 
--- Scroll through existing workspaces with mainMod + scroll
+-- Cycle through existing workspaces with mainMod + brackets or scroll
+bind("Workspaces", "Previous workspace", mainMod .. " + bracketleft", hl.dsp.focus({ workspace = "e-1" }))
+bind("Workspaces", "Next workspace", mainMod .. " + bracketright", hl.dsp.focus({ workspace = "e+1" }))
 bind("Workspaces", "Next workspace", mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 bind("Workspaces", "Previous workspace", mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 

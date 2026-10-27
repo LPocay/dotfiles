@@ -8,6 +8,7 @@ Calendar 1.0 Calendar.qml
 Icon 1.0 Icon.qml
 IconButton 1.0 IconButton.qml
 StatusReading 1.0 StatusReading.qml
+StatusGroup 1.0 StatusGroup.qml
 PowerMenuItem 1.0 PowerMenuItem.qml
 PowerMenu 1.0 PowerMenu.qml
 MusicPopup 1.0 MusicPopup.qml

@@ -9,6 +9,7 @@ Rectangle {
     property bool flat: false
     signal clicked
 
+    readonly property bool hovered: mouseArea.containsMouse
     readonly property bool boxLit: active || (mouseArea.containsMouse && !flat)
     readonly property bool iconLit: active || mouseArea.containsMouse
 

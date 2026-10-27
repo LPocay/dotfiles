@@ -229,28 +229,40 @@ With one monitor connected, the panel explains that another output is needed.
 No monitor names or positions are hardcoded. Scripts can toggle the same panel
 with `quickshell ipc call monitors toggle`.
 
-The top bar shows AMD GPU utilization as `GPU=…%` and occupied VRAM as
-`VRAM=…G` (GiB), refreshed every two seconds from the driver's sysfs counters.
-Hover VRAM to see used/total GiB and percentage. With multiple AMD GPUs, the
-reader prefers one with a connected output, then the boot GPU, then the one
-with the most VRAM. Card numbers and PCI addresses are discovered each poll;
-unavailable counters hide their reading instead of showing stale values.
-Click GPU or VRAM to open `amdgpu_top --dark --single --pci <address>` in Ghostty
-through UWSM, targeting the same GPU. The monitor is launched only on demand.
-If it is installed in `~/.local/bin`, the launcher can find it there even when
-Quickshell started with a different PATH. `amdgpu_top` and Python are included in
-the setup package list. Telemetry measures each reading's width and hides
-lower-priority metrics when space is limited to avoid overlapping the clock.
+The top bar groups telemetry into `SYS=…%` (CPU utilization), a Wi-Fi/Ethernet
+status icon, and `VOL=…` (or `MUTE`). `BAT=…%` stays visible on machines with a
+battery; `+` marks charging/external power. Hover a group for 220 ms to open its
+panel. A 300 ms grace period lets the pointer cross into the panel and use its
+buttons. Only one status panel opens at a time; music, notifications, and the
+power menu dismiss them. On narrower outputs, labels become icons while values
+stay visible. Essential readings reserve their width before the tray, whose
+icons scroll horizontally when they do not fit.
 
-The `NET` reading refreshes every five seconds using `ip` addresses and routes,
+The system panel shows CPU, RAM, AMD GPU utilization, used/total VRAM (GiB), and
+CPU temperature. Unavailable sensors are omitted. `SYS` turns red if RAM reaches
+90%, CPU temperature reaches 85 °C, or VRAM reaches 95%, even with the panel
+closed. Click `SYS` to open `btop`, or use the panel's `Monitor GPU` action to open
+`amdgpu_top --dark --single --pci <address>` in Ghostty through UWSM. GPU counters
+refresh every two seconds from sysfs. With multiple AMD GPUs, the reader prefers
+one with a connected output, then the boot GPU, then the one with the most VRAM.
+Card numbers and PCI addresses are discovered each poll. The GPU monitor is
+launched only on demand; `~/.local/bin` is searched even if Quickshell started
+with a different PATH. `amdgpu_top` and Python are in the setup package list.
+
+The audio panel shows volume and microphone mute status, with buttons for output
+and input settings. Clicking `VOL` still opens `pavucontrol` directly.
+
+The network icon refreshes every five seconds using `ip` addresses and routes,
 without requiring NetworkManager. Wi-Fi names come from iwd (`iwctl`) when
 available, with a NetworkManager connection-name fallback; otherwise the interface
-name is shown. Hover to see the full name and IP (IPv4 or IPv6). A connected local
-network can still be displayed without a default route; this is a link/address
-indicator, not an internet reachability check. Click to open `impala` in Ghostty.
+name is shown. Hover to see the full name, interface, and IP (IPv4 or IPv6).
+A connected local network can still be displayed without a default route; this
+is a link/address indicator, not an internet reachability check. Click the icon
+or the panel button to open `impala` in Ghostty.
 
-GPU/telemetry regression checks: `node quickshell/tests/telemetry.test.cjs` and
-`python quickshell/tests/gpu_backend_test.py`.
+GPU/telemetry regression checks: `node quickshell/tests/telemetry.test.cjs`,
+`python quickshell/tests/telemetry_layout_test.py` (offscreen Quickshell + QtTest
+layout and pointer/hover checks), and `python quickshell/tests/gpu_backend_test.py`.
 Network regression checks: `python quickshell/tests/network_backend_test.py`.
 
 Monitor regression checks: `node quickshell/tests/monitor.test.cjs` and

@@ -20,17 +20,7 @@ function gib(bytes) {
     return (bytes / 1073741824).toFixed(1);
 }
 
-// Each reading adds its own width plus one gap to the fixed bar controls.
-// Widths are measured from the actual components, rather than fixed cutoffs.
-function fit(metrics, budget, spacing) {
-    var visible = [];
-    for (var metric of metrics) {
-        if (!metric.available) continue;
-        var cost = metric.width + spacing;
-        if (cost <= budget) {
-            visible.push(metric.key);
-            budget -= cost;
-        }
-    }
-    return visible;
+// Keep hidden details actionable through the SYS reading even with its panel closed.
+function systemWarning(ram, temp, vramUsed, vramTotal) {
+    return ram >= 90 || temp >= 85 || (vramTotal > 0 && vramUsed / vramTotal >= 0.95);
 }
