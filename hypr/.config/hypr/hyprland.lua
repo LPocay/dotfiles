@@ -93,12 +93,21 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 6,
+			size = 8,
 			passes = 2,
+			variant = "prism",
 			ignore_opacity = false,
-			noise = 0.0,
-			vibrancy = 0.0,
+			glass = {
+				refraction = 20.0,
+				roughness = 0.5,
+				size = 20.0,
+			},
 		},
+		wobble = {
+			mass = 1,
+			intensity = 0.2,
+			enabled = true,
+		}
 	},
 
 	animations = {
