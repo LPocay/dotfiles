@@ -319,7 +319,7 @@ Scope {
         running: root.takeOverDunst
     }
     Variants {
-        model: Quickshell.screens
+        model: Quickshell.screens.filter(screen => screen.name && screen.name !== "FALLBACK")
         NotificationToasts {
             required property var modelData
             output: modelData

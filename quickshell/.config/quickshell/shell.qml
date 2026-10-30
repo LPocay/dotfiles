@@ -9,7 +9,7 @@ import "./components/"
 ShellRoot {
     // Recreate the bar when an output disappears and returns (DPMS/hotplug).
     Variants {
-        model: Quickshell.screens
+        model: Quickshell.screens.filter(screen => screen.name && screen.name !== "FALLBACK")
         TopBar {
             required property var modelData
             screen: modelData

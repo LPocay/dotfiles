@@ -33,7 +33,13 @@ local menu = "quickshell ipc call launcher toggle"
 -------------------
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("uwsm app -- quickshell")
+	-- Recover even from a clean exit when the last monitor disappears.
+	hl.exec_cmd(
+		"uwsm app -t service -u app-quickshell.service"
+			.. " -p Restart=always -p RestartSec=5s -p StartLimitIntervalSec=0"
+			.. " -p PartOf=graphical-session.target -p After=graphical-session.target"
+			.. " -p ExitType=main -- quickshell --no-duplicate"
+	)
 	-- Quickshell is currently under evaluation and may move to legacy if we switch back.
 	-- hl.exec_cmd("uwsm app -- waybar")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")

@@ -219,6 +219,18 @@ editable SVG; regenerate it after editing with:
 magick -background none hypr/.config/hypr/assets/lock-background.svg hypr/.config/hypr/assets/lock-background.png
 ```
 
+Hyprland starts Quickshell through UWSM as `app-quickshell.service`. Systemd
+restarts it after five seconds whenever the process exits, including clean exits
+after the last monitor disappears. Retries continue while the session is active;
+the service stops with the graphical session. Bars and notification popups skip
+placeholder outputs, and notification popups tolerate a removed screen during
+teardown. This mitigates monitor/DPMS failures; it does not fix crashes inside Qt
+or Quickshell itself. Use `systemctl --user restart app-quickshell.service` to
+recover manually and `journalctl --user -u app-quickshell.service -b` for logs.
+Use `systemctl --user stop app-quickshell.service` to stop it intentionally.
+Run `python quickshell/tests/notification_screen_test.py` to check toast bindings
+when a screen disappears and returns without disconnecting a physical monitor.
+
 Press `Super+Shift+o` to open the Quickshell workspace monitor picker. It captures
 the active workspace when opened, shows each connected monitor's mode and
 workspaces, and marks its current monitor. Use the arrows or `Tab`/`Shift+Tab`
