@@ -49,7 +49,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
 end)
 
-
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
@@ -250,24 +249,55 @@ bind("Groups", "Move window into group down", mainMod .. " + CTRL + down", dispa
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	bind("Workspaces", "Switch to workspace " .. i, mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	bind("Workspaces", "Move window to workspace " .. i, mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	bind(
+		"Workspaces",
+		"Move window to workspace " .. i,
+		mainMod .. " + SHIFT + " .. key,
+		hl.dsp.window.move({ workspace = i })
+	)
 end
 
 -- Special workspace (scratchpad)
 bind("Workspaces", "Toggle scratchpad", mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-bind("Workspaces", "Move window to scratchpad", mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+bind(
+	"Workspaces",
+	"Move window to scratchpad",
+	mainMod .. " + SHIFT + S",
+	hl.dsp.window.move({ workspace = "special:magic" })
+)
 
 -- Move the current workspace to another connected monitor
-bind("Monitors", "Move workspace to another monitor", mainMod .. " + SHIFT + o", hl.dsp.exec_cmd("quickshell ipc call monitors toggle"))
+bind(
+	"Monitors",
+	"Move workspace to another monitor",
+	mainMod .. " + SHIFT + o",
+	hl.dsp.exec_cmd("quickshell ipc call monitors toggle")
+)
 
 -- Wallpaper picker
-bind("Apps", "Open wallpaper picker", mainMod .. " + SHIFT + W", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]]))
+bind(
+	"Apps",
+	"Open wallpaper picker",
+	mainMod .. " + SHIFT + W",
+	hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/wallpaper_menu.sh"]])
+)
 
 -- Spotify controls popup
-bind("Media", "Open Spotify controls", mainMod .. " + M", hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/spotify_controls.sh"]]))
+bind(
+	"Media",
+	"Open Spotify controls",
+	mainMod .. " + M",
+	hl.dsp.exec_cmd([[bash "$HOME/dotfiles/scripts/spotify_controls.sh"]])
+)
 
 -- Screenshot selection
-bind("Apps", "Capture screen region", mainMod .. " + CTRL + 4", hl.dsp.exec_cmd([[grim -g "$(slurp)"]]), { locked = true, repeating = true })
+bind(
+	"Apps",
+	"Capture screen region",
+	mainMod .. " + CTRL + 4",
+	hl.dsp.exec_cmd([[grim -g "$(slurp)"]]),
+	{ locked = true, repeating = true }
+)
 
 -- Cycle through existing workspaces with mainMod + brackets or scroll
 bind("Workspaces", "Previous workspace", mainMod .. " + bracketleft", hl.dsp.focus({ workspace = "e-1" }))
@@ -280,24 +310,48 @@ bind("Mouse", "Drag window", mainMod .. " + mouse:272", hl.dsp.window.drag(), { 
 bind("Mouse", "Resize window", mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-bind("Media", "Raise volume", "XF86AudioRaiseVolume",
+bind(
+	"Media",
+	"Raise volume",
+	"XF86AudioRaiseVolume",
 	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
 	{ locked = true, repeating = true }
 )
-bind("Media", "Lower volume", "XF86AudioLowerVolume",
+bind(
+	"Media",
+	"Lower volume",
+	"XF86AudioLowerVolume",
 	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
 	{ locked = true, repeating = true }
 )
-bind("Media", "Mute audio output", "XF86AudioMute",
+bind(
+	"Media",
+	"Mute audio output",
+	"XF86AudioMute",
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
 	{ locked = true, repeating = true }
 )
-bind("Media", "Mute microphone", "XF86AudioMicMute",
+bind(
+	"Media",
+	"Mute microphone",
+	"XF86AudioMicMute",
 	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
 	{ locked = true, repeating = true }
 )
-bind("Media", "Raise brightness", "XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-bind("Media", "Lower brightness", "XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+bind(
+	"Media",
+	"Raise brightness",
+	"XF86MonBrightnessUp",
+	hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),
+	{ locked = true, repeating = true }
+)
+bind(
+	"Media",
+	"Lower brightness",
+	"XF86MonBrightnessDown",
+	hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),
+	{ locked = true, repeating = true }
+)
 
 -- Requires playerctl
 bind("Media", "Next track", "XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
