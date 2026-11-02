@@ -6,7 +6,8 @@ vim.pack.add {
 
 local cmp = require 'blink.cmp'
 local ok, err = pcall(function()
-  local built, build_err = cmp.build():pwait(60000)
+  -- Rust builds after an update can take longer than a minute.
+  local built, build_err = cmp.build():pwait()
   if not built then error(build_err) end
 end)
 local implementation = cmp.library_available() and 'rust' or 'lua'
