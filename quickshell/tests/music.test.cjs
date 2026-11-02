@@ -6,13 +6,13 @@ const logic = new Function(readFileSync(join(__dirname, '../.config/quickshell/c
     + '\nreturn { selectPlayer, parsePosition, playbackTime };')();
 
 const idle = { dbusName: 'brave', isPlaying: false, canPlay: false };
-const deezer = {
-    dbusName: 'org.mpris.MediaPlayer2.deezer',
+const spotify = {
+    dbusName: 'org.mpris.MediaPlayer2.spotify',
     isPlaying: true, canPlay: true, canPause: true, trackTitle: 'Song'
 };
 
-test('keeps the selected Deezer player and its metadata after pausing', () => {
-    const player = { ...deezer };
+test('keeps the selected Spotify player and its metadata after pausing', () => {
+    const player = { ...spotify };
     const players = [idle, player];
     const selected = logic.selectPlayer(players, '');
     assert.equal(selected, player);
@@ -22,12 +22,12 @@ test('keeps the selected Deezer player and its metadata after pausing', () => {
 });
 
 test('initially paused music wins over an idle browser', () => {
-    const paused = { ...deezer, isPlaying: false };
+    const paused = { ...spotify, isPlaying: false };
     assert.equal(logic.selectPlayer([idle, paused], ''), paused);
 });
 
 test('another playing player takes over and remains selected when paused', () => {
-    const paused = { ...deezer, isPlaying: false };
+    const paused = { ...spotify, isPlaying: false };
     const other = { dbusName: 'other', isPlaying: true, trackTitle: 'Other song' };
     assert.equal(logic.selectPlayer([paused, other], paused.dbusName), other);
     other.isPlaying = false;
@@ -35,13 +35,13 @@ test('another playing player takes over and remains selected when paused', () =>
 });
 
 test('temporarily missing metadata does not discard a controllable player', () => {
-    const player = { ...deezer, isPlaying: false, trackTitle: '' };
+    const player = { ...spotify, isPlaying: false, trackTitle: '' };
     assert.equal(logic.selectPlayer([idle, player], player.dbusName), player);
 });
 
 test('removed players and an empty player list are handled', () => {
-    assert.equal(logic.selectPlayer([idle], deezer.dbusName), idle);
-    assert.equal(logic.selectPlayer([], deezer.dbusName), null);
+    assert.equal(logic.selectPlayer([idle], spotify.dbusName), idle);
+    assert.equal(logic.selectPlayer([], spotify.dbusName), null);
 });
 
 test('position samples are seconds and preserve fractional precision', () => {

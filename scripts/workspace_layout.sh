@@ -18,7 +18,7 @@ SETTLE_TIMEOUT="${SETTLE_TIMEOUT:-8}"
 APPS=(
   "2|^firefox$|firefox"
   "3|^discord$|discord"
-  "4|^dev[.]aunetx[.]deezer$|flatpak run dev.aunetx.deezer"
+  "4|^spotify$|flatpak run com.spotify.Client"
   "5|^ZenNotes$|zennotes"
 )
 

@@ -8,15 +8,14 @@ set -uo pipefail
 declare -A labels=(
   [rust]='Rust' [deno]='Deno' [opencode]='OpenCode' [pi]='Pi'
   [claude]='Claude' [copilot]='Copilot' [codex]='Codex' [herdr]='Herdr'
-  [flatpak]='Flatpak' [integrations]='Integraciones de Herdr'
+  [integrations]='Integraciones de Herdr'
 )
 declare -A commands=(
   [rust]='rustup' [deno]='deno' [opencode]='opencode' [pi]='pi'
   [claude]='claude' [copilot]='copilot' [codex]='codex' [herdr]='herdr'
-  [flatpak]='flatpak'
 )
 declare -A running=() results=() started=() durations=()
-groups=(rust deno opencode pi claude copilot codex herdr flatpak)
+groups=(rust deno opencode pi claude copilot codex herdr)
 red='' green='' yellow='' cyan='' bold='' reset=''
 if [[ -t 1 && -z ${NO_COLOR+x} && ${TERM:-dumb} != dumb ]]; then
   red=$'\e[31m' green=$'\e[32m' yellow=$'\e[33m' cyan=$'\e[36m'
@@ -74,7 +73,6 @@ run_group() {
     copilot) run_step copilot update ;;
     codex) run_step codex update ;;
     herdr) run_step herdr update ;;
-    flatpak) run_step flatpak update --noninteractive --assumeyes ;;
     integrations) update_integrations ;;
   esac
 }

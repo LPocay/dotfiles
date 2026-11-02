@@ -50,9 +50,9 @@ The package script installs `fd` and `fzf` for project selection and ImageMagick
 (`magick`) for `scripts/wallpaper_menu.sh`. That wallpaper script also needs
 `quickshell`, `hyprctl`, `jq`, and `notify-send`. The workspace layout script
 needs a running Hyprland session, `hyprctl`, `jq`, `uwsm`, and `notify-send`.
-It places Firefox on workspace 2, Discord on 3, Deezer on 4, and ZenNotes on 5.
-Install Deezer with `flatpak install --user flathub dev.aunetx.deezer` first.
-The layout launches it through UWSM with `flatpak run dev.aunetx.deezer` and
+It places Firefox on workspace 2, Discord on 3, Spotify on 4, and ZenNotes on 5.
+Install Spotify with `flatpak install --user flathub com.spotify.Client` first.
+The layout launches it through UWSM with `flatpak run com.spotify.Client` and
 recognizes its own window class independently of Firefox.
 If a terminal retains an old Hyprland session signature, the layout script
 reconnects to the instance on its Wayland display, or the only running instance.
@@ -77,8 +77,6 @@ parallel; missing tools are skipped and individual failures do not stop other
 groups. Pi updates itself before its extensions. Herdr updates its installed,
 outdated integrations one at a time after all tool updates finish, provided its
 own update succeeded.
-When Flatpak is installed, its parallel group updates apps and runtimes in both
-the user and default system installations without interactive prompts.
 
 The terminal shows compact progress, durations, a summary, and the last log lines
 for failed groups. Each run keeps separate logs under
@@ -392,7 +390,7 @@ or `dnd`. Logic and persistence regression checks:
 ## Shared Services And Media
 
 The top-bar music icon opens the integrated MPRIS controls. The panel keeps the
-selected player when paused instead of switching to an idle browser. Deezer's
+selected player when paused instead of switching to an idle browser. Spotify's
 Flatpak app exposes its media controls directly over MPRIS.
 While the panel is open, `playerctl` reads the actual position every second and
 on track/playback changes, including while paused. Samples from an earlier track

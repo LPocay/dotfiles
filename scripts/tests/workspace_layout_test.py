@@ -24,7 +24,7 @@ class WorkspaceLayoutTest(unittest.TestCase):
             'clients': [
                 {'address': '0x1', 'class': 'firefox', 'workspace': {'id': 2}},
                 {'address': '0x2', 'class': 'discord', 'workspace': {'id': 3}},
-                {'address': '0x3', 'class': 'dev.aunetx.deezer', 'workspace': {'id': 4}},
+                {'address': '0x3', 'class': 'Spotify', 'workspace': {'id': 4}},
                 {'address': '0x4', 'class': 'zennotes', 'workspace': {'id': 5}},
             ],
         }
@@ -48,8 +48,8 @@ elif command == 'clients':
     else:
         print(json.dumps(state['clients']))
 elif command == 'dispatch':
-    if 'uwsm app -- flatpak run dev.aunetx.deezer' in sys.argv[2]:
-        state['clients'].append({'address': '0x5', 'class': 'dev.aunetx.deezer', 'workspace': {'id': 4}})
+    if 'uwsm app -- flatpak run com.spotify.Client' in sys.argv[2]:
+        state['clients'].append({'address': '0x5', 'class': 'Spotify', 'workspace': {'id': 4}})
         (base / 'state.json').write_text(json.dumps(state))
     print('ok')
 else:
@@ -130,14 +130,14 @@ else:
         self.assert_stopped(result)
         self.assertIn('cannot read Hyprland windows', result.stderr)
 
-    def test_missing_deezer_launches_flatpak_even_if_a_browser_web_app_exists(self):
-        self.state['clients'][2]['class'] = 'firefox.webapp-old-deezer'
+    def test_missing_spotify_launches_flatpak_even_if_a_browser_web_app_exists(self):
+        self.state['clients'][2]['class'] = 'firefox.webapp-old-spotify'
         result = self.run_layout()
         self.assertEqual(result.returncode, 0, result.stderr)
         dispatches = [call['args'][0] for call in self.calls() if call['command'] == 'dispatch']
         launches = [command for command in dispatches if 'hl.dsp.exec_cmd' in command]
-        self.assertEqual(launches, ['hl.dsp.exec_cmd("uwsm app -- flatpak run dev.aunetx.deezer")'])
-        self.assertIn('workspace 4: flatpak run dev.aunetx.deezer launched', result.stdout)
+        self.assertEqual(launches, ['hl.dsp.exec_cmd("uwsm app -- flatpak run com.spotify.Client")'])
+        self.assertIn('workspace 4: flatpak run com.spotify.Client launched', result.stdout)
 
 
 if __name__ == '__main__':
