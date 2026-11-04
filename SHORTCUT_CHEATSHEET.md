@@ -154,6 +154,7 @@ Files:
 - `nvim/.config/nvim/lua/lpocay/plugins/gisigns.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/mini.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/cmp.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/dap.lua`
 
 ### Leader and core
 
@@ -197,6 +198,23 @@ Files:
 - `grt`: go to type definition
 - `gO`: document symbols
 - `gW`: workspace symbols
+
+### Debugging (DAP)
+
+- `F5` / `<leader>Dc`: start debugging or continue execution
+- `F9` / `<leader>Db`: toggle breakpoint
+- `<leader>DB`: set conditional breakpoint
+- `F10` / `<leader>Do`: step over
+- `F11` / `<leader>Di`: step into
+- `F12` / `<leader>DO`: step out
+- `<leader>Dl`: run last debug configuration
+- `<leader>Dx`: terminate debug session
+- `<leader>Du`: toggle debug panels
+- `<leader>Dr`: toggle debug REPL
+- `<leader>De` (normal / visual): evaluate expression / selection
+- `<leader>Dt` (Go buffers): debug nearest test
+- Debug panels open when a session initializes and close when it ends.
+- `<leader>D` uses uppercase `D`; lowercase `<leader>d` still deletes without changing the register.
 
 ### Search and pickers (Telescope)
 

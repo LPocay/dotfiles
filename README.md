@@ -95,6 +95,90 @@ back to those revisions, and `:checkhealth vim.pack` to diagnose problems.
 Do not edit the lockfile by hand. Mason-managed language servers and tools are
 installed separately; the `vim.pack` lock does not pin their versions.
 
+## Neovim debugging
+
+`lua/lpocay/plugins/dap.lua` configures `nvim-dap`, `nvim-dap-ui`, and
+`nvim-dap-go`. `vim.pack` installs the plugins; the existing Mason tool installer
+installs `js-debug-adapter`, `delve`, and `codelldb`. On first startup, wait for
+these packages to finish installing in `:Mason` before starting a session.
+If installation fails, inspect `:MasonLog`; retry with
+`:MasonInstall js-debug-adapter delve codelldb`.
+
+Open Neovim from the project root. Set a breakpoint with `F9`, then press `F5`
+and choose a configuration. Use `F10` to step over, `F11` to step into, and `F12`
+to step out. `<leader>Dx` stops debugging; `<leader>Du` toggles the panels.
+The uppercase `<leader>D` group contains the other debug actions (see
+[SHORTCUT_CHEATSHEET.md](SHORTCUT_CHEATSHEET.md#debugging-dap)).
+
+### JavaScript, TypeScript, React, and Svelte
+
+The same configurations are available in JS, JSX, TS, TSX, Svelte, Vue, and Astro
+buffers:
+
+- **Browser: launch Chrome/Chromium**: start the project's dev server separately
+  (for example, `npm run dev`), then select this configuration and enter its URL.
+  The default is `http://localhost:5173`. Chrome, Chromium, or Brave must be
+  installed. The debugger opens a separate browser instance. Source maps from
+  the dev server let breakpoints resolve to the original component source;
+  production builds need source maps enabled explicitly.
+- **Node: launch JavaScript file (build TypeScript first)**: select the JS entry
+  point. For TypeScript, compile with source maps enabled (for example,
+  `tsc --sourceMap`) and select the generated JS file. Breakpoints can remain in
+  the TS source. JSX/TSX components use the project's build tools or browser
+  configuration rather than being run directly by Node.
+- **Node: attach to inspector**: start the server with the Node inspector, for
+  example `node --inspect-brk=127.0.0.1:9229 dist/index.js`, then enter its port
+  (default `9229`). For frameworks with SSR, this debugs the server process;
+  browser debugging covers the client code.
+
+### Go
+
+Delve and `nvim-dap-go` provide launch, package, test, and attach configurations.
+Use **Debug Package** to include all source files in the current package, or
+`<leader>Dt` to debug the nearest test. Go and the Treesitter Go parser must be
+installed for the test shortcut (`:TSInstall go` if needed).
+
+### Rust, C, and C++
+
+CodeLLDB supports launching a compiled executable or attaching to a process.
+Build with debug symbols before launching:
+
+- Rust: `cargo build`, then select `target/debug/<binary>`.
+- C: `cc -g -O0 main.c -o app`, then select `app`.
+- C++: `c++ -g -O0 main.cpp -o app`, then select `app`.
+- CMake projects: configure with `-DCMAKE_BUILD_TYPE=Debug`, then build normally.
+
+These defaults do not build the project automatically. The executable picker
+starts in `target/debug/` for Rust and `build/` for C/C++; any executable path
+can be entered.
+
+### Project-specific launch configurations
+
+`nvim-dap` also reads `.vscode/launch.json` from Neovim's current working
+directory when starting a session. Use it for entry points, arguments,
+environment variables, source-map paths, or a custom browser executable.
+Supported adapter names are `pwa-node` / `node`, `pwa-chrome` / `chrome`, `go`,
+and `codelldb` / `lldb`. For example:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Node: API",
+      "type": "pwa-node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dist/index.js",
+      "cwd": "${workspaceFolder}",
+      "args": ["--port", "3000"],
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
+```
+
 ## Active and legacy configurations
 
 The current desktop setup is Hyprland with UWSM, plus Quickshell, Waybar, and
