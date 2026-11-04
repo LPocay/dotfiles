@@ -79,6 +79,7 @@ clue.setup {
     { mode = { 'n', 'x' }, keys = '<Leader>s', desc = '+Search' },
     { mode = { 'n', 'x' }, keys = '<Leader>h', desc = '+Git hunks' },
     { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
+    { mode = { 'n', 'x' }, keys = '<Leader>D', desc = '+Debug' },
     clue.gen_clues.g(),
     clue.gen_clues.z(),
     clue.gen_clues.windows(),

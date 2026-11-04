@@ -109,7 +109,7 @@ servers.eslint = {
 
 -- Use the qmlls binary from Arch's qt6-declarative package instead of Mason's build.
 local ensure_installed = vim.tbl_filter(function(name) return name ~= 'qmlls' end, vim.tbl_keys(servers))
-local tools = { 'prettier', 'biome' }
+local tools = { 'prettier', 'biome', 'js-debug-adapter', 'delve', 'codelldb' }
 ensure_installed = vim.fn.uniq(vim.fn.sort(vim.list_extend(ensure_installed, tools)))
 
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }
