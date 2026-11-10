@@ -4,12 +4,18 @@ import QtQuick.Layouts
 import "../theme/"
 
 RowLayout {
+    id: root
+    required property var screen
+    property var workspaceModel: Hyprland.workspaces
     spacing: 8
     Repeater {
-        model: Hyprland.workspaces
+        model: root.workspaceModel.values.filter(workspace => root.screen
+            && workspace.monitor?.name === root.screen.name
+            && !workspace.name.startsWith("special:")).sort((a, b) => a.id - b.id)
         Rectangle {
             id: workspace
             required property var modelData
+            objectName: "workspace-" + modelData.id
             implicitWidth: 38
             implicitHeight: 32
             radius: 2
@@ -28,7 +34,8 @@ RowLayout {
             }
             Text {
                 anchors.centerIn: parent
-                text: `0${workspace.modelData.id}`
+                text: workspace.modelData.name === String(workspace.modelData.id)
+                    ? String(workspace.modelData.id).padStart(2, "0") : workspace.modelData.name
                 color: workspace.modelData.urgent ? Colors.topbar.accent_danger : workspace.modelData.active ? Colors.topbar.text_selected : mouseArea.containsMouse ? Colors.topbar.text_selected : Colors.topbar.text_muted
                 font.pixelSize: 12
                 font.bold: true
@@ -55,7 +62,7 @@ RowLayout {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    workspace.modelData.activate();
+                    Hyprland.dispatch("hl.dsp.focus({ workspace = " + workspace.modelData.id + " })");
                 }
             }
         }

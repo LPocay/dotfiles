@@ -323,6 +323,9 @@ With one monitor connected, the panel explains that another output is needed.
 No monitor names or positions are hardcoded. Scripts can toggle the same panel
 with `quickshell ipc call monitors toggle`.
 
+Each top bar shows only the workspaces assigned to its own output, keeping that
+output's active workspace highlighted even while another monitor has focus.
+
 The top bar groups telemetry into `SYS=…%` (CPU utilization), a Wi-Fi/Ethernet
 status icon, and `VOL=…` (or `MUTE`). `BAT=…%` stays visible on machines with a
 battery; `+` marks charging/external power. Hover a group for 220 ms to open its

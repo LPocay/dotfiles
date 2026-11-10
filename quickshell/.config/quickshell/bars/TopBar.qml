@@ -34,7 +34,7 @@ PanelWindow {
                     onClicked: root.launcherRequested()
                 }
                 Separator {}
-                Workspaces {}
+                Workspaces { screen: root.screen }
             }
         }
 
