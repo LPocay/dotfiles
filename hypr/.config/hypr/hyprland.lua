@@ -67,6 +67,10 @@ end)
 -----------------------
 
 hl.config({
+	render = {
+		cm_auto_hdr = 0,
+	},
+
 	general = {
 		gaps_in = 6,
 		gaps_out = 10,
