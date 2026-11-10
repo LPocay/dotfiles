@@ -20,6 +20,7 @@ UWSM migration note: when using the `Hyprland (uwsm-managed)` session, app-launc
 - `Super+d` / `Super+Space`: Quickshell app launcher (also opens by clicking the top-bar prompt)
 - `Super+F1`: Quickshell Hyprland shortcut reference; type to search, `Tab` / `Shift+Tab` filters categories, `↑` / `↓` browses, `Ctrl+r` refreshes, `Esc` closes
 - `Super+n`: Quickshell notification center (also opens from the top-bar bell); `D` toggles do not disturb, `↑` / `↓` browses, `Enter` invokes the default action, `Delete` removes from history, `Ctrl+l` clears history, `Esc` closes
+- `Super+Ctrl+o`: Quickshell display layout; drag displays or edit X/Y, choose the primary, `Ctrl+Enter` applies and saves, `Ctrl+r` refreshes, `Esc` closes
 - In the app launcher: type to search, `↑` / `↓` to select, `Enter` to launch, `Esc` to close, `Ctrl+r` to refresh results
 - `Super+p`: toggle pseudotile
 - `Super+f`: toggle maximized fullscreen

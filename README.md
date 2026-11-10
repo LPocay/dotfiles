@@ -326,6 +326,25 @@ with `quickshell ipc call monitors toggle`.
 Each top bar shows only the workspaces assigned to its own output, keeping that
 output's active workspace highlighted even while another monitor has focus.
 
+Press `Super+Ctrl+o`, or run
+`quickshell ipc call displays toggle` to open the display layout panel. Drag the
+display previews, enter exact X/Y coordinates, or position the selected output
+left/right/above/below the output chosen in the reference dropdown. Sizes and
+positions account for scaling and rotation. Select **SET PRIMARY** to choose the
+initial cursor display and the X11 primary output; native applications follow
+focus. **APPLY LAYOUT** (`Ctrl+Enter`) applies and saves changes, **RESET** undoes
+pending edits, `Ctrl+r` reloads current positions, and `Esc` closes the panel.
+Overlapping layouts and disconnected outputs are rejected before applying.
+Failed applications restore the previous layout; X11 failures are reported
+separately without discarding a successfully applied layout.
+
+Layouts are saved under `$XDG_STATE_HOME/quickshell/display-layout.{json,lua}`
+(default `~/.local/state/quickshell/`). The updated Hyprland Lua config loads the
+saved rules after its defaults and restores the X11 primary on startup. Rules
+for disconnected outputs are retained for reconnection. Apply the repository's
+`hyprland.lua` to enable the new shortcut and persistence across config reloads.
+The existing `Super+Shift+o` workspace mover remains available.
+
 The top bar groups telemetry into `SYS=…%` (CPU utilization), a Wi-Fi/Ethernet
 status icon, and `VOL=…` (or `MUTE`). `BAT=…%` stays visible on machines with a
 battery; `+` marks charging/external power. Hover a group for 220 ms to open its
@@ -364,6 +383,11 @@ Network regression checks: `python quickshell/tests/network_backend_test.py`.
 
 Monitor regression checks: `node quickshell/tests/monitor.test.cjs` and
 `python quickshell/tests/monitor_backend_test.py`.
+Display layout checks: `node quickshell/tests/display.test.cjs`,
+`python quickshell/tests/display_backend_test.py`, and
+`python quickshell/tests/display_qml_test.py`. For the full modal interaction test,
+set `QUICKSHELL_TEST_WAYLAND` to the absolute Wayland socket of an isolated
+compositor with layer-shell support; the workspace test runs offscreen.
 
 Press `Super+d` or `Super+Space`, or click the top-bar prompt, to toggle the
 Quickshell application launcher on the focused monitor. Type to search app names,

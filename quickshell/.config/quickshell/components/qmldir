@@ -28,6 +28,10 @@ ClipboardItem 1.0 ClipboardItem.qml
 MonitorPicker 1.0 MonitorPicker.qml
 MonitorModal 1.0 MonitorModal.qml
 MonitorItem 1.0 MonitorItem.qml
+DisplaySettings 1.0 DisplaySettings.qml
+DisplayModal 1.0 DisplayModal.qml
+DisplayPreview 1.0 DisplayPreview.qml
+DisplayButton 1.0 DisplayButton.qml
 ShortcutViewer 1.0 ShortcutViewer.qml
 ShortcutModal 1.0 ShortcutModal.qml
 ShortcutItem 1.0 ShortcutItem.qml

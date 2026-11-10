@@ -89,6 +89,80 @@ ShellRoot {
 }
 ''')
 
+    @unittest.skipUnless(os.environ.get('QUICKSHELL_TEST_WAYLAND'), 'set QUICKSHELL_TEST_WAYLAND to an isolated compositor socket')
+    def test_modal_drag_primary_reset_apply_and_keyboard(self):
+        services = '''import json, sys, time
+if sys.argv[1] == 'scan':
+    print(json.dumps({'monitors': [
+        dict(name='DP-1',width=2560,height=1440,scale=1,transform=0,x=0,y=0,refreshRate=164.96),
+        dict(name='DP-3',width=2560,height=1440,scale=1,transform=0,x=2560,y=0,refreshRate=59.95)
+    ],'primary':'DP-1'}))
+else:
+    payload = json.loads(sys.argv[2])
+    assert payload['primary'] == 'DP-3'
+    assert payload['monitors'][1]['x'] == -2560
+    time.sleep(0.05)
+    print(json.dumps({'warning': ''}))
+'''
+        self.run_qml('''import Quickshell
+import QtQuick
+import QtTest
+import "COMPONENTS_URI" as C
+ShellRoot {
+    id: root
+    property int step: 0
+    property bool failed: false
+    TestCase { id: input; when: false; parent: settings.window.contentItem }
+    C.DisplaySettings { id: settings }
+    function check(condition, message) {
+        if (!condition) { failed = true; console.log("DISPLAY_QML_FAIL", message); }
+    }
+    function button(text) {
+        function find(item) {
+            if (item.text === text && typeof item.clicked === "function") return item;
+            for (const child of item.children ?? []) { const found = find(child); if (found) return found; }
+            return null;
+        }
+        return find(settings.window.contentItem);
+    }
+    Timer { interval: 50; running: true; onTriggered: settings.toggle(Quickshell.screens[0]) }
+    Timer {
+        interval: 250; running: true; repeat: true
+        onTriggered: {
+            if (settings.loading || settings.applying) return;
+            if (root.step === 0) {
+                root.check(settings.expanded && settings.monitors.length === 2 && !settings.dirty, "initial scan failed");
+                const tile = input.findChild(settings.window.contentItem, "display-preview-DP-3");
+                input.mousePress(tile, tile.width / 2, tile.height / 2);
+                input.mouseMove(tile, tile.width / 2, tile.height / 2 + 60, 20);
+                input.mouseRelease(tile, tile.width / 2, tile.height / 2 + 60);
+                root.check(settings.selectedName === "DP-3" && settings.dirty && settings.selected.y > 0, "drag did not update selected output");
+                root.button("RESET").clicked();
+                root.check(!settings.dirty && settings.selected.y === 0, "reset did not restore positions");
+                root.button("LEFT").clicked();
+                root.check(settings.selected.x === -2560, "relative placement used the wrong output");
+                root.button("SET PRIMARY").clicked();
+                root.check(settings.primary === "DP-3", "primary control failed");
+                root.button("APPLY LAYOUT").clicked();
+            } else if (root.step === 1) {
+                root.check(!settings.dirty && settings.message === "Monitor layout saved." && !settings.error, "apply did not finish cleanly");
+                const content = input.findChild(settings.window.contentItem, "display-modal-content");
+                content.forceActiveFocus();
+                input.keyClick(Qt.Key_Escape);
+                root.check(!settings.expanded, "Escape did not close the modal");
+                settings.toggle(Quickshell.screens[0]);
+            } else if (root.step === 2) {
+                root.check(settings.expanded && !settings.dirty, "reopening did not refresh");
+                settings.close();
+                if (!root.failed) console.log("DISPLAY_QML_PASS");
+                Qt.quit();
+            }
+            root.step++;
+        }
+    }
+}
+''', wayland=True, services=services)
+
 
 if __name__ == '__main__':
     unittest.main()

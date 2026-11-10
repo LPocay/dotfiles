@@ -25,6 +25,7 @@ ShellRoot {
             notificationCenter.close();
             shortcuts.close();
             monitors.close();
+            displays.close();
             clipboard.close();
             wallpaper.cancel();
         }
@@ -36,6 +37,7 @@ ShellRoot {
             notificationCenter.close();
             shortcuts.close();
             monitors.close();
+            displays.close();
             launcher.close();
             wallpaper.cancel();
         }
@@ -48,6 +50,19 @@ ShellRoot {
             shortcuts.close();
             launcher.close();
             clipboard.close();
+            displays.close();
+            wallpaper.cancel();
+        }
+    }
+    DisplaySettings {
+        id: displays
+        blocked: wallpaper.expanded
+        onOpenRequested: {
+            notificationCenter.close();
+            shortcuts.close();
+            launcher.close();
+            clipboard.close();
+            monitors.close();
             wallpaper.cancel();
         }
     }
@@ -59,6 +74,7 @@ ShellRoot {
             launcher.close();
             clipboard.close();
             monitors.close();
+            displays.close();
             wallpaper.cancel();
         }
     }
@@ -71,6 +87,7 @@ ShellRoot {
             launcher.close();
             clipboard.close();
             monitors.close();
+            displays.close();
             wallpaper.cancel();
         }
     }

@@ -34,5 +34,6 @@ for _ in pairs(bindings) do count = count + 1 end
 assert(bindings["SUPER + N"].handler.args[1] == "quickshell ipc call notifications toggle")
 assert(bindings["SUPER + bracketleft"].handler.args[1].workspace == "e-1")
 assert(bindings["SUPER + bracketright"].handler.args[1].workspace == "e+1")
-assert(count == 79, "Expected all 77 existing bindings plus previous/next workspace shortcuts")
-print("All 79 bindings have descriptions; workspace targets, IPC and input flags verified.")
+assert(bindings["SUPER + CTRL + o"].handler.args[1] == "quickshell ipc call displays toggle")
+assert(count == 80, "Expected all 79 existing bindings plus display settings")
+print("All 80 bindings have descriptions; workspace targets, IPC and input flags verified.")

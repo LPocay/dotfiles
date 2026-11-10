@@ -20,6 +20,11 @@ hl.monitor({
 	scale = 1,
 })
 
+-- Quickshell saves explicit monitor rules after the defaults above.
+local stateHome = os.getenv("XDG_STATE_HOME") or (os.getenv("HOME") .. "/.local/state")
+local displayLayout = loadfile(stateHome .. "/quickshell/display-layout.lua")
+if displayLayout then displayLayout() end
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -47,6 +52,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("uwsm app -- hyprpaper")
 	hl.exec_cmd("uwsm app -- wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("uwsm app -- wl-paste --type image --watch cliphist store")
+	local configHome = os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
+	hl.exec_cmd("python3 " .. string.format("%q", configHome .. "/quickshell/services/display-layout.py") .. " restore-primary")
 end)
 
 -----------------------
@@ -266,7 +273,13 @@ bind(
 	hl.dsp.window.move({ workspace = "special:magic" })
 )
 
--- Move the current workspace to another connected monitor
+-- Monitor layout and workspace destinations
+bind(
+	"Monitors",
+	"Configure monitor layout and primary display",
+	mainMod .. " + CTRL + o",
+	hl.dsp.exec_cmd("quickshell ipc call displays toggle")
+)
 bind(
 	"Monitors",
 	"Move workspace to another monitor",
