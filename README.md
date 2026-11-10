@@ -182,8 +182,9 @@ and `codelldb` / `lldb`. For example:
 ## Active and legacy configurations
 
 The current desktop setup is Hyprland with UWSM, plus Quickshell, Waybar, and
-the scripts under `scripts/`. The `hyprland-old.conf` file is a previous
-Hyprland configuration. `sway` and `swaylock` are kept as a Wayland fallback.
+the scripts under `scripts/`. Hyprland uses `hypr/.config/hypr/hyprland.lua`;
+the previous configuration is available in Git history. `sway` and `swaylock`
+are kept as a Wayland fallback.
 `i3`, `picom`, `polybar`, `rofi`, and `monitors/configure-monitors.sh` belong to
 the older X11 setup; that monitor script uses `xrandr` and is not part of the
 Hyprland setup. Wofi is also legacy: its configuration and the previous
