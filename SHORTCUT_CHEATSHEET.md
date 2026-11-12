@@ -153,6 +153,7 @@ Files:
 - `nvim/.config/nvim/lua/lpocay/plugins/conform.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/telescope.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/gisigns.lua`
+- `nvim/.config/nvim/lua/lpocay/plugins/themes.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/mini.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/cmp.lua`
 - `nvim/.config/nvim/lua/lpocay/plugins/dap.lua`
@@ -168,6 +169,13 @@ Files:
 - `<leader>q`: open diagnostic location list
 - `<leader>u`: update Vim packages with `vim.pack.update()`
 - Terminal `Esc Esc`: exit terminal mode
+
+### Themes (Themery)
+
+- `<leader>tt`: open the theme switcher (`:Themery`)
+- `j` / `k`: navigate themes with live preview
+- `<CR>`: apply theme and persist the choice
+- `q` / `<Esc>`: close without applying
 
 ### Window navigation
 
