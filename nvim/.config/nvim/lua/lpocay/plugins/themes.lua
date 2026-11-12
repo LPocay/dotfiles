@@ -1,17 +1,23 @@
 vim.pack.add { 'https://github.com/rebelot/kanagawa.nvim' }
 vim.pack.add { 'https://github.com/zaldih/themery.nvim' }
 vim.pack.add { 'https://github.com/oskarnurm/koda.nvim' }
+vim.pack.add { { src = 'https://github.com/rose-pine/neovim', name = 'rose-pine' } }
+
+require('rose-pine').setup {}
 
 local themery = require 'themery'
 themery.setup {
   themes = {
-    { name = 'Kanagawa Dragon', colorscheme = 'kanagawa-dragon' },
-    { name = 'Kanagawa Wave', colorscheme = 'kanagawa-wave' },
-    { name = 'Kanagawa Lotus', colorscheme = 'kanagawa-lotus' },
-    { name = 'Koda Dark', colorscheme = 'koda-dark' },
-    { name = 'Koda Light', colorscheme = 'koda-light' },
-    { name = 'Koda Moss', colorscheme = 'koda-moss' },
-    { name = 'Koda Glade', colorscheme = 'koda-glade' },
+    { name = 'Kanagawa Dragon', colorscheme = 'kanagawa-dragon', before = [[vim.o.background = 'dark']] },
+    { name = 'Kanagawa Wave', colorscheme = 'kanagawa-wave', before = [[vim.o.background = 'dark']] },
+    { name = 'Kanagawa Lotus', colorscheme = 'kanagawa-lotus', before = [[vim.o.background = 'light']] },
+    { name = 'Rosé Pine', colorscheme = 'rose-pine-main', before = [[vim.o.background = 'dark']] },
+    { name = 'Rosé Pine Moon', colorscheme = 'rose-pine-moon', before = [[vim.o.background = 'dark']] },
+    { name = 'Rosé Pine Dawn', colorscheme = 'rose-pine-dawn', before = [[vim.o.background = 'light']] },
+    { name = 'Koda Dark', colorscheme = 'koda-dark', before = [[vim.o.background = 'dark']] },
+    { name = 'Koda Light', colorscheme = 'koda-light', before = [[vim.o.background = 'light']] },
+    { name = 'Koda Moss', colorscheme = 'koda-moss', before = [[vim.o.background = 'dark']] },
+    { name = 'Koda Glade', colorscheme = 'koda-glade', before = [[vim.o.background = 'light']] },
   },
   livePreview = true,
 }
