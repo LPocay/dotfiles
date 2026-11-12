@@ -118,7 +118,7 @@ vim.pack.add { 'https://github.com/nvim-lua/plenary.nvim' }
 require 'lpocay.plugins.guess-indent'
 require 'lpocay.plugins.devicons'
 require 'lpocay.plugins.gisigns'
-require 'lpocay.plugins.kanagawa'
+require 'lpocay.plugins.themes'
 require 'lpocay.plugins.todo-comments'
 require 'lpocay.plugins.mini'
 require 'lpocay.plugins.telescope'
