@@ -94,4 +94,10 @@ clue.setup {
 local statusline = require 'mini.statusline'
 statusline.setup { use_icons = vim.g.have_nerd_font }
 
-require('mini.starter').setup()
+local starter = require 'mini.starter'
+starter.setup {
+  items = {
+    starter.sections.recent_files(5, true, false),
+    starter.sections.builtin_actions(),
+  },
+}
