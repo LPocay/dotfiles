@@ -97,6 +97,12 @@ end
 
 require('dap-go').setup {}
 
+dap.adapters.gdb = {
+  type = 'executable',
+  command = 'gdb',
+  args = { '--interpreter=dap' },
+}
+
 dap.adapters.codelldb = {
   type = 'server',
   host = '127.0.0.1',
@@ -109,10 +115,11 @@ dap.adapters.codelldb = {
 dap.adapters.lldb = dap.adapters.codelldb
 
 for _, filetype in ipairs { 'c', 'cpp', 'rust' } do
+  local adapter = filetype == 'rust' and 'codelldb' or 'gdb'
   dap.configurations[filetype] = {
     {
       name = 'Launch compiled executable',
-      type = 'codelldb',
+      type = adapter,
       request = 'launch',
       program = function()
         local directory = filetype == 'rust' and '/target/debug/' or '/build/'
@@ -124,7 +131,7 @@ for _, filetype in ipairs { 'c', 'cpp', 'rust' } do
     },
     {
       name = 'Attach to process',
-      type = 'codelldb',
+      type = adapter,
       request = 'attach',
       pid = require('dap.utils').pick_process,
       cwd = project_root,
