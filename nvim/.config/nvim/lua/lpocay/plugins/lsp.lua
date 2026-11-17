@@ -3,6 +3,7 @@ require('fidget').setup {}
 
 local servers = {
   clangd = {},
+  glsl_analyzer = {},
   qmlls = { cmd = { '/usr/lib/qt6/bin/qmlls' } },
   gopls = {},
   pyright = {},
